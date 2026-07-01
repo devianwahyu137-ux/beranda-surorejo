@@ -15,22 +15,88 @@ export default function PhotoUploader({ umkmId, photos, onUpdate }: PhotoUploade
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const MAX_INPUT_SIZE_MB = 8;
+  const MAX_OUTPUT_SIZE_KB = 400;
+  const MAX_DIMENSION = 1200;
+
+  const compressImage = (file: File): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      const img = new window.Image();
+      const objectUrl = URL.createObjectURL(file);
+      img.onload = () => {
+        URL.revokeObjectURL(objectUrl);
+        let { width, height } = img;
+
+        // Scale down if too large
+        if (width > MAX_DIMENSION || height > MAX_DIMENSION) {
+          const ratio = Math.min(MAX_DIMENSION / width, MAX_DIMENSION / height);
+          width = Math.round(width * ratio);
+          height = Math.round(height * ratio);
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return reject(new Error('Canvas tidak didukung'));
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Try quality from 0.85 down to 0.5 until under MAX_OUTPUT_SIZE_KB
+        let quality = 0.85;
+        const tryCompress = () => {
+          canvas.toBlob(
+            (blob) => {
+              if (!blob) return reject(new Error('Kompresi gagal'));
+              if (blob.size > MAX_OUTPUT_SIZE_KB * 1024 && quality > 0.5) {
+                quality -= 0.1;
+                tryCompress();
+              } else {
+                resolve(blob);
+              }
+            },
+            'image/jpeg',
+            quality
+          );
+        };
+        tryCompress();
+      };
+      img.onerror = () => reject(new Error('Gagal membaca gambar'));
+      img.src = objectUrl;
+    });
+  };
+
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      setError('File harus berupa gambar (jpg, png, webp, dll).');
+      e.target.value = '';
+      return;
+    }
+
+    // Validate raw file size
+    if (file.size > MAX_INPUT_SIZE_MB * 1024 * 1024) {
+      setError(`Ukuran file maksimal ${MAX_INPUT_SIZE_MB}MB.`);
+      e.target.value = '';
+      return;
+    }
 
     setError(null);
     setUploading(true);
 
     try {
       const supabase = createClient();
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${umkmId}/${Date.now()}.${fileExt}`;
 
-      // Upload to Storage
+      // Compress before upload
+      const compressed = await compressImage(file);
+      const fileName = `${umkmId}/${Date.now()}.jpg`;
+
+      // Upload compressed blob to Storage
       const { error: uploadError } = await supabase.storage
         .from('umkm-photos')
-        .upload(fileName, file);
+        .upload(fileName, compressed, { contentType: 'image/jpeg' });
 
       if (uploadError) throw uploadError;
 
@@ -59,7 +125,6 @@ export default function PhotoUploader({ umkmId, photos, onUpdate }: PhotoUploade
       setError(err instanceof Error ? err.message : 'Upload gagal.');
     } finally {
       setUploading(false);
-      // Reset input
       e.target.value = '';
     }
   };
@@ -125,13 +190,14 @@ export default function PhotoUploader({ umkmId, photos, onUpdate }: PhotoUploade
       )}
 
       {/* Upload Button */}
-      <label className="flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-neutral-300 rounded-lg cursor-pointer hover:border-primary-400 hover:bg-primary-50 transition-colors">
+      <label className="flex flex-col items-center justify-center gap-1 px-4 py-4 border-2 border-dashed border-neutral-300 rounded-lg cursor-pointer hover:border-primary-400 hover:bg-primary-50 transition-colors">
         <svg className="w-5 h-5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
         </svg>
-        <span className="text-sm text-neutral-600">
-          {uploading ? 'Mengupload...' : 'Tambah Foto'}
+        <span className="text-sm text-neutral-600 font-medium">
+          {uploading ? 'Mengkompresi & upload...' : 'Tambah Foto'}
         </span>
+        <span className="text-xs text-neutral-400">Max 8MB — otomatis dikompres sebelum upload</span>
         <input
           type="file"
           accept="image/*"

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     description: 'Sistem informasi Desa Surorejo, Banyuurip, Purworejo.',
   },
   manifest: '/manifest.json',
+};
+
+export const viewport: Viewport = {
   themeColor: '#0ea5e9',
 };
 
@@ -46,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${inter.variable} h-full`}>
+    <html lang="id" data-scroll-behavior="smooth" className={`${inter.variable} h-full`}>
       <head>
         <JsonLd />
       </head>

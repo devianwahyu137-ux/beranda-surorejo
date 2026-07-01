@@ -15,6 +15,39 @@ export default function UmkmForm({ umkm, mode }: UmkmFormProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const parseInitialOpHours = () => {
+    if (!umkm?.operating_hours) return { preset: 'Setiap Hari', custom: [], is24: false, open: '08:00', close: '17:00' };
+    const parts = umkm.operating_hours.split(', ');
+    const daysStr = parts[0] || 'Setiap Hari';
+    const timeStr = parts[1] || '08:00 - 17:00';
+    
+    let preset = 'custom';
+    let custom = daysStr.split(', ');
+    if (['Setiap Hari', 'Senin - Jumat', 'Senin - Sabtu'].includes(daysStr)) {
+      preset = daysStr;
+      custom = [];
+    }
+
+    const is24 = timeStr.toLowerCase().includes('24 jam');
+    let open = '08:00';
+    let close = '17:00';
+    if (!is24 && timeStr.includes(' - ')) {
+      const timeParts = timeStr.split(' - ');
+      open = timeParts[0] || '08:00';
+      close = timeParts[1] || '17:00';
+    }
+    return { preset, custom, is24, open, close };
+  };
+
+  const initialOp = parseInitialOpHours();
+  const [dayPreset, setDayPreset] = useState(initialOp.preset);
+  const [customDays, setCustomDays] = useState<string[]>(initialOp.custom);
+  const [is24Hours, setIs24Hours] = useState(initialOp.is24);
+  const [openTime, setOpenTime] = useState(initialOp.open);
+  const [closeTime, setCloseTime] = useState(initialOp.close);
+
+  const DAYS_OF_WEEK = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+
   const [form, setForm] = useState({
     name: umkm?.name || '',
     category: umkm?.category || 'kuliner',
@@ -24,7 +57,6 @@ export default function UmkmForm({ umkm, mode }: UmkmFormProps) {
     address_text: umkm?.address_text || '',
     latitude: umkm?.latitude?.toString() || '',
     longitude: umkm?.longitude?.toString() || '',
-    operating_hours: umkm?.operating_hours || '',
     is_published: umkm?.is_published || false,
     consent_given: umkm?.consent_given || false,
   });
@@ -34,8 +66,13 @@ export default function UmkmForm({ umkm, mode }: UmkmFormProps) {
     setError(null);
     setLoading(true);
 
+    const finalDays = dayPreset === 'custom' ? customDays.join(', ') || 'Setiap Hari' : dayPreset;
+    const finalTime = is24Hours ? '24 Jam' : `${openTime} - ${closeTime}`;
+    const finalOperatingHours = `${finalDays}, ${finalTime}`;
+
     const body = {
       ...form,
+      operating_hours: finalOperatingHours,
       latitude: form.latitude ? parseFloat(form.latitude) : null,
       longitude: form.longitude ? parseFloat(form.longitude) : null,
       phone_number: form.phone_number || null,
@@ -210,20 +247,91 @@ export default function UmkmForm({ umkm, mode }: UmkmFormProps) {
         </div>
       </div>
 
-      {/* Operating Hours */}
-      <div>
-        <label htmlFor="operating_hours" className="block text-sm font-medium text-neutral-700 mb-1.5">
-          Jam Operasional
-        </label>
-        <input
-          id="operating_hours"
-          name="operating_hours"
-          type="text"
-          value={form.operating_hours}
-          onChange={handleChange}
-          placeholder="Senin - Sabtu, 08.00 - 17.00"
-          className="w-full px-4 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-        />
+      {/* Advanced Operating Hours UI */}
+      <div className="bg-white border border-neutral-200 rounded-xl p-5 space-y-4">
+        <h3 className="font-semibold text-neutral-900">Jam Operasional</h3>
+        
+        {/* Hari */}
+        <div>
+          <label className="block text-sm font-medium text-neutral-700 mb-1.5">
+            Hari Buka
+          </label>
+          <select 
+            className="w-full px-4 py-2.5 border border-neutral-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 bg-neutral-50 mb-3"
+            value={dayPreset}
+            onChange={(e) => setDayPreset(e.target.value)}
+          >
+            <option value="Setiap Hari">Setiap Hari</option>
+            <option value="Senin - Jumat">Senin - Jumat</option>
+            <option value="Senin - Sabtu">Senin - Sabtu</option>
+            <option value="custom">Pilih Hari Tertentu...</option>
+          </select>
+
+          {dayPreset === 'custom' && (
+            <div className="flex flex-wrap gap-2 mt-2 p-3 bg-neutral-50 rounded-lg border border-neutral-200">
+              {DAYS_OF_WEEK.map((day) => (
+                <label key={day} className="flex items-center gap-2 text-sm bg-white border border-neutral-200 px-3 py-1.5 rounded-md cursor-pointer hover:bg-neutral-50">
+                  <input
+                    type="checkbox"
+                    checked={customDays.includes(day)}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCustomDays((prev) => [...prev, day]);
+                      } else {
+                        setCustomDays((prev) => prev.filter((d) => d !== day));
+                      }
+                    }}
+                    className="w-4 h-4 text-primary-600 rounded border-neutral-300 focus:ring-primary-500"
+                  />
+                  {day}
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Jam */}
+        <div className="pt-2 border-t border-neutral-100">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
+            Waktu Buka
+          </label>
+          
+          <div className="flex items-center gap-3 mb-4">
+            <label className="flex items-center gap-2 text-sm font-medium text-neutral-700 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={is24Hours}
+                onChange={(e) => setIs24Hours(e.target.checked)}
+                className="w-4 h-4 text-primary-600 rounded border-neutral-300 focus:ring-primary-500"
+              />
+              Buka 24 Jam
+            </label>
+          </div>
+
+          {!is24Hours && (
+            <div className="flex items-center gap-4">
+              <div className="flex-1">
+                <label className="block text-xs text-neutral-500 mb-1">Jam Buka</label>
+                <input
+                  type="time"
+                  value={openTime}
+                  onChange={(e) => setOpenTime(e.target.value)}
+                  className="w-full px-4 py-2 border border-neutral-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 bg-white"
+                />
+              </div>
+              <span className="text-neutral-400 mt-5">-</span>
+              <div className="flex-1">
+                <label className="block text-xs text-neutral-500 mb-1">Jam Tutup</label>
+                <input
+                  type="time"
+                  value={closeTime}
+                  onChange={(e) => setCloseTime(e.target.value)}
+                  className="w-full px-4 py-2 border border-neutral-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 bg-white"
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Toggles */}

@@ -56,7 +56,7 @@ async function UmkmGrid({ searchParams }: { searchParams: { category?: string; q
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
       {sortedList.map((umkm, idx) => (
         <ScrollReveal key={umkm.id} delay={Math.min(idx % 3 + 1, 3)}>
-          <UmkmCard umkm={umkm} />
+          <UmkmCard umkm={umkm} isFirst={idx === 0} />
         </ScrollReveal>
       ))}
     </div>

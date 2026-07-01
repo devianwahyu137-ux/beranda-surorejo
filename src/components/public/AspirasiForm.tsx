@@ -18,12 +18,30 @@ const RT_RW_OPTIONS = Array.from({ length: 28 }, (_, i) => {
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
+const COOLDOWN_SECONDS = 30;
+
 export default function AspirasiForm() {
   const [formState, setFormState] = useState<FormState>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [lastSubmitTime, setLastSubmitTime] = useState(0);
+  const [honeypot, setHoneypot] = useState(''); // must stay empty
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    // Anti-spam: honeypot check (bots fill hidden fields)
+    if (honeypot) return;
+
+    // Anti-spam: cooldown between submissions
+    const now = Date.now();
+    const elapsed = (now - lastSubmitTime) / 1000;
+    if (lastSubmitTime > 0 && elapsed < COOLDOWN_SECONDS) {
+      const remaining = Math.ceil(COOLDOWN_SECONDS - elapsed);
+      setErrorMsg(`Harap tunggu ${remaining} detik sebelum mengirim lagi.`);
+      setFormState('error');
+      return;
+    }
+
     setFormState('submitting');
     setErrorMsg('');
 
@@ -49,8 +67,10 @@ export default function AspirasiForm() {
         throw new Error(err.error || 'Gagal mengirim pesan');
       }
 
+      setLastSubmitTime(Date.now());
       setFormState('success');
       (e.target as HTMLFormElement).reset();
+      setHoneypot('');
 
       // Reset to idle after 5 seconds
       setTimeout(() => setFormState('idle'), 5000);
@@ -91,6 +111,18 @@ export default function AspirasiForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-neutral-200 p-6 md:p-8 shadow-sm space-y-5">
+                {/* Honeypot anti-spam field — hidden from humans, visible to bots */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+                  <input
+                    type="text"
+                    name="website"
+                    autoComplete="off"
+                    tabIndex={-1}
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
+
                 {/* Row: Name + RT/RW */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>

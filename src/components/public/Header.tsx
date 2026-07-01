@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { PUBLIC_NAV, VILLAGE_NAME } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -16,8 +17,8 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">BS</span>
+            <div className="w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center border border-neutral-100 shadow-sm relative">
+              <Image src="/icon-192x192.png" alt="Logo Desa" fill className="object-cover" />
             </div>
             <span className="font-bold text-lg text-neutral-900 group-hover:text-primary-700 transition-colors">
               {VILLAGE_NAME}

@@ -8,9 +8,10 @@ import WhatsAppButton from './WhatsAppButton';
 
 interface UmkmCardProps {
   umkm: Umkm & { umkm_photo?: UmkmPhoto[] };
+  isFirst?: boolean;
 }
 
-export default function UmkmCard({ umkm }: UmkmCardProps) {
+export default function UmkmCard({ umkm, isFirst }: UmkmCardProps) {
   const firstPhoto = umkm.umkm_photo?.[0];
   const categoryLabel = CATEGORY_MAP[umkm.category] || umkm.category;
 
@@ -25,7 +26,8 @@ export default function UmkmCard({ umkm }: UmkmCardProps) {
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            loading="lazy"
+            loading={isFirst ? 'eager' : 'lazy'}
+            priority={isFirst}
             decoding="async"
           />
         ) : (
