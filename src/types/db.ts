@@ -1,6 +1,6 @@
 // ============================================================
 // Beranda Surorejo — Database Entity Types
-// Diturunkan 1:1 dari schema.sql
+// Diturunkan 1:1 dari schema.sql dan migrations
 // ============================================================
 
 export type UmkmCategory =
@@ -10,6 +10,14 @@ export type UmkmCategory =
   | 'jasa'
   | 'toko'
   | 'lainnya';
+
+export type MessageCategory =
+  | 'keluhan'
+  | 'saran'
+  | 'pertanyaan'
+  | 'informasi';
+
+export type GalleryCategory = 'umum' | 'pkk';
 
 export interface Umkm {
   id: string;
@@ -60,22 +68,87 @@ export interface Page {
   updated_at: string;
 }
 
-// Type for UMKM with photos joined
+export interface Message {
+  id: string;
+  name: string;
+  rt_rw: string;
+  phone: string | null;
+  category: MessageCategory;
+  subject: string;
+  body: string;
+  is_read: boolean;
+  created_at: string;
+}
+
+// ------------------------------------------------------------
+// Sprint 2 Tables
+// ------------------------------------------------------------
+
+export interface VillageOfficial {
+  id: string;
+  name: string;
+  position: string;
+  image_url: string | null;
+  color: string;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PkkOfficial {
+  id: string;
+  name: string;
+  position: string;
+  image_url: string | null;
+  color: string;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PkkProgram {
+  id: string;
+  title: string;
+  description: string;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Gallery {
+  id: string;
+  title: string;
+  category: GalleryCategory;
+  image_url: string;
+  color: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+// ------------------------------------------------------------
+// Insert/Update Types
+// ------------------------------------------------------------
+
 export interface UmkmWithPhotos extends Umkm {
   umkm_photo: UmkmPhoto[];
 }
 
-// Type for creating a new UMKM (omit auto-generated fields)
 export type UmkmInsert = Omit<Umkm, 'id' | 'slug' | 'created_at' | 'updated_at' | 'last_verified_at'>;
-
-// Type for updating a UMKM (all fields optional except id)
 export type UmkmUpdate = Partial<Omit<Umkm, 'id' | 'slug' | 'created_at' | 'updated_at'>>;
-
-// Type for creating a new Service
 export type ServiceInsert = Omit<Service, 'id' | 'updated_at' | 'last_verified_at'>;
-
-// Type for updating a Service
 export type ServiceUpdate = Partial<Omit<Service, 'id' | 'updated_at'>>;
-
-// Type for updating a Page
 export type PageUpdate = Partial<Pick<Page, 'title' | 'content'>>;
+export type MessageInsert = Omit<Message, 'id' | 'is_read' | 'created_at'>;
+
+export type VillageOfficialInsert = Omit<VillageOfficial, 'id' | 'created_at' | 'updated_at'>;
+export type VillageOfficialUpdate = Partial<Omit<VillageOfficial, 'id' | 'created_at' | 'updated_at'>>;
+
+export type PkkOfficialInsert = Omit<PkkOfficial, 'id' | 'created_at' | 'updated_at'>;
+export type PkkOfficialUpdate = Partial<Omit<PkkOfficial, 'id' | 'created_at' | 'updated_at'>>;
+
+export type PkkProgramInsert = Omit<PkkProgram, 'id' | 'created_at' | 'updated_at'>;
+export type PkkProgramUpdate = Partial<Omit<PkkProgram, 'id' | 'created_at' | 'updated_at'>>;
+
+export type GalleryInsert = Omit<Gallery, 'id' | 'created_at' | 'updated_at'>;
+export type GalleryUpdate = Partial<Omit<Gallery, 'id' | 'created_at' | 'updated_at'>>;

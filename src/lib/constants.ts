@@ -39,10 +39,14 @@ export const ADMIN_NAV = [
   { href: '/admin/umkm', label: 'UMKM' },
   { href: '/admin/layanan', label: 'Layanan' },
   { href: '/admin/halaman', label: 'Halaman' },
+  { href: '/admin/pesan', label: 'Pesan' },
+  { href: '/admin/perangkat', label: 'Perangkat' },
+  { href: '/admin/pkk', label: 'PKK' },
+  { href: '/admin/galeri', label: 'Galeri' },
 ];
 
 // ============================================================
 // Identitas desa
 // ============================================================
 export const VILLAGE_NAME = 'Desa Surorejo';
-export const VILLAGE_TAGLINE = 'Desa Surorejo, Banyuurip, Purworejo';
+export const VILLAGE_TAGLINE = 'Bersatu membangun desa yang mandiri, sejahtera, dan berbudaya';

@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Beranda Surorejo
 
-## Getting Started
+Sistem Informasi Desa Surorejo, Kecamatan Banyuurip, Kabupaten Purworejo. Web ini berfungsi sebagai portal layanan administrasi desa dan direktori terpadu untuk UMKM lokal.
 
-First, run the development server:
+## 🔗 Akses Cepat (Localhost)
+
+Jika aplikasi sudah berjalan di komputer Anda, Anda bisa langsung mengaksesnya melalui tautan berikut:
+
+- **🌐 Halaman Utama (Publik):** [http://localhost:3000](http://localhost:3000)
+- **🔐 Panel Admin:** [http://localhost:3000/admin](http://localhost:3000/admin) (atau [/admin/login](http://localhost:3000/admin/login))
+
+---
+
+## 🛠 Panduan Instalasi dan Menjalankan Proyek
+
+Berikut adalah langkah-langkah untuk menjalankan proyek ini di komputer Anda.
+
+### 1. Persiapan Database (Supabase)
+Aplikasi ini menggunakan **Supabase** untuk Database PostgreSQL, Authentication, dan Storage (penyimpanan foto).
+
+1. Buat project baru di [Supabase Dashboard](https://supabase.com/dashboard).
+2. Buka menu **SQL Editor**, salin seluruh isi file `supabase/schema.sql`, dan jalankan (*Run*). Ini otomatis akan membuat tabel dan *RLS Policies*.
+3. Buka menu **Storage**, buat bucket baru bernama **`umkm-photos`** dan pastikan opsi **Public bucket** dicentang.
+4. Buka menu **Authentication > Users**, lalu buat *user* baru dengan email dan password. **Centang opsi "Auto Confirm User"**. Akun ini akan digunakan untuk login ke Panel Admin.
+
+### 2. Konfigurasi Environment (`.env.local`)
+1. Salin file `.env.local.example` menjadi `.env.local`:
+   ```bash
+   cp .env.local.example .env.local
+   ```
+2. Isi nilai yang kosong di dalam file `.env.local`:
+   - `NEXT_PUBLIC_SUPABASE_URL`: Ambil dari Supabase > Project Settings > API.
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Ambil dari Supabase > Project Settings > API (anon/public key).
+   - `NEXT_PUBLIC_ADMIN_WA`: Isi dengan nomor WhatsApp Admin Desa (contoh: `6281234567890`).
+
+### 3. Menjalankan Aplikasi
+Buka terminal di direktori proyek ini, lalu jalankan perintah berikut:
 
 ```bash
+# Install seluruh dependency
+npm install
+
+# Jalankan development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tunggu hingga muncul pesan `Ready in ...` di terminal, lalu buka browser dan akses tautan di atas.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📖 Panduan Penggunaan Admin
+Untuk panduan penggunaan Panel Admin secara mendetail (mengelola UMKM, layanan, mengubah halaman profil, dan mengelola foto), silakan merujuk ke dokumen:
 
-## Learn More
+👉 **[ADMIN_GUIDE.md](./ADMIN_GUIDE.md)**
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Panduan Deployment
+Untuk panduan deploy aplikasi ini ke server *production* (seperti Vercel), silakan merujuk ke dokumen:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+👉 **[DEPLOYMENT_RUNBOOK.md](./DEPLOYMENT_RUNBOOK.md)**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Dibuat menggunakan Next.js (App Router), Tailwind CSS v4, dan Supabase.*

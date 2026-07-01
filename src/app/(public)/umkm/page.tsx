@@ -7,6 +7,7 @@ import UmkmCard from '@/components/public/UmkmCard';
 import CategoryFilter from '@/components/public/CategoryFilter';
 import SearchBar from '@/components/public/SearchBar';
 import EmptyState from '@/components/public/EmptyState';
+import ScrollReveal from '@/components/public/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Direktori UMKM',
@@ -52,9 +53,11 @@ async function UmkmGrid({ searchParams }: { searchParams: { category?: string; q
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {sortedList.map((umkm) => (
-        <UmkmCard key={umkm.id} umkm={umkm} />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+      {sortedList.map((umkm, idx) => (
+        <ScrollReveal key={umkm.id} delay={Math.min(idx % 3 + 1, 3)}>
+          <UmkmCard umkm={umkm} />
+        </ScrollReveal>
       ))}
     </div>
   );
@@ -64,32 +67,45 @@ export default async function UmkmDirectoryPage({ searchParams }: PageProps) {
   const params = await searchParams;
 
   return (
-    <div className="container-page py-12">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-900 mb-3">
+    <div className="container-page py-10 md:py-14">
+      {/* Header */}
+      <ScrollReveal className="mb-8">
+        <span className="inline-block text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full mb-3">
+          Usaha Lokal
+        </span>
+        <h1 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-3">
           Direktori UMKM Desa Surorejo
         </h1>
         <p className="text-neutral-500 max-w-2xl">
           Temukan dan hubungi usaha lokal di Desa Surorejo langsung via WhatsApp.
         </p>
-      </div>
+      </ScrollReveal>
 
       {/* Filters */}
-      <div className="space-y-4 mb-8">
-        <Suspense fallback={<div className="h-10 bg-neutral-100 rounded-xl animate-pulse" />}>
-          <SearchBar />
-        </Suspense>
-        <Suspense fallback={<div className="h-10 bg-neutral-100 rounded-xl animate-pulse" />}>
-          <CategoryFilter />
-        </Suspense>
-      </div>
+      <ScrollReveal>
+        <div className="space-y-4 mb-8">
+          <Suspense fallback={<div className="h-12 bg-neutral-100 rounded-xl animate-shimmer" />}>
+            <SearchBar />
+          </Suspense>
+          <Suspense fallback={<div className="h-10 bg-neutral-100 rounded-xl animate-shimmer" />}>
+            <CategoryFilter />
+          </Suspense>
+        </div>
+      </ScrollReveal>
 
       {/* Grid */}
       <Suspense
         fallback={
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-neutral-100 rounded-xl aspect-[4/3] animate-pulse" />
+              <div key={i} className="rounded-xl overflow-hidden">
+                <div className="bg-neutral-100 aspect-[4/3] animate-shimmer" />
+                <div className="p-4 space-y-2">
+                  <div className="h-4 bg-neutral-100 rounded animate-shimmer w-3/4" />
+                  <div className="h-3 bg-neutral-100 rounded animate-shimmer w-full" />
+                  <div className="h-3 bg-neutral-100 rounded animate-shimmer w-1/2" />
+                </div>
+              </div>
             ))}
           </div>
         }

@@ -25,6 +25,16 @@ export default async function AdminDashboard() {
     .select('*', { count: 'exact', head: true })
     .eq('is_published', true);
 
+  // Message stats
+  const { count: totalMessages } = await supabase
+    .from('message')
+    .select('*', { count: 'exact', head: true });
+
+  const { count: unreadMessages } = await supabase
+    .from('message')
+    .select('*', { count: 'exact', head: true })
+    .eq('is_read', false);
+
   // Stale content
   const staleDate = new Date();
   staleDate.setDate(staleDate.getDate() - STALE_DAYS);
@@ -48,7 +58,7 @@ export default async function AdminDashboard() {
       <h1 className="text-2xl font-bold text-neutral-900 mb-6">Dashboard Admin</h1>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-8">
         <div className="bg-white rounded-xl p-5 border border-neutral-200 shadow-sm">
           <p className="text-sm text-neutral-500">Total UMKM</p>
           <p className="text-2xl font-bold text-neutral-900 mt-1">{totalUmkm || 0}</p>
@@ -58,6 +68,13 @@ export default async function AdminDashboard() {
           <p className="text-sm text-neutral-500">Total Layanan</p>
           <p className="text-2xl font-bold text-neutral-900 mt-1">{totalServices || 0}</p>
           <p className="text-xs text-neutral-400 mt-0.5">{publishedServices || 0} tayang</p>
+        </div>
+        <div className={`rounded-xl p-5 border shadow-sm ${(unreadMessages || 0) > 0 ? 'bg-primary-50 border-primary-200' : 'bg-white border-neutral-200'}`}>
+          <p className="text-sm text-neutral-500">Pesan Masuk</p>
+          <p className={`text-2xl font-bold mt-1 ${(unreadMessages || 0) > 0 ? 'text-primary-700' : 'text-neutral-900'}`}>
+            {totalMessages || 0}
+          </p>
+          <p className="text-xs text-neutral-400 mt-0.5">{unreadMessages || 0} belum dibaca</p>
         </div>
         <div className={`rounded-xl p-5 border shadow-sm ${staleCount > 0 ? 'bg-amber-50 border-amber-200' : 'bg-white border-neutral-200'}`}>
           <p className="text-sm text-neutral-500">Perlu Verifikasi</p>
@@ -74,7 +91,7 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Quick Links */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <Link href="/admin/umkm" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
           <h2 className="text-lg font-semibold text-neutral-800">Kelola UMKM</h2>
           <p className="text-sm text-neutral-500 mt-1">Tambah, edit, hapus data UMKM</p>
@@ -86,6 +103,17 @@ export default async function AdminDashboard() {
         <Link href="/admin/halaman" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
           <h2 className="text-lg font-semibold text-neutral-800">Kelola Halaman</h2>
           <p className="text-sm text-neutral-500 mt-1">Edit profil dan kontak desa</p>
+        </Link>
+        <Link href="/admin/pesan" className={`rounded-xl p-6 shadow-sm border transition-shadow hover:shadow-md ${(unreadMessages || 0) > 0 ? 'bg-primary-50 border-primary-200' : 'bg-white border-neutral-200'}`}>
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-neutral-800">Pesan Warga</h2>
+            {(unreadMessages || 0) > 0 && (
+              <span className="bg-primary-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                {unreadMessages}
+              </span>
+            )}
+          </div>
+          <p className="text-sm text-neutral-500 mt-1">Aspirasi dan keluhan warga</p>
         </Link>
       </div>
 
