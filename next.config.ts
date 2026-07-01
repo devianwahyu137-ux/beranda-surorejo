@@ -12,6 +12,7 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 const nextConfig: NextConfig = {
   turbopack: {},
   images: {
+    qualities: [75, 80, 85, 90],
     remotePatterns: [
       {
         protocol: 'https',

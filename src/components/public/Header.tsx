@@ -18,7 +18,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center border border-neutral-100 shadow-sm relative">
-              <Image src="/icon-192x192.png" alt="Logo Desa" fill className="object-cover" />
+              <Image src="/icon-192x192.png" alt="Logo Desa" fill sizes="36px" className="object-cover" />
             </div>
             <span className="font-bold text-lg text-neutral-900 group-hover:text-primary-700 transition-colors">
               {VILLAGE_NAME}

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { CATEGORY_MAP } from '@/lib/constants';
 import { formatVerifiedDate, isStale } from '@/lib/freshness';
+import { exportToCsv } from '@/lib/export';
 import type { Umkm } from '@/types/db';
 
 export default function AdminUmkmList() {
@@ -45,9 +46,19 @@ export default function AdminUmkmList() {
     <div>
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
         <h1 className="text-2xl font-bold text-neutral-900">Kelola UMKM</h1>
-        <Link href="/admin/umkm/new" className="px-4 py-2.5 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors text-sm">
-          + Tambah UMKM
-        </Link>
+        <div className="flex gap-2">
+          <button
+            onClick={() => exportToCsv(`umkm-${new Date().toISOString().slice(0,10)}.csv`,
+              umkmList.map(u => ({ nama: u.name, kategori: CATEGORY_MAP[u.category], status: u.is_published ? 'Tayang' : 'Draft', terakhir_diverifikasi: u.last_verified_at, wa: u.whatsapp_number, alamat: u.address_text || '' }))
+            )}
+            className="px-4 py-2.5 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-100 text-sm transition-colors"
+          >
+            ↓ Export CSV
+          </button>
+          <Link href="/admin/umkm/new" className="px-4 py-2.5 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors text-sm">
+            + Tambah UMKM
+          </Link>
+        </div>
       </div>
 
       {/* Filters */}

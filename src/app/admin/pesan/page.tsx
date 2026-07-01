@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import type { Message } from '@/types/db';
+import ExportButton from '@/components/admin/ExportButton';
 
 export const metadata = {
   title: 'Kelola Pesan | Admin',
@@ -43,6 +44,10 @@ export default async function AdminPesanPage() {
             {allMessages.length} pesan total · {unreadCount} belum dibaca
           </p>
         </div>
+        <ExportButton
+          filename={`pesan-${new Date().toISOString().slice(0,10)}.csv`}
+          data={allMessages.map(m => ({ nama: m.name, rt_rw: m.rt_rw, hp: m.phone || '', kategori: m.category, judul: m.subject, isi: m.body, dibaca: m.is_read ? 'Ya' : 'Tidak', tanggal: m.created_at }))}
+        />
       </div>
 
       {allMessages.length === 0 ? (

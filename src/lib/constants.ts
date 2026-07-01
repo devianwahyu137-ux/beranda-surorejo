@@ -38,6 +38,7 @@ export const ADMIN_NAV = [
   { href: '/admin', label: 'Dashboard' },
   { href: '/admin/umkm', label: 'UMKM' },
   { href: '/admin/layanan', label: 'Layanan' },
+  { href: '/admin/lokasi', label: 'Lokasi' },
   { href: '/admin/halaman', label: 'Halaman' },
   { href: '/admin/pesan', label: 'Pesan' },
   { href: '/admin/perangkat', label: 'Perangkat' },
