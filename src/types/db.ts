@@ -152,3 +152,19 @@ export type PkkProgramUpdate = Partial<Omit<PkkProgram, 'id' | 'created_at' | 'u
 
 export type GalleryInsert = Omit<Gallery, 'id' | 'created_at' | 'updated_at'>;
 export type GalleryUpdate = Partial<Omit<Gallery, 'id' | 'created_at' | 'updated_at'>>;
+
+export interface StrategicLocation {
+  id: string;
+  name: string;
+  category: 'pemerintahan' | 'ibadah' | 'pendidikan' | 'kesehatan' | 'lainnya';
+  description: string | null;
+  image_url: string | null;
+  latitude: number;
+  longitude: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export type StrategicLocationInsert = Omit<StrategicLocation, 'id' | 'created_at' | 'updated_at'>;
+export type StrategicLocationUpdate = Partial<Omit<StrategicLocation, 'id' | 'created_at' | 'updated_at'>>;
+

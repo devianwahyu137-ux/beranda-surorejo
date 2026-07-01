@@ -4,6 +4,7 @@ import ProfileTabs from '@/components/public/ProfileTabs';
 import VillageOfficials from '@/components/public/VillageOfficials';
 import PkkSection from '@/components/public/PkkSection';
 import ScrollReveal from '@/components/public/ScrollReveal';
+import DynamicMap from '@/components/public/DynamicMap';
 
 export const metadata: Metadata = {
   title: 'Profil Desa',
@@ -47,6 +48,16 @@ export default async function ProfilPage() {
     .select('*')
     .eq('category', 'pkk')
     .order('sort_order', { ascending: true });
+
+  // Fetch Locations for Map
+  const { data: strategicLocations } = await supabase
+    .from('strategic_location')
+    .select('*');
+
+  const { data: umkmList } = await supabase
+    .from('umkm')
+    .select('*')
+    .eq('is_published', true);
 
   return (
     <div className="container-page py-10 md:py-14">
@@ -154,18 +165,11 @@ export default async function ProfilPage() {
                 </svg>
                 Peta Wilayah
               </h3>
-              <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-xl overflow-hidden bg-neutral-200 border border-neutral-300 relative shadow-sm">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.398910403756!2d109.9691979469502!3d-7.726058098670879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7aaec5c73c8861%3A0x5027a76e3568ea0!2sSurorejo%2C%20Kec.%20Banyuurip%2C%20Kabupaten%20Purworejo%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1707567845341!5m2!1sid!2sid" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0"
-                  title="Peta Desa Surorejo"
-                ></iframe>
+              <div className="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden bg-neutral-200 border border-neutral-300 relative shadow-sm">
+                <DynamicMap 
+                  locations={strategicLocations || []} 
+                  umkmData={umkmList || []} 
+                />
               </div>
             </div>
           </ScrollReveal>
