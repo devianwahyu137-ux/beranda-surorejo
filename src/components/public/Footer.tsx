@@ -26,7 +26,7 @@ export default async function Footer() {
               <span className="font-bold text-lg text-white">{VILLAGE_NAME}</span>
             </div>
             <p className="text-sm text-neutral-400 leading-relaxed mb-4">
-              Sistem informasi desa untuk kemudahan akses layanan administrasi, direktori UMKM, dan komunikasi antara warga dan pemerintah desa.
+              Portal pendamping pelayanan dan direktori UMKM untuk kemudahan akses warga terhadap pemerintah desa.
             </p>
             {/* Social media placeholder */}
             <div className="flex items-center gap-3">
@@ -59,6 +59,7 @@ export default async function Footer() {
                   </Link>
                 </li>
               ))}
+
               <li>
                 <Link
                   href="/#aspirasi"

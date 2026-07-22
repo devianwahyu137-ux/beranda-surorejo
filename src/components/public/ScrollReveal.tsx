@@ -11,6 +11,33 @@ interface ScrollRevealProps {
   as?: 'div' | 'section' | 'article';
 }
 
+// Singleton observer to improve performance
+let sharedObserver: IntersectionObserver | null = null;
+const observerCallbacks = new Map<Element, () => void>();
+
+function getObserver(threshold: number) {
+  if (typeof window === 'undefined') return null;
+  
+  if (!sharedObserver) {
+    sharedObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            el.classList.add('revealed');
+            const callback = observerCallbacks.get(el);
+            if (callback) callback();
+            sharedObserver?.unobserve(el);
+            observerCallbacks.delete(el);
+          }
+        });
+      },
+      { threshold, rootMargin: '0px 0px -40px 0px' }
+    );
+  }
+  return sharedObserver;
+}
+
 export default function ScrollReveal({
   children,
   direction = 'up',
@@ -32,18 +59,15 @@ export default function ScrollReveal({
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('revealed');
-          observer.unobserve(el); // Animate only once
-        }
-      },
-      { threshold, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
+    const observer = getObserver(threshold);
+    if (observer) {
+      observerCallbacks.set(el, () => {}); 
+      observer.observe(el);
+      return () => {
+        observer.unobserve(el);
+        observerCallbacks.delete(el);
+      };
+    }
   }, [threshold]);
 
   const directionClass = direction === 'up'

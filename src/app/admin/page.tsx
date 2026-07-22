@@ -53,12 +53,25 @@ export default async function AdminDashboard() {
 
   const staleCount = (staleUmkm?.length || 0) + (staleServices?.length || 0);
 
+  // New stats for Sprint 5
+  const { count: totalArticles } = await supabase
+    .from('article')
+    .select('*', { count: 'exact', head: true });
+
+  const { count: totalEvents } = await supabase
+    .from('event')
+    .select('*', { count: 'exact', head: true });
+
+  const { count: totalLegal } = await supabase
+    .from('legal_document')
+    .select('*', { count: 'exact', head: true });
+
   return (
     <div>
       <h1 className="text-2xl font-bold text-neutral-900 mb-6">Dashboard Admin</h1>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 mb-8">
         <div className="bg-white rounded-xl p-5 border border-neutral-200 shadow-sm">
           <p className="text-sm text-neutral-500">Total UMKM</p>
           <p className="text-2xl font-bold text-neutral-900 mt-1">{totalUmkm || 0}</p>
@@ -69,6 +82,21 @@ export default async function AdminDashboard() {
           <p className="text-2xl font-bold text-neutral-900 mt-1">{totalServices || 0}</p>
           <p className="text-xs text-neutral-400 mt-0.5">{publishedServices || 0} tayang</p>
         </div>
+        <div className="bg-white rounded-xl p-5 border border-neutral-200 shadow-sm">
+          <p className="text-sm text-neutral-500">Artikel/Berita</p>
+          <p className="text-2xl font-bold text-neutral-900 mt-1">{totalArticles || 0}</p>
+          <p className="text-xs text-neutral-400 mt-0.5">publikasi</p>
+        </div>
+        <div className="bg-white rounded-xl p-5 border border-neutral-200 shadow-sm">
+          <p className="text-sm text-neutral-500">Agenda</p>
+          <p className="text-2xl font-bold text-neutral-900 mt-1">{totalEvents || 0}</p>
+          <p className="text-xs text-neutral-400 mt-0.5">kegiatan</p>
+        </div>
+        <div className="bg-white rounded-xl p-5 border border-neutral-200 shadow-sm">
+          <p className="text-sm text-neutral-500">Produk Hukum</p>
+          <p className="text-2xl font-bold text-neutral-900 mt-1">{totalLegal || 0}</p>
+          <p className="text-xs text-neutral-400 mt-0.5">dokumen</p>
+        </div>
         <div className={`rounded-xl p-5 border shadow-sm ${(unreadMessages || 0) > 0 ? 'bg-primary-50 border-primary-200' : 'bg-white border-neutral-200'}`}>
           <p className="text-sm text-neutral-500">Pesan Masuk</p>
           <p className={`text-2xl font-bold mt-1 ${(unreadMessages || 0) > 0 ? 'text-primary-700' : 'text-neutral-900'}`}>
@@ -77,20 +105,16 @@ export default async function AdminDashboard() {
           <p className="text-xs text-neutral-400 mt-0.5">{unreadMessages || 0} belum dibaca</p>
         </div>
         <div className={`rounded-xl p-5 border shadow-sm ${staleCount > 0 ? 'bg-amber-50 border-amber-200' : 'bg-white border-neutral-200'}`}>
-          <p className="text-sm text-neutral-500">Perlu Verifikasi</p>
+          <p className="text-sm text-neutral-500">Perlu Verif</p>
           <p className={`text-2xl font-bold mt-1 ${staleCount > 0 ? 'text-amber-700' : 'text-neutral-900'}`}>
             {staleCount}
           </p>
           <p className="text-xs text-neutral-400 mt-0.5">&gt;{STALE_DAYS} hari</p>
         </div>
-        <div className="bg-white rounded-xl p-5 border border-neutral-200 shadow-sm">
-          <p className="text-sm text-neutral-500">Halaman</p>
-          <p className="text-2xl font-bold text-neutral-900 mt-1">2</p>
-          <p className="text-xs text-neutral-400 mt-0.5">profil, kontak</p>
-        </div>
       </div>
 
       {/* Quick Links */}
+      <h2 className="text-lg font-semibold text-neutral-800 mb-4">Pintasan Layanan & Profil</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <Link href="/admin/umkm" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
           <h2 className="text-lg font-semibold text-neutral-800">Kelola UMKM</h2>
@@ -100,9 +124,29 @@ export default async function AdminDashboard() {
           <h2 className="text-lg font-semibold text-neutral-800">Kelola Layanan</h2>
           <p className="text-sm text-neutral-500 mt-1">Kelola layanan administrasi desa</p>
         </Link>
-        <Link href="/admin/halaman" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
-          <h2 className="text-lg font-semibold text-neutral-800">Kelola Halaman</h2>
-          <p className="text-sm text-neutral-500 mt-1">Edit profil dan kontak desa</p>
+        <Link href="/admin/statistik" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-semibold text-neutral-800">Statistik Desa</h2>
+          <p className="text-sm text-neutral-500 mt-1">Data kependudukan & wilayah</p>
+        </Link>
+        <Link href="/admin/lembaga" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-semibold text-neutral-800">Lembaga Masyarakat</h2>
+          <p className="text-sm text-neutral-500 mt-1">LPMD, Karang Taruna, PKK, dll</p>
+        </Link>
+      </div>
+
+      <h2 className="text-lg font-semibold text-neutral-800 mb-4">Pintasan Informasi & Berita</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <Link href="/admin/berita" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-semibold text-neutral-800">Kelola Berita</h2>
+          <p className="text-sm text-neutral-500 mt-1">Publikasi artikel & pengumuman</p>
+        </Link>
+        <Link href="/admin/agenda" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-semibold text-neutral-800">Kelola Agenda</h2>
+          <p className="text-sm text-neutral-500 mt-1">Jadwal kegiatan & acara desa</p>
+        </Link>
+        <Link href="/admin/produk-hukum" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-semibold text-neutral-800">Produk Hukum</h2>
+          <p className="text-sm text-neutral-500 mt-1">Perdes, SK Kades, regulasi</p>
         </Link>
         <Link href="/admin/pesan" className={`rounded-xl p-6 shadow-sm border transition-shadow hover:shadow-md ${(unreadMessages || 0) > 0 ? 'bg-primary-50 border-primary-200' : 'bg-white border-neutral-200'}`}>
           <div className="flex items-center justify-between">

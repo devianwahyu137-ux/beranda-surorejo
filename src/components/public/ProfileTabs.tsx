@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useState, type ReactNode, Children } from 'react';
 
 interface Tab {
   id: string;
@@ -15,8 +15,6 @@ interface ProfileTabsProps {
 
 export default function ProfileTabs({ tabs, children }: ProfileTabsProps) {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
-
-  const activeIndex = tabs.findIndex((t) => t.id === activeTab);
 
   return (
     <div>
@@ -36,9 +34,19 @@ export default function ProfileTabs({ tabs, children }: ProfileTabsProps) {
 
       {/* Tab Content */}
       <div className="tab-content">
-        <div className="animate-fade-in" key={activeTab}>
-          {children[activeIndex]}
-        </div>
+        {Children.map(children, (child, index) => {
+          const isActive = tabs[index].id === activeTab;
+          return (
+            <div
+              key={tabs[index].id}
+              className={`transition-opacity duration-300 ${
+                isActive ? 'block animate-fade-in opacity-100' : 'hidden opacity-0'
+              }`}
+            >
+              {child}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -168,3 +168,102 @@ export interface StrategicLocation {
 export type StrategicLocationInsert = Omit<StrategicLocation, 'id' | 'created_at' | 'updated_at'>;
 export type StrategicLocationUpdate = Partial<Omit<StrategicLocation, 'id' | 'created_at' | 'updated_at'>>;
 
+// ------------------------------------------------------------
+// Sprint 5 Tables
+// ------------------------------------------------------------
+
+export type ArticleCategory = 'berita' | 'pengumuman' | 'program_kerja';
+
+export interface Article {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string | null;
+  content: string;
+  category: ArticleCategory;
+  thumbnail_url: string | null;
+  author: string;
+  is_published: boolean;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export type ArticleInsert = Omit<Article, 'id' | 'slug' | 'created_at' | 'updated_at'>;
+export type ArticleUpdate = Partial<Omit<Article, 'id' | 'slug' | 'created_at' | 'updated_at'>>;
+
+export interface DemographicStat {
+  id: string;
+  label: string;
+  value: string;
+  icon: string;
+  sort_order: number;
+  updated_at: string;
+}
+
+export type DemographicStatInsert = Omit<DemographicStat, 'id' | 'updated_at'>;
+export type DemographicStatUpdate = Partial<Omit<DemographicStat, 'id' | 'updated_at'>>;
+
+export interface VillageArea {
+  id: string;
+  dusun: string;
+  rw_count: number;
+  rt_count: number;
+  population: number;
+  head_name: string | null;
+  sort_order: number;
+  updated_at: string;
+}
+
+export type VillageAreaInsert = Omit<VillageArea, 'id' | 'updated_at'>;
+export type VillageAreaUpdate = Partial<Omit<VillageArea, 'id' | 'updated_at'>>;
+
+export type LegalDocumentCategory = 'perdes' | 'sk_kades' | 'peraturan_lainnya';
+
+export interface LegalDocument {
+  id: string;
+  title: string;
+  category: LegalDocumentCategory;
+  document_number: string | null;
+  year: number;
+  description: string | null;
+  file_url: string | null;
+  is_published: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export type LegalDocumentInsert = Omit<LegalDocument, 'id' | 'created_at' | 'updated_at'>;
+export type LegalDocumentUpdate = Partial<Omit<LegalDocument, 'id' | 'created_at' | 'updated_at'>>;
+
+export interface Event {
+  id: string;
+  title: string;
+  description: string | null;
+  location: string | null;
+  event_date: string;
+  event_end_date: string | null;
+  is_published: boolean;
+  created_at: string;
+}
+
+export type EventInsert = Omit<Event, 'id' | 'created_at'>;
+export type EventUpdate = Partial<Omit<Event, 'id' | 'created_at'>>;
+
+export type InstitutionCategory = 'bpd' | 'lpmd' | 'karang_taruna' | 'rt_rw' | 'lainnya';
+
+export interface Institution {
+  id: string;
+  name: string;
+  category: InstitutionCategory;
+  description: string | null;
+  head_name: string | null;
+  head_photo_url: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export type InstitutionInsert = Omit<Institution, 'id' | 'created_at' | 'updated_at'>;
+export type InstitutionUpdate = Partial<Omit<Institution, 'id' | 'created_at' | 'updated_at'>>;
+

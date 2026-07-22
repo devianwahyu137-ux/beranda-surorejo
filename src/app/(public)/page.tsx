@@ -6,6 +6,8 @@ import WelcomeSection from '@/components/public/WelcomeSection';
 import StatsSection from '@/components/public/StatsSection';
 import ServiceCard from '@/components/public/ServiceCard';
 import UmkmCard from '@/components/public/UmkmCard';
+import LatestArticles from '@/components/public/LatestArticles';
+import UpcomingEvents from '@/components/public/UpcomingEvents';
 import GalleryPreview from '@/components/public/GalleryPreview';
 import AspirasiForm from '@/components/public/AspirasiForm';
 import ScrollReveal from '@/components/public/ScrollReveal';
@@ -151,6 +153,12 @@ export default async function HomePage() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Berita Terbaru */}
+      <LatestArticles />
+
+      {/* Agenda Kegiatan */}
+      <UpcomingEvents />
 
       {/* Galeri Kegiatan */}
       <GalleryPreview items={(galleries || []) as Gallery[]} />

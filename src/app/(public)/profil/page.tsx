@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import ProfileTabs from '@/components/public/ProfileTabs';
 import VillageOfficials from '@/components/public/VillageOfficials';
 import PkkSection from '@/components/public/PkkSection';
+import LembagaSection from '@/components/public/LembagaSection';
 import ScrollReveal from '@/components/public/ScrollReveal';
 import DynamicMap from '@/components/public/DynamicMap';
 
@@ -13,13 +14,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 60;
 
-// Konstanta Profil Desa
-const DEMOGRAPHIC_STATS = [
-  { label: 'Laki-laki', value: '1.245', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' },
-  { label: 'Perempuan', value: '1.312', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' },
-  { label: 'Total KK', value: '780', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-  { label: 'Kepadatan', value: '450/km²', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
-];
+import { STAT_ICONS } from '@/lib/constants';
 
 export default async function ProfilPage() {
   const supabase = await createClient();
@@ -58,6 +53,21 @@ export default async function ProfilPage() {
     .from('umkm')
     .select('*')
     .eq('is_published', true);
+
+  const { data: demographicStats } = await supabase
+    .from('demographic_stat')
+    .select('*')
+    .order('sort_order', { ascending: true });
+
+  const { data: villageAreas } = await supabase
+    .from('village_area')
+    .select('*')
+    .order('sort_order', { ascending: true });
+
+  const { data: lembagaList } = await supabase
+    .from('lembaga')
+    .select('*')
+    .order('sort_order', { ascending: true });
 
   return (
     <div className="container-page py-10 md:py-14">
@@ -101,6 +111,15 @@ export default async function ProfilPage() {
             icon: (
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            ),
+          },
+          {
+            id: 'lembaga',
+            label: 'Lembaga',
+            icon: (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             ),
           },
@@ -176,25 +195,75 @@ export default async function ProfilPage() {
 
           {/* Demografi */}
           <ScrollReveal>
-            <div>
+            <div className="mb-12">
               <h3 className="text-xl font-bold text-neutral-900 mb-4 flex items-center gap-2">
                 <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                Demografi Desa
+                Data Desa
               </h3>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {DEMOGRAPHIC_STATS.map((stat, idx) => (
-                  <div key={idx} className="bg-white border border-neutral-200 rounded-xl p-5 text-center card-hover">
-                    <div className="w-12 h-12 bg-primary-50 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d={stat.icon} />
-                      </svg>
+              {demographicStats && demographicStats.length > 0 ? (
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  {demographicStats.map((stat) => (
+                    <div key={stat.id} className="bg-white border border-neutral-200 rounded-xl p-5 text-center card-hover">
+                      <div className="w-12 h-12 bg-primary-50 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d={STAT_ICONS[stat.icon] || STAT_ICONS['users']} />
+                        </svg>
+                      </div>
+                      <p className="text-2xl font-bold text-neutral-900">{stat.value}</p>
+                      <p className="text-sm text-neutral-500 font-medium">{stat.label}</p>
                     </div>
-                    <p className="text-2xl font-bold text-neutral-900">{stat.value}</p>
-                    <p className="text-sm text-neutral-500 font-medium">{stat.label}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8 bg-neutral-50 rounded-xl text-neutral-500 border border-neutral-200">
+                  Data statistik belum tersedia.
+                </div>
+              )}
+            </div>
+            
+            {/* Wilayah Administratif */}
+            <div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4 flex items-center gap-2">
+                <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                Wilayah Administratif
+              </h3>
+              <div className="bg-white border border-neutral-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm whitespace-nowrap">
+                    <thead className="bg-neutral-50 text-neutral-600 border-b border-neutral-200">
+                      <tr>
+                        <th className="px-6 py-4 font-medium">Nama Dusun</th>
+                        <th className="px-6 py-4 font-medium text-center">Jumlah RW</th>
+                        <th className="px-6 py-4 font-medium text-center">Jumlah RT</th>
+                        <th className="px-6 py-4 font-medium text-center">Populasi Jiwa</th>
+                        <th className="px-6 py-4 font-medium">Kepala Dusun</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-neutral-100">
+                      {villageAreas && villageAreas.length > 0 ? (
+                        villageAreas.map((area) => (
+                          <tr key={area.id} className="hover:bg-neutral-50/50 transition-colors">
+                            <td className="px-6 py-4 font-medium text-neutral-900">{area.dusun}</td>
+                            <td className="px-6 py-4 text-center text-neutral-600">{area.rw_count}</td>
+                            <td className="px-6 py-4 text-center text-neutral-600">{area.rt_count}</td>
+                            <td className="px-6 py-4 text-center text-neutral-600">{area.population}</td>
+                            <td className="px-6 py-4 text-neutral-600">{area.head_name || '-'}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={5} className="px-6 py-8 text-center text-neutral-500">
+                            Data wilayah administratif belum tersedia.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </ScrollReveal>
@@ -207,6 +276,8 @@ export default async function ProfilPage() {
           programs={pkkPrograms || []}
           galleries={pkkGalleries || []}
         />
+
+        <LembagaSection lembagaList={lembagaList || []} />
       </ProfileTabs>
     </div>
   );

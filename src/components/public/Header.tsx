@@ -15,15 +15,17 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-neutral-200">
       <div className="container-page">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center border border-neutral-100 shadow-sm relative">
-              <Image src="/icon-192x192.png" alt="Logo Desa" fill sizes="36px" className="object-cover" />
-            </div>
-            <span className="font-bold text-lg text-neutral-900 group-hover:text-primary-700 transition-colors">
-              {VILLAGE_NAME}
-            </span>
-          </Link>
+          {/* Logo & Cross-link */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center border border-neutral-100 shadow-sm relative">
+                <Image src="/icon-192x192.png" alt="Logo Desa" fill sizes="36px" className="object-cover" />
+              </div>
+              <span className="font-bold text-lg text-neutral-900 group-hover:text-primary-700 transition-colors">
+                {VILLAGE_NAME}
+              </span>
+            </Link>
+          </div>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
