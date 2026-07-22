@@ -74,7 +74,7 @@ export default async function AdminLembagaPage() {
                       )}
                     </td>
                     <td className="px-6 py-4 text-neutral-700">
-                      {lembaga.head_name || '-'}
+                      {lembaga.leader_name || '-'}
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button

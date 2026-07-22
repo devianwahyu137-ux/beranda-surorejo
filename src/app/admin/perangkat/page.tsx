@@ -8,6 +8,50 @@ export default function AdminPerangkatPage() {
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<Partial<VillageOfficial>>({});
+  const [uploadingImage, setUploadingImage] = useState(false);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('File harus berupa gambar');
+      return;
+    }
+
+    if (file.size > 8 * 1024 * 1024) {
+      alert('Ukuran file maksimal 8MB. File akan dikompres otomatis.');
+      return;
+    }
+
+    setUploadingImage(true);
+
+    try {
+      const { createClient } = await import('@/lib/supabase/client');
+      const { compressImage } = await import('@/lib/utils');
+      const supabase = createClient();
+
+      const compressedFile = await compressImage(file);
+
+      const fileName = `officials/${Date.now()}.jpg`;
+      const { error: uploadError } = await supabase.storage
+        .from('umkm-photos')
+        .upload(fileName, compressedFile, { contentType: 'image/jpeg' });
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from('umkm-photos')
+        .getPublicUrl(fileName);
+
+      setEditForm({ ...editForm, image_url: urlData.publicUrl });
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Gagal mengupload gambar');
+    } finally {
+      setUploadingImage(false);
+      e.target.value = '';
+    }
+  };
 
   useEffect(() => {
     fetchOfficials();
@@ -158,14 +202,33 @@ export default function AdminPerangkatPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1">URL Foto (Opsional)</label>
-                <input
-                  type="text"
-                  value={editForm.image_url || ''}
-                  onChange={e => setEditForm({ ...editForm, image_url: e.target.value })}
-                  placeholder="https://..."
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500"
-                />
+                <label className="block text-sm font-medium text-neutral-700 mb-1">Upload Foto (Opsional)</label>
+                <div className="mt-1 flex flex-col gap-3">
+                  <label className="cursor-pointer bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 text-neutral-700 px-4 py-2 rounded-lg font-medium text-sm transition-colors text-center">
+                    {uploadingImage ? 'Mengupload...' : 'Pilih Foto'}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      disabled={uploadingImage}
+                      onChange={handleImageUpload}
+                    />
+                  </label>
+                  {editForm.image_url && !uploadingImage && (
+                    <span className="text-sm text-green-600 font-medium flex items-center justify-center gap-1">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Foto siap disimpan
+                    </span>
+                  )}
+                </div>
+                {editForm.image_url && (
+                  <div className="mt-3 relative aspect-[3/4] bg-neutral-100 rounded-lg overflow-hidden border border-neutral-200 w-32 mx-auto">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={editForm.image_url} alt="Preview" className="object-cover w-full h-full" />
+                  </div>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-neutral-700 mb-1">Warna Background (Tailwind)</label>

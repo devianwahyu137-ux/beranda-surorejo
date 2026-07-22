@@ -46,12 +46,12 @@ export default function LembagaSection({ lembagaList }: LembagaSectionProps) {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-neutral-900 leading-tight mb-1">{lembaga.name}</h3>
-                  {lembaga.head_name && (
-                    <div className="flex items-center gap-1.5 text-sm text-neutral-600 font-medium bg-neutral-100/80 px-2 py-0.5 rounded inline-flex">
+                  {lembaga.leader_name && (
+                    <div className="flex items-center gap-1.5 text-sm text-neutral-600 font-medium mt-1">
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
-                      {lembaga.head_name}
+                      {lembaga.leader_name}
                     </div>
                   )}
                 </div>

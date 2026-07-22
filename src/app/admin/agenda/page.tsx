@@ -5,7 +5,7 @@ export default async function AdminAgendaPage() {
   const { data: events } = await supabase
     .from('event')
     .select('*')
-    .order('start_date', { ascending: false });
+    .order('event_date', { ascending: false });
 
   return (
     <div className="space-y-6">
@@ -61,7 +61,7 @@ export default async function AdminAgendaPage() {
                       )}
                     </td>
                     <td className="px-6 py-4 font-medium text-neutral-700">
-                      {new Date(event.start_date).toLocaleDateString('id-ID', {
+                      {new Date(event.event_date).toLocaleDateString('id-ID', {
                         day: 'numeric',
                         month: 'short',
                         year: 'numeric'

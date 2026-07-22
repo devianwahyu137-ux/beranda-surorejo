@@ -112,8 +112,8 @@ export default async function ProdukHukumPage(
                           {doc.document_number ? `${doc.document_number} / ` : ''}Tahun {doc.year}
                         </td>
                         <td className="px-6 py-4">
-                          <span className="inline-flex px-2.5 py-1 bg-neutral-100 text-neutral-700 rounded-lg text-xs font-medium border border-neutral-200">
-                            {LEGAL_CATEGORY_MAP[doc.category] || doc.category}
+                          <span className="inline-flex px-2.5 py-1 bg-neutral-100 text-neutral-700 text-xs font-semibold rounded-md border border-neutral-200 whitespace-nowrap">
+                            {LEGAL_CATEGORY_MAP[doc.category as keyof typeof LEGAL_CATEGORY_MAP] || doc.category}
                           </span>
                         </td>
                         <td className="px-6 py-4 text-center">

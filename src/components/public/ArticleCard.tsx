@@ -36,7 +36,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         )}
         <div className="absolute top-4 left-4">
           <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-primary-700 text-xs font-semibold rounded-full shadow-sm">
-            {ARTICLE_CATEGORY_MAP[article.category] || article.category}
+            {ARTICLE_CATEGORY_MAP[article.category as keyof typeof ARTICLE_CATEGORY_MAP] || article.category}
           </span>
         </div>
       </Link>

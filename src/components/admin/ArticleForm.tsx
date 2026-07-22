@@ -24,6 +24,51 @@ export default function ArticleForm({ initialData }: ArticleFormProps) {
   const [author, setAuthor] = useState(initialData?.author || 'Admin Desa');
   const [isPublished, setIsPublished] = useState(initialData?.is_published ?? false);
   const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(initialData?.thumbnail_url || null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      setError('File harus berupa gambar');
+      return;
+    }
+
+    if (file.size > 8 * 1024 * 1024) {
+      setError('Ukuran file maksimal 8MB. File akan dikompres otomatis.');
+      return;
+    }
+
+    setError(null);
+    setUploadingImage(true);
+
+    try {
+      const { createClient } = await import('@/lib/supabase/client');
+      const { compressImage } = await import('@/lib/utils');
+      const supabase = createClient();
+
+      const compressedFile = await compressImage(file);
+
+      const fileName = `articles/${Date.now()}.jpg`;
+      const { error: uploadError } = await supabase.storage
+        .from('umkm-photos')
+        .upload(fileName, compressedFile, { contentType: 'image/jpeg' });
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from('umkm-photos')
+        .getPublicUrl(fileName);
+
+      setThumbnailUrl(urlData.publicUrl);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Gagal mengupload gambar');
+    } finally {
+      setUploadingImage(false);
+      e.target.value = '';
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +76,7 @@ export default function ArticleForm({ initialData }: ArticleFormProps) {
     setError(null);
 
     try {
-      const payload: Partial<ArticleInsert> = {
+      const payload: Partial<ArticleInsert> & { slug?: string } = {
         title,
         slug: slug.trim() || undefined, // undefined will let the backend generate it if new
         category: category as ArticleInsert['category'],
@@ -106,7 +151,7 @@ export default function ArticleForm({ initialData }: ArticleFormProps) {
                   required
                   className="form-input form-select"
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={(e) => setCategory(e.target.value as any)}
                 >
                   {ARTICLE_CATEGORIES.map(c => (
                     <option key={c.value} value={c.value}>{c.label}</option>
@@ -202,12 +247,22 @@ export default function ArticleForm({ initialData }: ArticleFormProps) {
 
           <div>
             <h3 className="font-semibold text-neutral-900 mb-4">Gambar Thumbnail</h3>
-            <PhotoUploader
-              bucket="public_assets"
-              folder="articles"
-              onUploadSuccess={(url) => setThumbnailUrl(url)}
-              buttonText="Upload Thumbnail"
-            />
+            <label className="flex flex-col items-center justify-center gap-2 p-6 border-2 border-dashed border-neutral-300 rounded-xl cursor-pointer hover:border-primary-500 hover:bg-primary-50 transition-colors">
+              <svg className="w-8 h-8 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              <span className="text-sm font-medium text-neutral-600">
+                {uploadingImage ? 'Mengupload...' : 'Pilih Gambar Thumbnail'}
+              </span>
+              <span className="text-xs text-neutral-400">Max 2MB (JPG/PNG/WEBP)</span>
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                disabled={uploadingImage}
+                onChange={handleImageUpload}
+              />
+            </label>
             {thumbnailUrl && (
               <div className="mt-4 relative aspect-[4/3] rounded-xl overflow-hidden border border-neutral-200">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -60,8 +60,8 @@ export default async function AdminBeritaPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-neutral-100 text-neutral-800 border border-neutral-200">
-                        {ARTICLE_CATEGORY_MAP[article.category] || article.category}
+                      <span className="inline-flex px-2.5 py-1 bg-neutral-100 text-neutral-700 text-xs font-medium rounded-full border border-neutral-200 whitespace-nowrap">
+                        {ARTICLE_CATEGORY_MAP[article.category as keyof typeof ARTICLE_CATEGORY_MAP] || article.category}
                       </span>
                     </td>
                     <td className="px-6 py-4">

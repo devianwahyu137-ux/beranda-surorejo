@@ -83,7 +83,6 @@ export const PUBLIC_NAV = [
   { href: '/berita', label: 'Berita' },
   { href: '/layanan', label: 'Layanan' },
   { href: '/umkm', label: 'UMKM' },
-  { href: '/produk-hukum', label: 'Produk Hukum' },
   { href: '/peta', label: 'Peta' },
 ];
 
@@ -95,7 +94,7 @@ export const ADMIN_NAV = [
   { href: '/admin/berita', label: 'Berita' },
   { href: '/admin/umkm', label: 'UMKM' },
   { href: '/admin/layanan', label: 'Layanan' },
-  { href: '/admin/produk-hukum', label: 'Produk Hukum' },
+  { href: '/admin/transparansi', label: 'Transparansi' },
   { href: '/admin/agenda', label: 'Agenda' },
   { href: '/admin/statistik', label: 'Statistik' },
   { href: '/admin/lembaga', label: 'Lembaga' },

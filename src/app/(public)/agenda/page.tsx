@@ -16,14 +16,14 @@ export default async function AgendaPage() {
   const { data: upcomingEvents } = await supabase
     .from('event')
     .select('*')
-    .gte('start_date', today)
-    .order('start_date', { ascending: true });
+    .gte('event_date', today)
+    .order('event_date', { ascending: true });
 
   const { data: pastEvents } = await supabase
     .from('event')
     .select('*')
-    .lt('start_date', today)
-    .order('start_date', { ascending: false })
+    .lt('event_date', today)
+    .order('event_date', { ascending: false })
     .limit(10); // Batasi kegiatan lampau yang ditampilkan
 
   return (
@@ -68,10 +68,10 @@ export default async function AgendaPage() {
                     <div key={event.id} className="bg-white border border-neutral-200 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row gap-5 card-hover shadow-sm">
                       <div className="flex-shrink-0 flex flex-col items-center justify-center w-16 h-16 bg-primary-50 rounded-xl text-primary-700">
                         <span className="text-2xl font-bold leading-none">
-                          {new Date(event.start_date).getDate()}
+                          {new Date(event.event_date).getDate()}
                         </span>
                         <span className="text-xs font-semibold uppercase mt-1">
-                          {new Date(event.start_date).toLocaleString('id-ID', { month: 'short' })}
+                          {new Date(event.event_date).toLocaleString('id-ID', { month: 'short' })}
                         </span>
                       </div>
                       <div className="flex-1">
@@ -128,7 +128,7 @@ export default async function AgendaPage() {
                         <div>
                           <p className="text-sm font-semibold text-neutral-800 mb-1">{event.title}</p>
                           <p className="text-xs text-neutral-500">
-                            {new Date(event.start_date).toLocaleDateString('id-ID', {
+                            {new Date(event.event_date).toLocaleDateString('id-ID', {
                               day: 'numeric', month: 'long', year: 'numeric'
                             })}
                           </p>

@@ -1,0 +1,32 @@
+import { NextResponse } from 'next/server';
+import { createClient } from '@/lib/supabase/server';
+
+export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const supabase = await createClient();
+  const body = await request.json();
+
+  const { data, error } = await supabase
+    .from('transparency_doc')
+    .update({
+      title: body.title,
+      doc_type: body.doc_type,
+      fiscal_year: body.fiscal_year,
+      file_url: body.file_url,
+      description: body.description || null,
+    })
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 400 });
+  return NextResponse.json(data);
+}
+
+export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const supabase = await createClient();
+  const { error } = await supabase.from('transparency_doc').delete().eq('id', id);
+  if (error) return NextResponse.json({ error: error.message }, { status: 400 });
+  return NextResponse.json({ ok: true });
+}

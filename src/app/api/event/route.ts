@@ -7,7 +7,7 @@ export async function GET() {
   const { data, error } = await supabase
     .from('event')
     .select('*')
-    .order('start_date', { ascending: true });
+    .order('event_date', { ascending: true });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(data);
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
   const body = (await request.json()) as EventInsert;
 
-  if (!body.title || !body.start_date) {
+  if (!body.title || !body.event_date) {
     return NextResponse.json({ error: 'Judul dan Tanggal Mulai wajib diisi' }, { status: 400 });
   }
 

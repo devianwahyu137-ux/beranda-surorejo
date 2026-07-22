@@ -250,6 +250,20 @@ export interface Event {
 export type EventInsert = Omit<Event, 'id' | 'created_at'>;
 export type EventUpdate = Partial<Omit<Event, 'id' | 'created_at'>>;
 
+export interface Lembaga {
+  id: string;
+  name: string;
+  leader_name: string;
+  description: string | null;
+  logo_url: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export type LembagaInsert = Omit<Lembaga, 'id' | 'created_at' | 'updated_at'>;
+export type LembagaUpdate = Partial<Omit<Lembaga, 'id' | 'created_at' | 'updated_at'>>;
+
 export type InstitutionCategory = 'bpd' | 'lpmd' | 'karang_taruna' | 'rt_rw' | 'lainnya';
 
 export interface Institution {

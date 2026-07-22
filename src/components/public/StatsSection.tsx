@@ -10,8 +10,15 @@ export default async function StatsSection() {
     .select('*')
     .order('sort_order', { ascending: true });
 
-  // Fallback to default if empty
-  const displayStats = stats?.length ? stats : [];
+  // Fallback to default if empty or error
+  const defaultStats = [
+    { id: '1', label: 'Penduduk', value: '3.250+', icon: 'users' },
+    { id: '2', label: 'Kepala Keluarga', value: '980', icon: 'home' },
+    { id: '3', label: 'Luas Wilayah', value: '450 Ha', icon: 'map' },
+    { id: '4', label: 'Rukun Tetangga', value: '24 RT', icon: 'location' }
+  ];
+
+  const displayStats = stats && stats.length > 0 ? stats : defaultStats;
 
   return (
     <section className="py-14 md:py-16 bg-gradient-to-br from-primary-800 via-primary-900 to-primary-950 relative overflow-hidden">

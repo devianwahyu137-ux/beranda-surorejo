@@ -34,10 +34,7 @@ export async function PUT(
 
   const body = (await request.json()) as ArticleUpdate;
 
-  // Prevent updating slug to empty
-  if (body.slug === '') {
-    delete body.slug;
-  }
+
 
   const { data, error } = await supabase
     .from('article')

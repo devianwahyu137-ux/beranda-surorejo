@@ -85,7 +85,7 @@ export default async function ArticleDetailPage({ params }: Props) {
               </Link>
               <span className="text-white/40">•</span>
               <span className="px-2.5 py-1 bg-primary-600/80 backdrop-blur-sm text-white text-xs font-semibold rounded-full border border-primary-500/50">
-                {ARTICLE_CATEGORY_MAP[article.category] || article.category}
+                {ARTICLE_CATEGORY_MAP[article.category as keyof typeof ARTICLE_CATEGORY_MAP] || article.category}
               </span>
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
@@ -112,8 +112,8 @@ export default async function ArticleDetailPage({ params }: Props) {
 
       {/* Content */}
       <div className="container-page max-w-3xl mt-12 md:mt-16">
-        <div className="prose prose-lg prose-neutral max-w-none prose-headings:font-bold prose-a:text-primary-600 prose-img:rounded-xl">
-          {article.content.split('\n\n').map((paragraph, idx) => (
+        <div className="prose prose-lg prose-neutral max-w-none prose-headings:font-bold prose-a:text-primary-600 hover:prose-a:text-primary-700">
+          {article.content.split('\n\n').map((paragraph: string, idx: number) => (
             <p key={idx} className="whitespace-pre-line">{paragraph}</p>
           ))}
         </div>

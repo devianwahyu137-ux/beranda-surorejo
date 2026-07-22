@@ -4,6 +4,7 @@ import ProfileTabs from '@/components/public/ProfileTabs';
 import VillageOfficials from '@/components/public/VillageOfficials';
 import PkkSection from '@/components/public/PkkSection';
 import LembagaSection from '@/components/public/LembagaSection';
+import TransparencySection from '@/components/public/TransparencySection';
 import ScrollReveal from '@/components/public/ScrollReveal';
 import DynamicMap from '@/components/public/DynamicMap';
 
@@ -54,15 +55,32 @@ export default async function ProfilPage() {
     .select('*')
     .eq('is_published', true);
 
-  const { data: demographicStats } = await supabase
+  const { data: demographicStatsData } = await supabase
     .from('demographic_stat')
     .select('*')
     .order('sort_order', { ascending: true });
 
-  const { data: villageAreas } = await supabase
+  const { data: villageAreasData } = await supabase
     .from('village_area')
     .select('*')
     .order('sort_order', { ascending: true });
+
+  const defaultStats = [
+    { id: '1', label: 'Penduduk Laki-laki', value: '1.650', icon: 'users', sort_order: 1 },
+    { id: '2', label: 'Penduduk Perempuan', value: '1.600', icon: 'users', sort_order: 2 },
+    { id: '3', label: 'Kepala Keluarga', value: '980', icon: 'home', sort_order: 3 },
+    { id: '4', label: 'Luas Wilayah', value: '450 Ha', icon: 'map', sort_order: 4 }
+  ];
+
+  const defaultAreas = [
+    { id: '1', dusun: 'Krajan', rw_count: 2, rt_count: 8, population: 850, head_name: 'Bpk. Supriyadi', sort_order: 1 },
+    { id: '2', dusun: 'Ngabean', rw_count: 2, rt_count: 6, population: 750, head_name: 'Bpk. Mulyono', sort_order: 2 },
+    { id: '3', dusun: 'Kedungdowo', rw_count: 2, rt_count: 5, population: 650, head_name: 'Bpk. Sarjono', sort_order: 3 },
+    { id: '4', dusun: 'Sidomulyo', rw_count: 2, rt_count: 5, population: 1000, head_name: 'Bpk. Haryanto', sort_order: 4 }
+  ];
+
+  const demographicStats = demographicStatsData && demographicStatsData.length > 0 ? demographicStatsData : defaultStats;
+  const villageAreas = villageAreasData && villageAreasData.length > 0 ? villageAreasData : defaultAreas;
 
   const { data: lembagaList } = await supabase
     .from('lembaga')
@@ -120,6 +138,15 @@ export default async function ProfilPage() {
             icon: (
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            ),
+          },
+          {
+            id: 'transparansi',
+            label: 'Transparansi',
+            icon: (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
             ),
           },
@@ -278,6 +305,8 @@ export default async function ProfilPage() {
         />
 
         <LembagaSection lembagaList={lembagaList || []} />
+
+        <TransparencySection />
       </ProfileTabs>
     </div>
   );

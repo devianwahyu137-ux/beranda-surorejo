@@ -45,14 +45,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Judul, konten, dan kategori wajib diisi' }, { status: 400 });
   }
 
-  // Generate slug if not provided or empty
-  if (!body.slug) {
-    body.slug = body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') + '-' + crypto.randomUUID().substring(0, 8);
-  }
+  const slug = body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') + '-' + crypto.randomUUID().substring(0, 8);
+
+  const payload = {
+    ...body,
+    slug: (body as any).slug || slug
+  };
 
   const { data, error } = await supabase
     .from('article')
-    .insert(body)
+    .insert(payload)
     .select()
     .single();
 

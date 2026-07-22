@@ -9,8 +9,8 @@ export default async function UpcomingEvents() {
   const { data: events } = await supabase
     .from('event')
     .select('*')
-    .gte('start_date', today)
-    .order('start_date', { ascending: true })
+    .gte('event_date', today)
+    .order('event_date', { ascending: true })
     .limit(3);
 
   if (!events || events.length === 0) {
@@ -53,10 +53,10 @@ export default async function UpcomingEvents() {
                 <div className="flex items-start gap-4 mb-5">
                   <div className="flex-shrink-0 flex flex-col items-center justify-center w-14 h-14 bg-primary-100 rounded-xl text-primary-700 group-hover:bg-primary-600 group-hover:text-white transition-colors">
                     <span className="text-xl font-bold leading-none">
-                      {new Date(event.start_date).getDate()}
+                      {new Date(event.event_date).getDate()}
                     </span>
                     <span className="text-[10px] font-bold uppercase mt-0.5">
-                      {new Date(event.start_date).toLocaleString('id-ID', { month: 'short' })}
+                      {new Date(event.event_date).toLocaleString('id-ID', { month: 'short' })}
                     </span>
                   </div>
                   <div>
