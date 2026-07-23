@@ -35,6 +35,7 @@ const createIcon = (color: string) => {
 const icons = {
   pemerintahan: createIcon('#ef4444'), // Red
   umkm: createIcon('#3b82f6'),         // Blue
+  ibadah: createIcon('#a855f7'),       // Purple
   default: createIcon('#10b981'),      // Green
 };
 
@@ -48,7 +49,7 @@ interface InteractiveMapProps {
 export default function InteractiveMap({
   locations = [],
   umkmData = [],
-  center = [-7.726058, 109.969197], // Default to Surorejo coords
+  center = [-7.7695, 109.9814], // Coordinates for Desa Surorejo
   zoom = 15,
 }: InteractiveMapProps) {
   const [mounted, setMounted] = useState(false);
@@ -78,7 +79,9 @@ export default function InteractiveMap({
       position: [loc.latitude, loc.longitude] as [number, number],
       title: loc.name,
       description: loc.description,
-      icon: loc.category === 'pemerintahan' ? icons.pemerintahan : icons.default,
+      icon: loc.category === 'pemerintahan' ? icons.pemerintahan : 
+            loc.category === 'ibadah' ? icons.ibadah : 
+            icons.default,
       link: null,
     })),
     ...umkmData

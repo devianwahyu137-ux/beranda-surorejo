@@ -5,10 +5,8 @@ import type { StrategicLocation } from '@/types/db';
 
 const CATEGORY_LABELS: Record<string, string> = {
   pemerintahan: 'Pemerintahan',
-  ibadah: 'Ibadah',
-  pendidikan: 'Pendidikan',
-  kesehatan: 'Kesehatan',
-  lainnya: 'Lainnya',
+  ibadah: 'Tempat Ibadah',
+  lainnya: 'Fasilitas Lainnya',
 };
 const CATEGORIES = Object.keys(CATEGORY_LABELS);
 

@@ -35,7 +35,7 @@ async function MapSection() {
 
   return (
     <div className="w-full h-[70vh] min-h-[500px] rounded-2xl overflow-hidden shadow-lg border border-neutral-200 relative">
-      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-md border border-neutral-100 max-w-xs">
+      <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-md border border-neutral-100 max-w-xs">
         <h3 className="font-bold text-neutral-900 mb-2 text-sm">Legenda Peta</h3>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
@@ -45,6 +45,10 @@ async function MapSection() {
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full bg-red-500 border-2 border-white shadow-sm"></div>
             <span className="text-xs text-neutral-700 font-medium">Pemerintahan</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded-full bg-purple-500 border-2 border-white shadow-sm"></div>
+            <span className="text-xs text-neutral-700 font-medium">Tempat Ibadah</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full bg-emerald-500 border-2 border-white shadow-sm"></div>

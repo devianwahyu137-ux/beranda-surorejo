@@ -73,10 +73,12 @@ export default async function ProfilPage() {
   ];
 
   const defaultAreas = [
-    { id: '1', dusun: 'Krajan', rw_count: 2, rt_count: 8, population: 850, head_name: 'Bpk. Supriyadi', sort_order: 1 },
-    { id: '2', dusun: 'Ngabean', rw_count: 2, rt_count: 6, population: 750, head_name: 'Bpk. Mulyono', sort_order: 2 },
-    { id: '3', dusun: 'Kedungdowo', rw_count: 2, rt_count: 5, population: 650, head_name: 'Bpk. Sarjono', sort_order: 3 },
-    { id: '4', dusun: 'Sidomulyo', rw_count: 2, rt_count: 5, population: 1000, head_name: 'Bpk. Haryanto', sort_order: 4 }
+    { id: '1', dusun: 'Surobayan', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Agung', sort_order: 1 },
+    { id: '2', dusun: 'Kleben', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Budi S', sort_order: 2 },
+    { id: '3', dusun: 'Kragilan Lor', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Ari F', sort_order: 3 },
+    { id: '4', dusun: 'Kragilan Kidul', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Gian B', sort_order: 4 },
+    { id: '5', dusun: 'Kenanggulang', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Usman', sort_order: 5 },
+    { id: '6', dusun: 'Kiyudan', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Dimas', sort_order: 6 }
   ];
 
   const demographicStats = demographicStatsData && demographicStatsData.length > 0 ? demographicStatsData : defaultStats;
@@ -165,11 +167,7 @@ export default async function ProfilPage() {
                 </h3>
                 <div className="prose prose-neutral max-w-none text-neutral-600 leading-relaxed">
                   <p>
-                    Desa Surorejo memiliki sejarah panjang yang erat kaitannya dengan perkembangan wilayah Banyuurip.
-                    Konon, nama Surorejo diambil dari kata "Suro" yang berarti berani dan "Rejo" yang berarti ramai atau makmur.
-                  </p>
-                  <p className="mt-3">
-                    Seiring berjalannya waktu, Surorejo berkembang menjadi desa agraris dengan potensi sumber daya alam yang melimpah dan masyarakat yang menjunjung tinggi semangat gotong royong.
+                    Desa Surorejo merupakan salah satu desa yang berada di Kecamatan Banyuurip, Kabupaten Purworejo, Provinsi Jawa Tengah. Seiring perkembangan wilayah, Desa Surorejo tumbuh sebagai desa yang didukung oleh sektor pertanian, usaha masyarakat, serta semangat gotong royong yang masih terjaga. Pemerintah desa bersama masyarakat terus berupaya meningkatkan kualitas pelayanan publik dan pembangunan desa demi kesejahteraan masyarakat.
                   </p>
                 </div>
               </div>
@@ -186,15 +184,16 @@ export default async function ProfilPage() {
                 <div className="bg-primary-50 rounded-xl p-6 border border-primary-100">
                   <h4 className="font-bold text-primary-900 mb-2">Visi:</h4>
                   <p className="text-primary-800/80 mb-5 italic">
-                    "Terwujudnya Desa Surorejo yang Mandiri, Sejahtera, dan Berbudaya melalui Tata Kelola Pemerintahan yang Baik."
+                    "Terwujudnya Desa Surorejo yang maju, mandiri, sejahtera, dan berdaya saing melalui tata kelola pemerintahan yang transparan, partisipatif, dan berorientasi pada pelayanan masyarakat."
                   </p>
                   
                   <h4 className="font-bold text-primary-900 mb-2">Misi:</h4>
                   <ul className="space-y-2 text-primary-800/80 list-disc pl-5">
-                    <li>Meningkatkan kualitas pelayanan publik.</li>
-                    <li>Mendorong pemberdayaan ekonomi masyarakat melalui UMKM.</li>
-                    <li>Memelihara kelestarian lingkungan dan budaya lokal.</li>
-                    <li>Meningkatkan pembangunan infrastruktur desa yang merata.</li>
+                    <li>Meningkatkan kualitas pelayanan publik yang cepat, mudah, dan transparan.</li>
+                    <li>Mengembangkan potensi ekonomi masyarakat melalui UMKM dan sektor pertanian.</li>
+                    <li>Meningkatkan kualitas sumber daya manusia melalui pendidikan dan pemberdayaan masyarakat.</li>
+                    <li>Mendorong pembangunan infrastruktur desa yang merata.</li>
+                    <li>Menjaga kelestarian lingkungan, budaya, dan nilai gotong royong.</li>
                   </ul>
                 </div>
               </div>
