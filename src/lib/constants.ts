@@ -80,6 +80,7 @@ export const STALE_DAYS = 90;
 export const PUBLIC_NAV = [
   { href: '/', label: 'Beranda' },
   { href: '/profil', label: 'Profil' },
+  { href: '/pembangunan', label: 'Pembangunan' },
   { href: '/berita', label: 'Berita' },
   { href: '/layanan', label: 'Layanan' },
   { href: '/umkm', label: 'UMKM' },

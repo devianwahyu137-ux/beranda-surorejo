@@ -79,7 +79,7 @@ export default function Header() {
         <div
           className={cn(
             'md:hidden overflow-hidden transition-all duration-300 ease-in-out',
-            mobileMenuOpen ? 'max-h-64 pb-4' : 'max-h-0'
+            mobileMenuOpen ? 'max-h-80 pb-4' : 'max-h-0'
           )}
         >
           <nav className="flex flex-col gap-1 pt-2">
