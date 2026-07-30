@@ -40,7 +40,7 @@ export default function HeroSection() {
           {VILLAGE_NAME}
         </h1>
         <p className="text-lg sm:text-xl text-white/85 mb-10 font-light max-w-lg mx-auto animate-hero-subtitle">
-          Bersatu membangun desa yang mandiri, sejahtera, dan berbudaya
+          Membangun desa dan meningkatkan kesejahteraan masyarakat
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-hero-cta">
           <Link

@@ -110,5 +110,5 @@ export const ADMIN_NAV = [
 // Identitas desa
 // ============================================================
 export const VILLAGE_NAME = 'Desa Surorejo';
-export const VILLAGE_TAGLINE = 'Bersatu membangun desa yang mandiri, sejahtera, dan berbudaya';
+export const VILLAGE_TAGLINE = 'Membangun desa dan meningkatkan kesejahteraan masyarakat';
 export const OFFICIAL_WEBSITE_URL = 'https://surorejo-banyuurip.purworejokab.go.id';

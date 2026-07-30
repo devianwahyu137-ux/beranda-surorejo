@@ -7,6 +7,7 @@ import LembagaSection from '@/components/public/LembagaSection';
 import TransparencySection from '@/components/public/TransparencySection';
 import ScrollReveal from '@/components/public/ScrollReveal';
 import DynamicMap from '@/components/public/DynamicMap';
+import VillageDataSection from '@/components/public/VillageDataSection';
 
 export const metadata: Metadata = {
   title: 'Profil Desa',
@@ -66,19 +67,19 @@ export default async function ProfilPage() {
     .order('sort_order', { ascending: true });
 
   const defaultStats = [
-    { id: '1', label: 'Penduduk Laki-laki', value: '1.650', icon: 'users', sort_order: 1 },
-    { id: '2', label: 'Penduduk Perempuan', value: '1.600', icon: 'users', sort_order: 2 },
-    { id: '3', label: 'Kepala Keluarga', value: '980', icon: 'home', sort_order: 3 },
-    { id: '4', label: 'Luas Wilayah', value: '450 Ha', icon: 'map', sort_order: 4 }
+    { id: '1', label: 'Penduduk Laki-laki', value: '597', icon: 'users', sort_order: 1 },
+    { id: '2', label: 'Penduduk Perempuan', value: '621', icon: 'users', sort_order: 2 },
+    { id: '3', label: 'Kepala Keluarga', value: '361 KK', icon: 'home', sort_order: 3 },
+    { id: '4', label: 'Luas Wilayah', value: '186,772 Ha', icon: 'map', sort_order: 4 }
   ];
 
   const defaultAreas = [
-    { id: '1', dusun: 'Surobayan', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Agung', sort_order: 1 },
-    { id: '2', dusun: 'Kleben', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Budi S', sort_order: 2 },
-    { id: '3', dusun: 'Kragilan Lor', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Ari F', sort_order: 3 },
-    { id: '4', dusun: 'Kragilan Kidul', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Gian B', sort_order: 4 },
-    { id: '5', dusun: 'Kenanggulang', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Usman', sort_order: 5 },
-    { id: '6', dusun: 'Kiyudan', rw_count: 2, rt_count: 5, population: 750, head_name: 'Bpk. Dimas', sort_order: 6 }
+    { id: '1', dusun: 'Surobayan', rw_count: 1, rt_count: 1, population: 0, head_name: 'Agung Supangkat', sort_order: 1 },
+    { id: '2', dusun: 'Kleben', rw_count: 1, rt_count: 1, population: 0, head_name: 'Budi Santoso', sort_order: 2 },
+    { id: '3', dusun: 'Kragilan Lor', rw_count: 1, rt_count: 1, population: 0, head_name: 'Ari F.', sort_order: 3 },
+    { id: '4', dusun: 'Kragilan Kidul', rw_count: 1, rt_count: 1, population: 0, head_name: 'Gian Bisono', sort_order: 4 },
+    { id: '5', dusun: 'Kenanggulan', rw_count: 1, rt_count: 1, population: 0, head_name: 'Usman', sort_order: 5 },
+    { id: '6', dusun: 'Kiyudan', rw_count: 1, rt_count: 1, population: 0, head_name: 'Dimas', sort_order: 6 }
   ];
 
   const demographicStats = demographicStatsData && demographicStatsData.length > 0 ? demographicStatsData : defaultStats;
@@ -167,8 +168,23 @@ export default async function ProfilPage() {
                 </h3>
                 <div className="prose prose-neutral max-w-none text-neutral-600 leading-relaxed">
                   <p>
-                    Desa Surorejo merupakan salah satu desa yang berada di Kecamatan Banyuurip, Kabupaten Purworejo, Provinsi Jawa Tengah. Seiring perkembangan wilayah, Desa Surorejo tumbuh sebagai desa yang didukung oleh sektor pertanian, usaha masyarakat, serta semangat gotong royong yang masih terjaga. Pemerintah desa bersama masyarakat terus berupaya meningkatkan kualitas pelayanan publik dan pembangunan desa demi kesejahteraan masyarakat.
+                    Desa Surorejo, Kecamatan Banyuurip, Kabupaten Purworejo, Provinsi Jawa Tengah merupakan satu dari 24 desa di Kecamatan Banyuurip yang mempunyai jarak 8 km dari kota Kabupaten. Desa Surorejo terdiri dari 6 dusun, 3 RW, dan 6 RT dengan luas 186,772 Ha.
                   </p>
+                  <p className="mt-3">
+                    Secara geografis, Desa Surorejo terletak di perbatasan dengan Desa Banyuurip dan Tegalrejo (Utara), Desa Wangunrejo (Timur), Desa Sendangsari (Selatan), dan Desa Bencorejo (Barat).
+                  </p>
+                  <p className="mt-3 font-medium text-neutral-700">Sejarah Kepemimpinan Desa:</p>
+                  <ul className="mt-2 space-y-1.5 text-sm">
+                    <li><strong>1936–1940:</strong> Wongso Pawiro</li>
+                    <li><strong>1941–1949:</strong> Kasbolah</li>
+                    <li><strong>1950–1959:</strong> Wiryo Suwarno</li>
+                    <li><strong>1960–1988:</strong> Parto Disono (Sekdes: Dolah Satari)</li>
+                    <li><strong>1989–1998:</strong> Sunaryo (Sekdes: Dolah Satari)</li>
+                    <li><strong>1998–2006:</strong> Suwarson (Sekdes: Sunamto)</li>
+                    <li><strong>2007–2013:</strong> Suwarson — periode ke-2 (Sekdes: Sunamto)</li>
+                    <li><strong>2013–2018:</strong> Margino (Sekdes: Sunamto)</li>
+                    <li><strong>2019–sekarang:</strong> Margino (Sekdes: Suwardi)</li>
+                  </ul>
                 </div>
               </div>
             </ScrollReveal>
@@ -184,16 +200,16 @@ export default async function ProfilPage() {
                 <div className="bg-primary-50 rounded-xl p-6 border border-primary-100">
                   <h4 className="font-bold text-primary-900 mb-2">Visi:</h4>
                   <p className="text-primary-800/80 mb-5 italic">
-                    "Terwujudnya Desa Surorejo yang maju, mandiri, sejahtera, dan berdaya saing melalui tata kelola pemerintahan yang transparan, partisipatif, dan berorientasi pada pelayanan masyarakat."
+                    &ldquo;MEMBANGUN DESA DAN MENINGKATKAN KESEJAHTERAAN MASYARAKAT DESA SUROREJO&rdquo;
                   </p>
                   
                   <h4 className="font-bold text-primary-900 mb-2">Misi:</h4>
                   <ul className="space-y-2 text-primary-800/80 list-disc pl-5">
-                    <li>Meningkatkan kualitas pelayanan publik yang cepat, mudah, dan transparan.</li>
-                    <li>Mengembangkan potensi ekonomi masyarakat melalui UMKM dan sektor pertanian.</li>
-                    <li>Meningkatkan kualitas sumber daya manusia melalui pendidikan dan pemberdayaan masyarakat.</li>
-                    <li>Mendorong pembangunan infrastruktur desa yang merata.</li>
-                    <li>Menjaga kelestarian lingkungan, budaya, dan nilai gotong royong.</li>
+                    <li>Meneruskan pembangunan yang belum terealisasi.</li>
+                    <li>Mewujudkan dan meningkatkan serta meneruskan tata pemerintahan desa yang lebih baik.</li>
+                    <li>Meningkatkan pelayanan yang maksimal terhadap warga desa.</li>
+                    <li>Meningkatkan kehidupan yang lebih harmonis, toleran, saling menghormati dalam kehidupan berbudaya dan beragama di Desa Surorejo.</li>
+                    <li>Mengedepankan kejujuran, keadilan, dan transparansi dalam kehidupan sehari-hari baik dalam pemerintahan maupun dengan masyarakat desa.</li>
                   </ul>
                 </div>
               </div>
@@ -293,6 +309,9 @@ export default async function ProfilPage() {
               </div>
             </div>
           </ScrollReveal>
+
+          {/* Data Desa Lengkap: SDA, SDM, Kesehatan, Keagamaan, SOTK */}
+          <VillageDataSection />
         </div>
 
         <VillageOfficials officials={villageOfficials || []} />
