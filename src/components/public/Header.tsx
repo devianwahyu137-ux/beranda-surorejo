@@ -78,8 +78,8 @@ export default function Header() {
         {/* Mobile Menu */}
         <div
           className={cn(
-            'md:hidden overflow-hidden transition-all duration-300 ease-in-out',
-            mobileMenuOpen ? 'max-h-80 pb-4' : 'max-h-0'
+            'md:hidden transition-all duration-300 ease-in-out',
+            mobileMenuOpen ? 'max-h-[calc(100vh-4rem)] overflow-y-auto pb-4' : 'max-h-0 overflow-hidden'
           )}
         >
           <nav className="flex flex-col gap-1 pt-2">
