@@ -49,9 +49,7 @@ export default function PkkSection({ officials, programs, galleries }: PkkSectio
                       {official.image_url ? (
                         <img src={official.image_url} alt={official.name} className="w-full h-full object-cover" />
                       ) : (
-                        <svg className="w-7 h-7 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
+                        <img src={`https://ui-avatars.com/api/?name=${encodeURIComponent(official.name)}&background=random&color=fff&size=150`} alt={official.name} className="w-full h-full object-cover" />
                       )}
                     </div>
                     <div>

@@ -155,18 +155,20 @@ create policy "admin all institution" on public.institution
 
 -- Default demographic stats
 insert into public.demographic_stat (label, value, icon, sort_order) values
-  ('Jumlah Penduduk', '3.250+', 'users', 1),
-  ('Luas Wilayah', '450 Ha', 'map', 2),
-  ('Jumlah RT', '28', 'home', 3),
-  ('Jumlah RW', '6', 'building', 4)
+  ('Jumlah Penduduk', '1.124', 'users', 1),
+  ('Luas Wilayah', '186,77 Ha', 'map', 2),
+  ('Jumlah RT', '6', 'home', 3),
+  ('Jumlah RW', '3', 'building', 4)
 on conflict do nothing;
 
 -- Default village areas
 insert into public.village_area (dusun, rw_count, rt_count, population, head_name, sort_order) values
-  ('Dusun I Kragilan', 2, 8, 850, NULL, 1),
-  ('Dusun II Surorejo', 2, 8, 920, NULL, 2),
-  ('Dusun III Krajan', 1, 6, 780, NULL, 3),
-  ('Dusun IV Karangasem', 1, 6, 700, NULL, 4)
+  ('Dusun Surobayan', 1, 1, 187, 'Agung Supangkat', 1),
+  ('Dusun Kleben', 0, 1, 187, 'Budi Santoso', 2),
+  ('Dusun Kragilan Lor', 1, 1, 187, 'Ari F.', 3),
+  ('Dusun Kragilan Kidul', 0, 1, 187, 'Gian Bisono', 4),
+  ('Dusun Kenanggulan', 1, 1, 188, 'Usman', 5),
+  ('Dusun Kiyudan', 0, 1, 188, 'Dimas', 6)
 on conflict do nothing;
 
 -- Sample articles
@@ -217,7 +219,9 @@ on conflict do nothing;
 
 -- Sample institutions
 insert into public.institution (name, category, description, head_name, sort_order) values
-  ('Badan Permusyawaratan Desa (BPD)', 'bpd', 'Lembaga yang melaksanakan fungsi pemerintahan yang anggotanya merupakan wakil dari penduduk desa.', NULL, 1),
-  ('Lembaga Pemberdayaan Masyarakat Desa (LPMD)', 'lpmd', 'Lembaga kemasyarakatan yang bertugas membantu pemerintah desa dalam pemberdayaan masyarakat.', NULL, 2),
-  ('Karang Taruna', 'karang_taruna', 'Organisasi sosial kemasyarakatan sebagai wadah pengembangan generasi muda.', NULL, 3)
+  ('Lembaga Pemberdayaan Masyarakat (LPM)', 'lpmd', 'Lembaga kemasyarakatan yang bertugas membantu pemerintah desa dalam pemberdayaan masyarakat.', NULL, 1),
+  ('Gapoktan', 'lainnya', 'Gabungan Kelompok Tani untuk pengembangan sektor pertanian.', NULL, 2),
+  ('Posyandu', 'lainnya', 'Pelayanan kesehatan ibu, balita, dan lansia.', NULL, 3),
+  ('Karang Taruna', 'karang_taruna', 'Organisasi sosial kemasyarakatan sebagai wadah pengembangan generasi muda.', NULL, 4),
+  ('Remaja Islam Masjid (Risma)', 'lainnya', 'Organisasi pemuda keagamaan tingkat desa.', NULL, 5)
 on conflict do nothing;
