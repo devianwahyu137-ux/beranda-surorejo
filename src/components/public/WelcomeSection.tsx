@@ -13,7 +13,7 @@ export default function WelcomeSection() {
                 src="/images/foto kepala desa surorejo.webp"
                 alt="Margino - Kepala Desa Surorejo"
                 fill
-                className="object-cover object-top"
+                className="object-cover object-center"
                 sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, 256px"
                 priority
               />

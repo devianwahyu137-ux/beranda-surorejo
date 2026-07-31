@@ -5,6 +5,17 @@ import { useRouter } from 'next/navigation';
 import type { Article, ArticleInsert, ArticleUpdate } from '@/types/db';
 import { ARTICLE_CATEGORIES } from '@/lib/constants';
 import PhotoUploader from './PhotoUploader';
+import dynamic from 'next/dynamic';
+
+const RichTextEditor = dynamic(() => import('./RichTextEditor'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full border border-neutral-300 rounded-xl bg-neutral-50 h-[350px] flex items-center justify-center text-neutral-400 animate-pulse">
+      Memuat Editor...
+    </div>
+  )
+});
+
 
 interface ArticleFormProps {
   initialData?: Article;
@@ -74,6 +85,15 @@ export default function ArticleForm({ initialData }: ArticleFormProps) {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
+
+    // Validasi isi konten editor
+    const isContentEmpty = !content || content.trim() === '' || content === '<p></p>';
+    if (isContentEmpty) {
+      setError('Isi artikel tidak boleh kosong.');
+      setIsSubmitting(false);
+      return;
+    }
+
 
     try {
       const payload: Partial<ArticleInsert> & { slug?: string } = {
@@ -201,17 +221,12 @@ export default function ArticleForm({ initialData }: ArticleFormProps) {
             </div>
             
             <div>
-              <label className="form-label" htmlFor="content">Isi Artikel *</label>
-              <textarea
-                id="content"
-                required
-                rows={15}
-                className="form-input resize-y font-mono text-sm"
+              <label className="form-label">Isi Artikel *</label>
+              <RichTextEditor
                 value={content}
-                onChange={(e) => setContent(e.target.value)}
+                onChange={setContent}
                 placeholder="Tulis isi artikel di sini..."
               />
-              <p className="text-xs text-neutral-500 mt-1">Mendukung format teks biasa. Untuk paragraf baru, gunakan Enter 2 kali.</p>
             </div>
           </div>
         </div>
