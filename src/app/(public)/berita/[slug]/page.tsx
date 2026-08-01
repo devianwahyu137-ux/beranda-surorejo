@@ -112,10 +112,14 @@ export default async function ArticleDetailPage({ params }: Props) {
 
       {/* Content */}
       <div className="container-page max-w-3xl mt-12 md:mt-16">
-        <div className="prose prose-lg prose-neutral max-w-none prose-headings:font-bold prose-a:text-primary-600 hover:prose-a:text-primary-700">
-          {article.content.split('\n\n').map((paragraph: string, idx: number) => (
-            <p key={idx} className="whitespace-pre-line">{paragraph}</p>
-          ))}
+        <div className="prose prose-lg prose-neutral max-w-none prose-headings:font-bold prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-img:rounded-xl prose-img:shadow-sm prose-img:border prose-img:border-neutral-100">
+          {article.content.startsWith('<') ? (
+            <div dangerouslySetInnerHTML={{ __html: article.content }} />
+          ) : (
+            article.content.split('\n\n').map((paragraph: string, idx: number) => (
+              <p key={idx} className="whitespace-pre-line">{paragraph}</p>
+            ))
+          )}
         </div>
       </div>
     </article>
