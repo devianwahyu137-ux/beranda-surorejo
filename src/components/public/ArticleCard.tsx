@@ -17,7 +17,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
     : 'Belum dipublikasi';
 
   return (
-    <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden group card-hover h-full flex flex-col">
+    <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden group shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] hover:border-primary-200 transition-all duration-300 transform hover:-translate-y-1.5 h-full flex flex-col">
       <Link href={`/berita/${article.slug}`} className="block relative aspect-[4/3] bg-neutral-100 overflow-hidden">
         {article.thumbnail_url ? (
           <Image
@@ -25,7 +25,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             alt={article.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center text-neutral-400 bg-neutral-100">
@@ -34,39 +34,43 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             </svg>
           </div>
         )}
-        <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-primary-700 text-xs font-semibold rounded-full shadow-sm">
+
+        {/* Hover dark gradient overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+        <div className="absolute top-4 left-4 z-10">
+          <span className="px-3 py-1 bg-white/95 backdrop-blur-md text-primary-700 text-xs font-bold rounded-full shadow-sm group-hover:bg-primary-600 group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-300 block">
             {ARTICLE_CATEGORY_MAP[article.category as keyof typeof ARTICLE_CATEGORY_MAP] || article.category}
           </span>
         </div>
       </Link>
       
-      <div className="p-5 flex-1 flex flex-col">
-        <div className="flex items-center gap-2 text-xs text-neutral-500 mb-3">
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <div className="p-6 flex-1 flex flex-col">
+        <div className="flex items-center gap-2 text-xs text-neutral-400 font-medium mb-3">
+          <svg className="w-4 h-4 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           <time dateTime={article.published_at || ''}>{date}</time>
           <span className="w-1 h-1 bg-neutral-300 rounded-full mx-1"></span>
-          <span>{article.author}</span>
+          <span className="text-neutral-600">{article.author}</span>
         </div>
         
         <Link href={`/berita/${article.slug}`} className="group-hover:text-primary-600 transition-colors">
-          <h3 className="font-bold text-neutral-900 text-lg mb-2 line-clamp-2 leading-tight">
+          <h3 className="font-extrabold text-neutral-900 text-lg mb-3 line-clamp-2 leading-snug tracking-tight">
             {article.title}
           </h3>
         </Link>
         
-        <p className="text-neutral-600 text-sm line-clamp-3 mb-4 flex-1">
+        <p className="text-neutral-600 text-sm line-clamp-3 mb-5 flex-1 leading-relaxed">
           {article.excerpt || article.content.substring(0, 120) + '...'}
         </p>
         
         <Link 
           href={`/berita/${article.slug}`}
-          className="inline-flex items-center gap-1 text-sm font-medium text-primary-600 group-hover:text-primary-700 mt-auto"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-primary-600 group-hover:text-primary-700 mt-auto pt-4 border-t border-neutral-100"
         >
           Baca selengkapnya
-          <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </Link>

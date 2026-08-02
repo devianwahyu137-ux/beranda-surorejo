@@ -9,12 +9,13 @@ export default function ServiceCard({ service }: ServiceCardProps) {
   return (
     <Link
       href={`/layanan/${service.slug}`}
-      className="group block bg-white rounded-xl border border-neutral-200 p-6 shadow-sm hover:shadow-md hover:border-primary-200 transition-all duration-300"
+      className="group block bg-white rounded-2xl border border-neutral-200/80 p-6 shadow-sm hover:shadow-[0_10px_30px_rgba(22,163,74,0.1)] hover:border-primary-300 transition-all duration-300 transform hover:-translate-y-1"
     >
       <div className="flex items-start gap-4">
-        <div className="flex-shrink-0 w-10 h-10 bg-primary-50 rounded-lg flex items-center justify-center group-hover:bg-primary-100 transition-colors">
+        {/* Animated Icon Box with rotate & green gradient on hover */}
+        <div className="flex-shrink-0 w-12 h-12 bg-primary-50 rounded-xl flex items-center justify-center border border-primary-100/60 group-hover:bg-gradient-to-br group-hover:from-primary-500 group-hover:to-primary-600 group-hover:text-white group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-md transition-all duration-300">
           <svg
-            className="w-5 h-5 text-primary-600"
+            className="w-6 h-6 text-primary-600 group-hover:text-white transition-colors duration-300"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -27,26 +28,31 @@ export default function ServiceCard({ service }: ServiceCardProps) {
             />
           </svg>
         </div>
+
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-neutral-900 group-hover:text-primary-700 transition-colors">
+          <h3 className="font-bold text-base sm:text-lg text-neutral-900 group-hover:text-primary-700 transition-colors tracking-tight">
             {service.title}
           </h3>
           {service.requirements && (
-            <p className="mt-1 text-sm text-neutral-500 line-clamp-2">
-              {service.requirements.slice(0, 100)}
-              {service.requirements.length > 100 ? '...' : ''}
+            <p className="mt-1.5 text-sm text-neutral-500 line-clamp-2 leading-relaxed">
+              {service.requirements.slice(0, 110)}
+              {service.requirements.length > 110 ? '...' : ''}
             </p>
           )}
         </div>
-        <svg
-          className="w-5 h-5 text-neutral-400 group-hover:text-primary-500 group-hover:translate-x-1 transition-all"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
+
+        {/* Action arrow indicator */}
+        <div className="w-8 h-8 rounded-full bg-neutral-50 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-600 transition-all duration-300 shrink-0 mt-0.5">
+          <svg
+            className="w-4 h-4 text-neutral-400 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all duration-200"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
       </div>
     </Link>
   );
