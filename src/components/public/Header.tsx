@@ -38,10 +38,10 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 transition-all duration-300 ease-in-out',
+        'sticky top-0 z-50 transition-colors duration-200 ease-in-out',
         isTransparent
           ? 'bg-transparent border-b border-transparent text-white'
-          : 'bg-white/90 backdrop-blur-md border-b border-neutral-200 text-neutral-900 shadow-sm'
+          : 'bg-white/98 border-b border-neutral-200 text-neutral-900 shadow-sm'
       )}
     >
       <div className="container-page">

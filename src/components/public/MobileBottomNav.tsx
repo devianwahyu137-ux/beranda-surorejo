@@ -54,10 +54,9 @@ export default function MobileBottomNav() {
       icon: (active: boolean) => (
         <div className="relative">
           <span className="absolute -top-1 -right-1 flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-500" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
           </span>
-          <svg className={`w-6 h-6 text-neutral-400 group-active:text-accent-600 transition-all duration-200`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+          <svg className={`w-6 h-6 text-neutral-400 group-active:text-accent-600 transition-colors duration-200`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
           </svg>
         </div>
@@ -66,9 +65,9 @@ export default function MobileBottomNav() {
   ];
 
   return (
-    /* Only render on smartphone screen sizes (< md), fixed floating glass bottom bar */
+    /* Only render on smartphone screen sizes (< md), fixed floating bottom bar */
     <div className="md:hidden fixed bottom-3 left-3 right-3 z-50 pointer-events-none">
-      <nav className="bg-white/95 backdrop-blur-xl border border-neutral-200/80 shadow-[0_12px_35px_rgba(0,0,0,0.16)] rounded-2xl px-2 py-2 flex items-center justify-around pointer-events-auto max-w-sm mx-auto transition-all duration-300">
+      <nav className="bg-white/98 border border-neutral-200/80 shadow-[0_12px_35px_rgba(0,0,0,0.16)] rounded-2xl px-2 py-2 flex items-center justify-around pointer-events-auto max-w-sm mx-auto">
         {navItems.map((item) => {
           return (
             <Link

@@ -16,7 +16,7 @@ export default function UmkmCard({ umkm, isFirst }: UmkmCardProps) {
   const categoryLabel = CATEGORY_MAP[umkm.category] || umkm.category;
 
   return (
-    <div className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] hover:border-primary-200 transition-all duration-200 transform hover:-translate-y-1.5 active:scale-[0.97] active:border-primary-400 active:bg-primary-50/10 flex flex-col h-full">
+    <div className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] hover:border-primary-200 transition-[transform,border-color,box-shadow,background-color] duration-200 transform-gpu hover:-translate-y-1 active:scale-[0.98] active:border-primary-400 active:bg-primary-50/10 flex flex-col h-full">
       {/* Photo */}
       <Link href={`/umkm/${umkm.slug}`} className="block relative aspect-[4/3] overflow-hidden bg-neutral-100">
         {firstPhoto ? (
@@ -42,7 +42,7 @@ export default function UmkmCard({ umkm, isFirst }: UmkmCardProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Category badge with color transition on card hover */}
-        <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-md text-xs font-semibold text-neutral-700 px-3 py-1 rounded-full shadow-sm group-hover:bg-primary-600 group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-300">
+        <span className="absolute top-3 left-3 bg-white/95 text-xs font-semibold text-neutral-700 px-3 py-1 rounded-full shadow-sm group-hover:bg-primary-600 group-hover:text-white transition-colors duration-200">
           {categoryLabel}
         </span>
       </Link>

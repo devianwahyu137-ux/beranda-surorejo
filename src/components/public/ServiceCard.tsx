@@ -9,11 +9,11 @@ export default function ServiceCard({ service }: ServiceCardProps) {
   return (
     <Link
       href={`/layanan/${service.slug}`}
-      className="group block bg-white rounded-2xl border border-neutral-200/80 p-6 shadow-sm hover:shadow-[0_10px_30px_rgba(22,163,74,0.1)] hover:border-primary-300 transition-all duration-200 transform hover:-translate-y-1 active:scale-[0.97] active:border-primary-400 active:bg-primary-50/20"
+      className="group block bg-white rounded-2xl border border-neutral-200/80 p-6 shadow-sm hover:shadow-[0_10px_30px_rgba(22,163,74,0.1)] hover:border-primary-300 transition-[transform,border-color,box-shadow,background-color] duration-200 transform-gpu hover:-translate-y-1 active:scale-[0.98] active:border-primary-400 active:bg-primary-50/20"
     >
       <div className="flex items-start gap-4">
         {/* Animated Icon Box with rotate & green gradient on hover */}
-        <div className="flex-shrink-0 w-12 h-12 bg-primary-50 rounded-xl flex items-center justify-center border border-primary-100/60 group-hover:bg-gradient-to-br group-hover:from-primary-500 group-hover:to-primary-600 group-hover:text-white group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-md transition-all duration-300">
+        <div className="flex-shrink-0 w-12 h-12 bg-primary-50 rounded-xl flex items-center justify-center border border-primary-100/60 group-hover:bg-gradient-to-br group-hover:from-primary-500 group-hover:to-primary-600 group-hover:text-white group-hover:scale-105 group-hover:shadow-md transition-[transform,background-color,color,box-shadow] duration-200">
           <svg
             className="w-6 h-6 text-primary-600 group-hover:text-white transition-colors duration-300"
             fill="none"

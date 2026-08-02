@@ -64,7 +64,7 @@ export default async function StatsSection() {
 
             return (
               <ScrollReveal key={stat.id} delay={idx + 1} direction="scale">
-                <div className="group relative bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/15 hover:border-primary-400/60 hover:bg-white/15 hover:shadow-[0_8px_35px_rgba(34,197,94,0.25)] transition-all duration-300 transform hover:-translate-y-1.5 overflow-hidden">
+                <div className="group relative bg-white/15 rounded-2xl p-6 text-center border border-white/20 hover:border-primary-400/60 hover:bg-white/20 hover:shadow-[0_8px_35px_rgba(34,197,94,0.25)] transition-[transform,border-color,background-color,box-shadow] duration-300 transform-gpu hover:-translate-y-1 overflow-hidden">
                   {/* Subtle inner glowing aura on card hover */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/0 via-primary-400/0 to-primary-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 

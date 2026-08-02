@@ -60,15 +60,15 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Ambient Floating Light Glows - Pure CSS, Lightweight */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[300px] bg-primary-500/25 blur-[120px] rounded-full pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/4 left-1/3 -translate-x-1/2 w-[280px] sm:w-[380px] h-[280px] bg-accent-400/15 blur-[100px] rounded-full pointer-events-none animate-pulse delay-1000" />
+      {/* Ambient Floating Light Glows - Static High Performance */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[300px] bg-primary-500/25 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/3 -translate-x-1/2 w-[280px] sm:w-[380px] h-[280px] bg-accent-400/15 blur-[100px] rounded-full pointer-events-none" />
 
       {/* Main Content */}
       <div className="relative z-10 text-center px-6 py-24 sm:py-28 max-w-4xl mx-auto mt-6">
         {/* Glowing Badge */}
         <div className="animate-hero-title inline-block">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/15 backdrop-blur-md text-white/95 text-xs sm:text-sm font-semibold rounded-full border border-white/25 mb-6 shadow-[0_0_25px_rgba(255,255,255,0.1)] hover:bg-white/20 transition-all duration-300">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 text-white text-xs sm:text-sm font-semibold rounded-full border border-white/30 mb-6 shadow-[0_0_25px_rgba(255,255,255,0.1)] hover:bg-white/25 transition-colors duration-200">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-400" />
@@ -86,16 +86,13 @@ export default function HeroSection() {
         </p>
 
         {/* Action Buttons with Glow micro-interactions */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center animate-hero-cta max-w-md mx-auto sm:max-w-none">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 animate-hero-cta max-w-md mx-auto sm:max-w-none">
           <Link
             href="/layanan"
-            className="group relative inline-flex items-center justify-center px-8 py-4 bg-primary-600 hover:bg-primary-500 active:bg-primary-700 text-white font-bold rounded-xl shadow-[0_4px_25px_rgba(22,163,74,0.45)] hover:shadow-[0_6px_35px_rgba(22,163,74,0.65)] transition-all duration-200 transform hover:-translate-y-1 active:scale-92 active:translate-y-0.5 touch-target border border-primary-400/40 overflow-hidden"
+            className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-extrabold rounded-xl shadow-[0_8px_30px_rgba(34,197,94,0.35)] transition-[transform,box-shadow,background-color] duration-200 transform-gpu hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 text-base sm:text-lg border border-primary-400/30 touch-target"
           >
-            {/* Subtle background glow hover effect */}
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-            
             <svg
-              className="w-5 h-5 mr-2.5 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300"
+              className="w-5 h-5 mr-2.5 text-primary-200 group-hover:rotate-12 transition-transform duration-300"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -104,7 +101,7 @@ export default function HeroSection() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
             Layanan Desa
@@ -112,10 +109,10 @@ export default function HeroSection() {
 
           <Link
             href="/umkm"
-            className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 hover:bg-white/25 active:bg-white/30 text-white font-bold rounded-xl backdrop-blur-md border border-white/30 hover:border-white/60 shadow-lg hover:shadow-[0_4px_25px_rgba(255,255,255,0.2)] transition-all duration-200 transform hover:-translate-y-1 active:scale-92 active:translate-y-0.5 touch-target"
+            className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white/20 hover:bg-white/30 text-white font-bold rounded-xl border border-white/30 shadow-lg hover:shadow-[0_4px_25px_rgba(255,255,255,0.2)] transition-[transform,box-shadow,background-color] duration-200 transform-gpu hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 text-base sm:text-lg touch-target"
           >
             <svg
-              className="w-5 h-5 mr-2.5 text-accent-400 group-hover:scale-125 transition-transform duration-300"
+              className="w-5 h-5 mr-2.5 text-accent-400 group-hover:scale-110 transition-transform duration-200"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -135,7 +132,7 @@ export default function HeroSection() {
       {/* Animated Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-float flex flex-col items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity">
         <span className="text-[11px] font-medium tracking-widest text-white/70 uppercase">Scroll</span>
-        <div className="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-1 backdrop-blur-sm">
+        <div className="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-1">
           <div className="w-1.5 h-2.5 bg-white rounded-full animate-bounce" />
         </div>
       </div>
