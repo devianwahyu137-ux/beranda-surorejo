@@ -4,6 +4,11 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import {
+  PETA_LUASAN_DUSUN_JUDUL,
+  PETA_LUASAN_DUSUN_PARAGRAF,
+  PETA_LUASAN_DUSUN_DATA,
+} from '@/lib/peta-luasan-dusun-data';
 
 interface StaticMap {
   id: string;
@@ -21,11 +26,11 @@ interface StaticMap {
 const DUMMY_MAPS: StaticMap[] = [
   {
     id: 'map-1',
-    title: 'Peta Batas Dusun & Administrasi',
+    title: 'Peta Luasan dan Profil Dusun',
     category: 'Administrasi Wilayah',
-    description: 'Pemetaan batas administratif formal untuk setiap kawasan RT, RW, dan Dusun di Desa Surorejo. Memberikan acuan geospasial yang pasti terkait yurisdiksi kepemerintahan desa dan pelayanan kemasyarakatan.',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop',
-    highResUrl: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?q=90&w=1600&auto=format&fit=crop',
+    description: 'Pemetaan luasan dan profil masing-masing dusun di Desa Surorejo, mencakup enam dusun: Surobayan, Kleben, Kragilan Lor, Kragilan Kidul, Kenanggulan, dan Kiyudan, beserta sebaran potensi usaha ekonomi masyarakat.',
+    thumbnailUrl: '/images/peta-luasan-profil-dusun.jpg',
+    highResUrl: '/images/peta-luasan-profil-dusun.jpg',
     downloadUrl: '#',
     dateStr: 'Agustus 2026',
     scale: 'Skala 1:5.000',
@@ -80,6 +85,7 @@ export default function StaticMapGallery() {
   const [mounted, setMounted] = useState<boolean>(false);
   const [selectedMap, setSelectedMap] = useState<StaticMap | null>(null);
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+  const [descModalOpen, setDescModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
@@ -89,7 +95,9 @@ export default function StaticMapGallery() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        if (isFullScreen) {
+        if (descModalOpen) {
+          setDescModalOpen(false);
+        } else if (isFullScreen) {
           setIsFullScreen(false);
         } else {
           setSelectedMap(null);
@@ -97,7 +105,7 @@ export default function StaticMapGallery() {
       }
     };
 
-    if (selectedMap) {
+    if (selectedMap || descModalOpen) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
     } else {
@@ -109,7 +117,7 @@ export default function StaticMapGallery() {
       document.body.style.overflow = 'unset';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [selectedMap, isFullScreen]);
+  }, [selectedMap, isFullScreen, descModalOpen]);
 
   return (
     <div>
@@ -194,9 +202,27 @@ export default function StaticMapGallery() {
                     </svg>
                     Lihat Peta & Deskripsi Lengkap
                   </span>
-                  <svg className="w-3.5 h-3.5 text-neutral-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
+                  <div className="flex items-center gap-2">
+                    {idx === 0 && (
+                      <button
+                        id="btn-baca-deskripsi-peta-1"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDescModalOpen(true);
+                        }}
+                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary-50 hover:bg-primary-100 text-primary-700 hover:text-primary-800 border border-primary-200 transition-colors text-[11px] font-bold cursor-pointer"
+                        title="Baca deskripsi lengkap peta ini"
+                      >
+                        <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
+                        Baca Deskripsi
+                      </button>
+                    )}
+                    <svg className="w-3.5 h-3.5 text-neutral-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
@@ -366,6 +392,112 @@ export default function StaticMapGallery() {
               className="w-auto h-auto max-w-full max-h-[88vh] object-contain rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.9)] cursor-pointer"
               title="Pinch atau double tap untuk zoom mandiri"
             />
+          </div>
+        </div>,
+        document.body
+      )}
+      {/* REACT PORTAL: Modal Deskripsi Lengkap Peta Pertama */}
+      {mounted && typeof document !== 'undefined' && descModalOpen && createPortal(
+        <div
+          className="fixed inset-0 z-[100000] bg-neutral-950/80 flex items-center justify-center p-4 sm:p-6 md:p-10 animate-fade-in"
+          onClick={() => setDescModalOpen(false)}
+        >
+          {/* Kotak Modal */}
+          <div
+            className="relative w-full max-w-2xl bg-white rounded-3xl shadow-[0_25px_80px_rgba(0,0,0,0.7)] border border-neutral-200 flex flex-col max-h-[88vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header Modal */}
+            <div className="bg-neutral-900 text-white px-5 sm:px-7 py-4 flex items-center justify-between gap-3 rounded-t-3xl shrink-0">
+              <div className="flex items-center gap-2 min-w-0">
+                <svg className="w-5 h-5 text-primary-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+                <span className="text-xs sm:text-sm font-extrabold text-primary-400 truncate">Deskripsi Peta</span>
+              </div>
+              {/* Tombol X Tutup */}
+              <button
+                id="btn-tutup-modal-deskripsi-x"
+                onClick={() => setDescModalOpen(false)}
+                className="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-700 hover:bg-red-600 text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                title="Tutup"
+                aria-label="Tutup modal deskripsi"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Isi Modal – Scrollable */}
+            <div className="overflow-y-auto flex-1 px-6 sm:px-8 py-6">
+              <h2 className="font-extrabold text-xl sm:text-2xl text-neutral-900 tracking-tight mb-5 leading-snug">
+                {PETA_LUASAN_DUSUN_JUDUL}
+              </h2>
+
+              {/* Paragraf deskripsi */}
+              <div className="space-y-4 text-sm sm:text-base text-neutral-700 leading-relaxed font-normal mb-6">
+                {PETA_LUASAN_DUSUN_PARAGRAF.map((par, i) => (
+                  <p key={i}>{par}</p>
+                ))}
+              </div>
+
+              {/* Daftar usaha per dusun */}
+              <div className="space-y-6">
+                {PETA_LUASAN_DUSUN_DATA.map((dusun) => (
+                  <div key={dusun.namaDusun} className="border border-neutral-200 rounded-2xl overflow-hidden">
+                    {/* Header Dusun */}
+                    <div className="bg-primary-700 text-white px-4 py-2.5 flex items-center justify-between">
+                      <span className="font-extrabold text-sm sm:text-base tracking-tight">
+                        {dusun.namaDusun}
+                      </span>
+                      <span className="text-xs font-semibold bg-primary-600/70 border border-primary-400/40 px-2.5 py-0.5 rounded-full">
+                        RT {dusun.rt} / RW {dusun.rw}
+                      </span>
+                    </div>
+                    {/* Tabel usaha */}
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-primary-50 border-b border-neutral-200">
+                          <th className="text-left px-4 py-2 font-bold text-neutral-600 w-8 text-xs">#</th>
+                          <th className="text-left px-4 py-2 font-bold text-neutral-600 text-xs">Nama</th>
+                          <th className="text-left px-4 py-2 font-bold text-neutral-600 text-xs">Jenis Usaha</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {dusun.daftarUsaha.map((u, i) => (
+                          <tr
+                            key={i}
+                            className={cn(
+                              'border-b border-neutral-100 last:border-0',
+                              i % 2 === 0 ? 'bg-white' : 'bg-neutral-50'
+                            )}
+                          >
+                            <td className="px-4 py-2 text-neutral-400 text-xs font-semibold">{i + 1}</td>
+                            <td className="px-4 py-2 text-neutral-800 font-semibold text-xs sm:text-sm">{u.nama}</td>
+                            <td className="px-4 py-2 text-neutral-600 text-xs sm:text-sm">{u.usaha}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer Modal – Tombol Tutup */}
+            <div className="px-6 sm:px-8 py-4 border-t border-neutral-200 bg-neutral-50 rounded-b-3xl shrink-0 flex justify-end">
+              <button
+                id="btn-tutup-modal-deskripsi"
+                onClick={() => setDescModalOpen(false)}
+                className="px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs sm:text-sm font-extrabold rounded-2xl transition-colors flex items-center gap-2 border border-neutral-300 cursor-pointer"
+              >
+                <svg className="w-4 h-4 text-neutral-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span>Tutup</span>
+              </button>
+            </div>
           </div>
         </div>,
         document.body
