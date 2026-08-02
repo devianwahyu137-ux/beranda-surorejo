@@ -17,7 +17,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
     : 'Belum dipublikasi';
 
   return (
-    <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden group shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] hover:border-primary-200 transition-all duration-300 transform hover:-translate-y-1.5 h-full flex flex-col">
+    <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden group shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] hover:border-primary-200 transition-all duration-200 transform hover:-translate-y-1.5 active:scale-[0.97] active:border-primary-400 active:bg-primary-50/10 h-full flex flex-col">
       <Link href={`/berita/${article.slug}`} className="block relative aspect-[4/3] bg-neutral-100 overflow-hidden">
         {article.thumbnail_url ? (
           <Image

@@ -16,7 +16,7 @@ export default function UmkmCard({ umkm, isFirst }: UmkmCardProps) {
   const categoryLabel = CATEGORY_MAP[umkm.category] || umkm.category;
 
   return (
-    <div className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] hover:border-primary-200 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col h-full">
+    <div className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] hover:border-primary-200 transition-all duration-200 transform hover:-translate-y-1.5 active:scale-[0.97] active:border-primary-400 active:bg-primary-50/10 flex flex-col h-full">
       {/* Photo */}
       <Link href={`/umkm/${umkm.slug}`} className="block relative aspect-[4/3] overflow-hidden bg-neutral-100">
         {firstPhoto ? (

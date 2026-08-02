@@ -74,16 +74,22 @@ export default async function HomePage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-3">
               Layanan Administrasi Desa
             </h2>
-            <p className="text-neutral-500 max-w-2xl mx-auto">
+            <p className="text-neutral-500 max-w-2xl mx-auto mb-1">
               Temukan informasi lengkap persyaratan dan prosedur pengurusan surat dan layanan administrasi desa.
             </p>
+            <div className="md:hidden inline-flex items-center justify-center gap-1.5 px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-bold text-xs animate-pulse mt-2 border border-primary-100 shadow-sm">
+              <span>👆 Geser kartu ke samping untuk menelusuri</span>
+              <span>→</span>
+            </div>
           </ScrollReveal>
 
           {services && services.length > 0 ? (
             <ScrollReveal>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex md:grid md:grid-cols-2 gap-4 sm:gap-5 overflow-x-auto md:overflow-visible pb-4 md:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
                 {(services as Service[]).map((service) => (
-                  <ServiceCard key={service.id} service={service} />
+                  <div key={service.id} className="min-w-[280px] w-[84vw] max-w-[350px] md:min-w-0 md:w-auto md:max-w-none shrink-0 md:shrink snap-center md:snap-align-none">
+                    <ServiceCard service={service} />
+                  </div>
                 ))}
               </div>
             </ScrollReveal>
@@ -119,17 +125,23 @@ export default async function HomePage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-3">
               UMKM Terbaru Diverifikasi
             </h2>
-            <p className="text-neutral-500 max-w-2xl mx-auto">
+            <p className="text-neutral-500 max-w-2xl mx-auto mb-1">
               Usaha lokal Desa Surorejo yang baru saja diverifikasi. Hubungi langsung via WhatsApp.
             </p>
+            <div className="md:hidden inline-flex items-center justify-center gap-1.5 px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-bold text-xs animate-pulse mt-2 border border-primary-100 shadow-sm">
+              <span>👉 Geser ke samping untuk melihat UMKM lainnya</span>
+              <span>→</span>
+            </div>
           </ScrollReveal>
 
           {sortedUmkm.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 overflow-x-auto sm:overflow-visible pb-5 sm:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
               {sortedUmkm.map((umkm, idx) => (
-                <ScrollReveal key={umkm.id} delay={Math.min(idx + 1, 3)}>
-                  <UmkmCard umkm={umkm} isFirst={idx === 0} />
-                </ScrollReveal>
+                <div key={umkm.id} className="min-w-[280px] w-[82vw] max-w-[340px] sm:min-w-0 sm:w-auto sm:max-w-none shrink-0 sm:shrink snap-center sm:snap-align-none h-auto flex flex-col">
+                  <ScrollReveal delay={Math.min(idx + 1, 3)} className="h-full">
+                    <UmkmCard umkm={umkm} isFirst={idx === 0} />
+                  </ScrollReveal>
+                </div>
               ))}
             </div>
           ) : (

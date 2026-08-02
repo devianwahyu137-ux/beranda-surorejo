@@ -32,6 +32,10 @@ export default async function LatestArticles() {
             <p className="text-neutral-500 mt-3 max-w-2xl">
               Ikuti terus informasi terbaru, program kegiatan, dan pengumuman resmi dari Pemerintah Desa Surorejo.
             </p>
+            <div className="md:hidden inline-flex items-center justify-center gap-1.5 px-3.5 py-1 rounded-full bg-primary-50 text-primary-700 font-bold text-xs animate-pulse mt-3 border border-primary-100 shadow-sm">
+              <span>📰 Geser ke samping untuk melihat berita lainnya</span>
+              <span>→</span>
+            </div>
           </ScrollReveal>
           
           <ScrollReveal direction="left" delay={1} className="shrink-0">
@@ -47,11 +51,13 @@ export default async function LatestArticles() {
           </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 overflow-x-auto md:overflow-visible pb-5 md:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
           {articles.map((article: Article, index) => (
-            <ScrollReveal key={article.id} direction="up" delay={index + 2}>
-              <ArticleCard article={article} />
-            </ScrollReveal>
+            <div key={article.id} className="min-w-[280px] w-[84vw] max-w-[360px] md:min-w-0 md:w-auto md:max-w-none shrink-0 md:shrink snap-center md:snap-align-none h-auto flex flex-col">
+              <ScrollReveal key={article.id} direction="up" delay={index + 2} className="h-full">
+                <ArticleCard article={article} />
+              </ScrollReveal>
+            </div>
           ))}
         </div>
       </div>

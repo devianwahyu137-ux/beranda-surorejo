@@ -67,22 +67,22 @@ export default function GalleryPreview({ items }: GalleryPreviewProps) {
                       </div>
                     )}
 
-                    {/* Rich Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4 sm:p-6">
+                    {/* Rich Hover Overlay - Automatically visible on mobile screens! */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-3 sm:p-6">
                       {/* Zoom glass badge */}
-                      <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-90 group-hover:scale-100">
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 transform scale-100 md:scale-90 md:group-hover:scale-100">
+                        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                         </svg>
                       </div>
 
-                      <span className={`text-white font-bold tracking-tight opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500 drop-shadow-sm ${
-                        isFeatured ? 'text-lg sm:text-2xl line-clamp-2' : 'text-sm sm:text-base line-clamp-1'
+                      <span className={`text-white font-bold tracking-tight opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-3 md:group-hover:translate-y-0 transition-all duration-300 drop-shadow-md ${
+                        isFeatured ? 'text-sm sm:text-2xl line-clamp-2' : 'text-[13px] sm:text-base line-clamp-1'
                       }`}>
                         {item.title}
                       </span>
                       {isFeatured && (
-                        <p className="text-white/80 text-xs sm:text-sm mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-1">
+                        <p className="text-white/80 text-[11px] sm:text-sm mt-0.5 sm:mt-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 line-clamp-1">
                           Dokumentasi unggulan kegiatan Desa Surorejo
                         </p>
                       )}

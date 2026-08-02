@@ -89,7 +89,7 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center animate-hero-cta max-w-md mx-auto sm:max-w-none">
           <Link
             href="/layanan"
-            className="group relative inline-flex items-center justify-center px-8 py-4 bg-primary-600 hover:bg-primary-500 text-white font-bold rounded-xl shadow-[0_4px_25px_rgba(22,163,74,0.45)] hover:shadow-[0_6px_35px_rgba(22,163,74,0.65)] transition-all duration-300 transform hover:-translate-y-1 touch-target border border-primary-400/40 overflow-hidden"
+            className="group relative inline-flex items-center justify-center px-8 py-4 bg-primary-600 hover:bg-primary-500 active:bg-primary-700 text-white font-bold rounded-xl shadow-[0_4px_25px_rgba(22,163,74,0.45)] hover:shadow-[0_6px_35px_rgba(22,163,74,0.65)] transition-all duration-200 transform hover:-translate-y-1 active:scale-92 active:translate-y-0.5 touch-target border border-primary-400/40 overflow-hidden"
           >
             {/* Subtle background glow hover effect */}
             <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
@@ -112,7 +112,7 @@ export default function HeroSection() {
 
           <Link
             href="/umkm"
-            className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 hover:bg-white/25 text-white font-bold rounded-xl backdrop-blur-md border border-white/30 hover:border-white/60 shadow-lg hover:shadow-[0_4px_25px_rgba(255,255,255,0.2)] transition-all duration-300 transform hover:-translate-y-1 touch-target"
+            className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 hover:bg-white/25 active:bg-white/30 text-white font-bold rounded-xl backdrop-blur-md border border-white/30 hover:border-white/60 shadow-lg hover:shadow-[0_4px_25px_rgba(255,255,255,0.2)] transition-all duration-200 transform hover:-translate-y-1 active:scale-92 active:translate-y-0.5 touch-target"
           >
             <svg
               className="w-5 h-5 mr-2.5 text-accent-400 group-hover:scale-125 transition-transform duration-300"

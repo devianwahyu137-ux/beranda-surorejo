@@ -9,7 +9,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
   return (
     <Link
       href={`/layanan/${service.slug}`}
-      className="group block bg-white rounded-2xl border border-neutral-200/80 p-6 shadow-sm hover:shadow-[0_10px_30px_rgba(22,163,74,0.1)] hover:border-primary-300 transition-all duration-300 transform hover:-translate-y-1"
+      className="group block bg-white rounded-2xl border border-neutral-200/80 p-6 shadow-sm hover:shadow-[0_10px_30px_rgba(22,163,74,0.1)] hover:border-primary-300 transition-all duration-200 transform hover:-translate-y-1 active:scale-[0.97] active:border-primary-400 active:bg-primary-50/20"
     >
       <div className="flex items-start gap-4">
         {/* Animated Icon Box with rotate & green gradient on hover */}
