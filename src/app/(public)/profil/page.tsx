@@ -6,8 +6,9 @@ import PkkSection from '@/components/public/PkkSection';
 import LembagaSection from '@/components/public/LembagaSection';
 import TransparencySection from '@/components/public/TransparencySection';
 import ScrollReveal from '@/components/public/ScrollReveal';
-import DynamicMap from '@/components/public/DynamicMap';
+import DynamicBoundaryMap from '@/components/public/DynamicBoundaryMap';
 import VillageDataSection from '@/components/public/VillageDataSection';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Profil Desa',
@@ -216,21 +217,96 @@ export default async function ProfilPage() {
             </ScrollReveal>
           </div>
 
-          {/* Peta Lokasi */}
+          {/* Peta Batas Wilayah & Administrasi */}
           <ScrollReveal>
-            <div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4 flex items-center gap-2">
-                <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                Peta Wilayah
+            <div className="mb-6">
+              <h3 className="text-2xl font-extrabold text-neutral-900 mb-2 flex items-center gap-2.5">
+                <span className="p-2 bg-red-50 text-red-600 rounded-xl border border-red-200/60 shadow-sm inline-flex">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
+                  </svg>
+                </span>
+                Peta Batas Wilayah & Administrasi Desa
               </h3>
-              <div className="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden bg-neutral-200 border border-neutral-300 relative shadow-sm">
-                <DynamicMap 
-                  locations={strategicLocations || []} 
-                  umkmData={umkmList || []} 
-                />
+              <p className="text-sm text-neutral-600 mb-6 leading-relaxed max-w-3xl">
+                Desa Surorejo merupakan pusat pemukiman dan kegiatan ekonomi strategis dengan luas kawasan mencapai <span className="font-bold text-neutral-900">186,77 Ha</span> di Kabupaten Purworejo.
+              </p>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                {/* Peta Khusus Batas Administrasi */}
+                <div className="lg:col-span-8 h-[420px] sm:h-[480px] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200 shadow-sm relative">
+                  <DynamicBoundaryMap 
+                    locations={strategicLocations || []} 
+                  />
+                </div>
+
+                {/* Legenda & Batas Tetangga */}
+                <div className="lg:col-span-4 bg-white border border-neutral-200 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                  <div>
+                    <div className="flex items-center justify-between pb-3.5 border-b border-neutral-100 mb-4">
+                      <h4 className="font-extrabold text-neutral-900 text-base flex items-center gap-2">
+                        <svg className="w-4 h-4 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                        </svg>
+                        Legenda Batas Desa
+                      </h4>
+                      <span className="text-[11px] font-bold px-2.5 py-1 bg-neutral-100 text-neutral-700 rounded-md">
+                        186,77 Ha
+                      </span>
+                    </div>
+
+                    <div className="space-y-3.5 text-xs sm:text-sm text-neutral-700">
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-neutral-400 font-medium text-xs">Sebelah Utara:</span>
+                        <div className="font-bold text-neutral-900 flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-blue-500 inline-block" />
+                          Berbatasan dengan Desa Banyuurip
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-neutral-400 font-medium text-xs">Sebelah Timur:</span>
+                        <div className="font-bold text-neutral-900 flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+                          Berbatasan dengan Desa Wangunrejo
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-neutral-400 font-medium text-xs">Sebelah Selatan:</span>
+                        <div className="font-bold text-neutral-900 flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-amber-500 inline-block" />
+                          Desa Sendangsari & Brondongrejo
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-neutral-400 font-medium text-xs">Sebelah Barat:</span>
+                        <div className="font-bold text-neutral-900 flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-purple-500 inline-block" />
+                          Desa Malangrejo & Bencorejo
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-5 p-3.5 bg-red-50/70 border border-red-200/60 rounded-xl">
+                      <span className="text-[11px] font-bold text-red-800 uppercase tracking-wider block mb-1">Pusat Pemerintahan</span>
+                      <p className="text-xs text-neutral-800 font-semibold leading-relaxed">
+                        Kantor Balai Desa Surorejo berada di pusat wilayah, mendukung keterjangkauan layanan publik dari seluruh kawasan dusun.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-neutral-100">
+                    <Link
+                      href="/peta"
+                      className="group w-full py-3 px-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-center touch-target"
+                    >
+                      <span>🗺️ Buka Peta Interaktif & UMKM</span>
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </ScrollReveal>
