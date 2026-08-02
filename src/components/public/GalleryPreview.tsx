@@ -31,10 +31,10 @@ export default function GalleryPreview({ items }: GalleryPreviewProps) {
              </div>
           </ScrollReveal>
         ) : (
-          /* Featured Magazine Layout Grid */
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
+          /* Featured Magazine Layout Grid with mathematically perfect gap & height alignment */
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {items.map((item, idx) => {
-              // Make the first item large featured (2 cols x 2 rows on desktop)
+              // Make the first item large featured (2 cols x 2 rows on desktop/tablet)
               const isFeatured = idx === 0;
 
               return (
@@ -45,8 +45,10 @@ export default function GalleryPreview({ items }: GalleryPreviewProps) {
                   className={isFeatured ? 'col-span-2 md:row-span-2' : 'col-span-1'}
                 >
                   <div 
-                    className={`group relative rounded-2xl overflow-hidden cursor-pointer bg-neutral-100 shadow-sm hover:shadow-lg transition-all duration-500 border border-neutral-200/60 w-full h-full ${
-                      isFeatured ? 'aspect-[4/3] md:aspect-auto md:h-[420px]' : 'aspect-[4/3] h-48 sm:h-52'
+                    className={`group relative rounded-2xl overflow-hidden cursor-pointer bg-neutral-100 shadow-sm hover:shadow-lg transition-all duration-500 border border-neutral-200/60 w-full ${
+                      isFeatured 
+                        ? 'aspect-[16/10] md:aspect-auto md:h-[436px]' 
+                        : 'aspect-[4/3] md:aspect-auto md:h-52'
                     }`}
                   >
                     {item.image_url && (item.image_url.startsWith('http') || item.image_url.startsWith('/')) ? (
@@ -81,7 +83,7 @@ export default function GalleryPreview({ items }: GalleryPreviewProps) {
                       </span>
                       {isFeatured && (
                         <p className="text-white/80 text-xs sm:text-sm mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-1">
-                          Klik untuk melihat dokumentasi lengkap
+                          Dokumentasi unggulan kegiatan Desa Surorejo
                         </p>
                       )}
                     </div>

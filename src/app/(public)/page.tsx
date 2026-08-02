@@ -51,7 +51,7 @@ export default async function HomePage() {
     .select('*')
     .eq('category', 'umum')
     .order('sort_order', { ascending: true })
-    .limit(6);
+    .limit(9);
 
   return (
     <>

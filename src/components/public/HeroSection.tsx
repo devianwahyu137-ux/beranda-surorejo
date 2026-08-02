@@ -69,8 +69,10 @@ export default function HeroSection() {
         {/* Glowing Badge */}
         <div className="animate-hero-title inline-block">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/15 backdrop-blur-md text-white/95 text-xs sm:text-sm font-semibold rounded-full border border-white/25 mb-6 shadow-[0_0_25px_rgba(255,255,255,0.1)] hover:bg-white/20 transition-all duration-300">
-            <span className="w-2 h-2 bg-primary-400 rounded-full animate-ping mr-[-4px]" />
-            <span className="w-2 h-2 bg-primary-400 rounded-full" />
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-400" />
+            </span>
             Sistem Informasi Desa & Portal UMKM
           </span>
         </div>
