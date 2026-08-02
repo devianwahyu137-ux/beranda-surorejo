@@ -219,91 +219,88 @@ export default async function ProfilPage() {
 
           {/* Peta Batas Wilayah & Administrasi */}
           <ScrollReveal>
-            <div className="mb-6">
-              <h3 className="text-2xl font-extrabold text-neutral-900 mb-2 flex items-center gap-2.5">
-                <span className="p-2 bg-red-50 text-red-600 rounded-xl border border-red-200/60 shadow-sm inline-flex">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
+            <div className="mb-10">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mb-3 flex items-center gap-3">
+                <span className="p-2.5 bg-red-50 text-red-600 rounded-2xl border border-red-200/70 shadow-sm inline-flex shrink-0">
+                  <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                   </svg>
                 </span>
-                Peta Batas Wilayah & Administrasi Desa
+                Peta Luasan & Profil Teritori Wilayah
               </h3>
-              <p className="text-sm text-neutral-600 mb-6 leading-relaxed max-w-3xl">
-                Desa Surorejo merupakan pusat pemukiman dan kegiatan ekonomi strategis dengan luas kawasan mencapai <span className="font-bold text-neutral-900">186,77 Ha</span> di Kabupaten Purworejo.
+              <p className="text-sm sm:text-base text-neutral-600 mb-6 leading-relaxed max-w-3xl font-normal">
+                Desa Surorejo, <span className="font-semibold text-neutral-900">Kecamatan Banyuurip, Kabupaten Purworejo</span> memiliki total luasan kawasan teritorial mencapai <span className="font-extrabold text-neutral-900 bg-primary-50 px-2 py-0.5 rounded text-primary-800 border border-primary-200/60">186,77 Hektare</span> yang mengayomi seluruh sarana pemukiman dan pertanian warga.
               </p>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-                {/* Peta Khusus Batas Administrasi */}
-                <div className="lg:col-span-8 h-[420px] sm:h-[480px] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200 shadow-sm relative">
+                {/* Peta Khusus Batas Teritorial - 8 Kolom (Format Persegi Panjang Melintang / Widescreen) */}
+                <div className="lg:col-span-8 min-h-[360px] sm:min-h-[390px] lg:min-h-[400px] rounded-3xl overflow-hidden bg-neutral-900 border border-neutral-200 shadow-md relative">
                   <DynamicBoundaryMap 
                     locations={strategicLocations || []} 
                   />
                 </div>
 
-                {/* Legenda & Batas Tetangga */}
-                <div className="lg:col-span-4 bg-white border border-neutral-200 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
-                  <div>
-                    <div className="flex items-center justify-between pb-3.5 border-b border-neutral-100 mb-4">
-                      <h4 className="font-extrabold text-neutral-900 text-base flex items-center gap-2">
-                        <svg className="w-4 h-4 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                {/* Legenda Wilayah & Perbatasan - 4 Kolom (Ringkas, Padat, dan Nyaman di HP) */}
+                <div className="lg:col-span-4 bg-white border border-neutral-200 rounded-3xl p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+                  <div className="space-y-4">
+                    {/* Header Legenda */}
+                    <div className="flex items-center justify-between pb-3.5 border-b border-neutral-150">
+                      <h4 className="font-extrabold text-neutral-900 text-base sm:text-lg flex items-center gap-2">
+                        <svg className="w-5 h-5 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
                         </svg>
-                        Legenda Batas Desa
+                        Legenda Teritori
                       </h4>
-                      <span className="text-[11px] font-bold px-2.5 py-1 bg-neutral-100 text-neutral-700 rounded-md">
+                      <span className="text-[11px] font-extrabold px-3 py-1 bg-neutral-100 text-neutral-800 rounded-xl border border-neutral-200">
                         186,77 Ha
                       </span>
                     </div>
 
-                    <div className="space-y-3.5 text-xs sm:text-sm text-neutral-700">
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-neutral-400 font-medium text-xs">Sebelah Utara:</span>
-                        <div className="font-bold text-neutral-900 flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full bg-blue-500 inline-block" />
-                          Berbatasan dengan Desa Banyuurip
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-neutral-400 font-medium text-xs">Sebelah Timur:</span>
-                        <div className="font-bold text-neutral-900 flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
-                          Berbatasan dengan Desa Wangunrejo
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-neutral-400 font-medium text-xs">Sebelah Selatan:</span>
-                        <div className="font-bold text-neutral-900 flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full bg-amber-500 inline-block" />
-                          Desa Sendangsari & Brondongrejo
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-neutral-400 font-medium text-xs">Sebelah Barat:</span>
-                        <div className="font-bold text-neutral-900 flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full bg-purple-500 inline-block" />
-                          Desa Malangrejo & Bencorejo
-                        </div>
+                    {/* Pembatas Desa (Perimeter) */}
+                    <div className="p-3.5 bg-red-50/80 border border-red-200/80 rounded-2xl flex items-center gap-3 shadow-2xs">
+                      <div className="w-6 h-3 rounded border-2 border-dashed border-red-600 shrink-0 bg-red-500/20" />
+                      <div>
+                        <span className="text-xs sm:text-sm font-extrabold text-neutral-900 block leading-tight">Batas Teritorium Surorejo</span>
+                        <span className="text-[11px] sm:text-xs font-semibold text-red-700 block mt-0.5">Garis merah putus mengelilingi area desa</span>
                       </div>
                     </div>
 
-                    <div className="mt-5 p-3.5 bg-red-50/70 border border-red-200/60 rounded-xl">
-                      <span className="text-[11px] font-bold text-red-800 uppercase tracking-wider block mb-1">Pusat Pemerintahan</span>
-                      <p className="text-xs text-neutral-800 font-semibold leading-relaxed">
-                        Kantor Balai Desa Surorejo berada di pusat wilayah, mendukung keterjangkauan layanan publik dari seluruh kawasan dusun.
+                    {/* Pusat Pemerintahan */}
+                    <div className="p-3.5 bg-neutral-50 border border-neutral-200/80 rounded-2xl flex items-center gap-3 shadow-2xs">
+                      <span className="relative flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-600 text-white border-2 border-white shadow-md">
+                        <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                      </span>
+                      <div>
+                        <span className="text-xs sm:text-sm font-extrabold text-neutral-900 block leading-tight">Balai Desa Surorejo</span>
+                        <span className="text-[11px] sm:text-xs font-medium text-neutral-600 block mt-0.5">Pusat koordinat dan kesekertariatan desa</span>
+                      </div>
+                    </div>
+
+                    {/* Catatan Interaksi dengan Ikon SVG Eksklusif (Bebas Emotikon) */}
+                    <div className="p-3.5 bg-primary-50/60 rounded-2xl border border-primary-150 flex items-start gap-2.5">
+                      <svg className="w-5 h-5 text-primary-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <p className="text-[11px] sm:text-xs text-primary-950 font-semibold leading-relaxed">
+                        Sentuh atau sorot garis poligon pada peta untuk menampilkan informasi resmi luasan kawasan secara interaktif.
                       </p>
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-neutral-100">
+                  {/* Tombol Aksi - 1 Baris Utuh Tanpa Terpecah */}
+                  <div className="mt-6 pt-4 border-t border-neutral-150">
                     <Link
                       href="/peta"
-                      className="group w-full py-3 px-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-center touch-target"
+                      className="group w-full py-3.5 px-4 bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 hover:from-primary-700 hover:to-primary-900 text-white font-extrabold text-xs sm:text-sm rounded-2xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-center touch-target"
                     >
-                      <span>🗺️ Buka Peta Interaktif & UMKM</span>
-                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span className="whitespace-nowrap font-extrabold">Buka Peta Interaktif</span>
+                      <svg className="w-4 h-4 text-white shrink-0 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
                     </Link>
                   </div>
                 </div>
