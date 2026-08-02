@@ -33,9 +33,35 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Judul, kategori, dan gambar wajib diisi' }, { status: 400 });
   }
 
+  // Ambil semua foto dalam kategori yang sama, urutkan berdasarkan sort_order
+  const { data: existingItems, error: fetchError } = await supabase
+    .from('gallery')
+    .select('id, sort_order')
+    .eq('category', body.category)
+    .order('sort_order', { ascending: true });
+
+  if (fetchError) return NextResponse.json({ error: fetchError.message }, { status: 500 });
+
+  const total = (existingItems ?? []).length;
+
+  // Klem sort_order ke range valid [1, total+1]
+  const targetOrder = Math.max(1, Math.min(body.sort_order ?? total + 1, total + 1));
+
+  // Geser semua foto yang sort_order-nya >= targetOrder satu angka ke atas
+  if (existingItems && existingItems.length > 0) {
+    const itemsToShift = existingItems.filter((item) => item.sort_order >= targetOrder);
+    for (const item of itemsToShift) {
+      await supabase
+        .from('gallery')
+        .update({ sort_order: item.sort_order + 1, updated_at: new Date().toISOString() })
+        .eq('id', item.id);
+    }
+  }
+
+  // Insert foto baru dengan posisi yang sudah ditetapkan
   const { data, error } = await supabase
     .from('gallery')
-    .insert(body)
+    .insert({ ...body, sort_order: targetOrder })
     .select()
     .single();
 
