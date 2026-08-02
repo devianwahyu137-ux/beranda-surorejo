@@ -111,7 +111,7 @@ export default function AspirasiForm() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-3 tracking-tight drop-shadow">Aspirasi Berhasil Terkirim! 🎉</h3>
+                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-3 tracking-tight drop-shadow">Aspirasi Berhasil Terkirim!</h3>
                   <p className="text-primary-100 max-w-md mx-auto text-base sm:text-lg font-normal leading-relaxed">
                     Terima kasih atas kepedulian Anda! Perangkat Desa Surorejo akan segera mempelajari dan menindaklanjuti pesan Anda.
                   </p>

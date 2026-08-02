@@ -94,9 +94,13 @@ export default async function Footer() {
                 <span className="text-red-400 font-medium">Tutup</span>
               </div>
             </div>
-            <div className="mt-4 p-3 bg-neutral-800 rounded-lg">
-              <p className="text-xs text-neutral-400">
-                📍 Kantor Desa Surorejo, Kec. Banyuurip, Kab. Purworejo, Jawa Tengah
+            <div className="mt-4 p-3.5 bg-neutral-800/80 rounded-xl border border-neutral-700/60 flex items-start gap-2.5">
+              <svg className="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <p className="text-xs text-neutral-300 leading-relaxed font-medium">
+                Kantor Desa Surorejo, Kec. Banyuurip, Kab. Purworejo, Jawa Tengah
               </p>
             </div>
           </div>
