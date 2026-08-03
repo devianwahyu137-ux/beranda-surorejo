@@ -35,7 +35,7 @@ const DUMMY_MAPS: StaticMap[] = [
     description: 'Pemetaan luasan dan profil masing-masing dusun di Desa Surorejo, mencakup enam dusun: Surobayan, Kleben, Kragilan Lor, Kragilan Kidul, Kenanggulan, dan Kiyudan, beserta sebaran potensi usaha ekonomi masyarakat.',
     thumbnailUrl: '/images/peta-luasan-profil-dusun.jpg',
     highResUrl: '/images/peta-luasan-profil-dusun.jpg',
-    downloadUrl: '#',
+    downloadUrl: encodeURI('/images/PETA DUSUN.pdf'),
     dateStr: 'Agustus 2026',
     scale: 'Skala 1:5.000',
     detailsTitle: PETA_LUASAN_DUSUN_JUDUL,
@@ -50,7 +50,7 @@ const DUMMY_MAPS: StaticMap[] = [
     description: 'Analisis persebaran area persawahan produktif, kawasan pemukiman warga, perkebunan kelola, fasilitas publik, dan area terbuka hijau/hutan desa untuk dasar perencanaan pembangunan berkelanjutan.',
     thumbnailUrl: '/images/peta-luasan-lahan-permukiman-pertanian.jpg',
     highResUrl: '/images/peta-luasan-lahan-permukiman-pertanian.jpg',
-    downloadUrl: '#',
+    downloadUrl: encodeURI('/images/PETA LUASAN.pdf'),
     dateStr: 'Agustus 2026',
     scale: 'Skala 1:10.000',
     detailsTitle: 'Peta Luasan Lahan Permukiman dan Pertanian',
@@ -62,36 +62,54 @@ const DUMMY_MAPS: StaticMap[] = [
   },
   {
     id: 'map-3',
-    title: 'Peta Infrastruktur & Jaringan Akses',
-    category: 'Infrastruktur',
-    description: 'Inventarisasi kelayakan akses jalan utama desa, jalan usaha tani, jembatan penghubung antar dukuh, instalasi irigasi pertanahan, serta kondisi jaringan drainase lingkungan warga.',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=1000&auto=format&fit=crop',
-    highResUrl: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=90&w=1600&auto=format&fit=crop',
-    downloadUrl: '#',
+    title: 'Peta Batas Administrasi Desa Surorejo',
+    category: 'Administrasi Wilayah',
+    description: 'Pemetaan resmi batas administratif Desa Surorejo beserta penetapan garis batas antar keenam dusun dan delineasi dengan desa-desa tetangga di wilayah Kecamatan Banyuurip, Kabupaten Purworejo.',
+    thumbnailUrl: '/images/peta-batas-administrasi.jpg',
+    highResUrl: '/images/peta-batas-administrasi.jpg',
+    downloadUrl: encodeURI('/images/Peta Batas Administrasi Desa Surorejo (KKN-PPM).pdf'),
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:7.500',
+    scale: 'Skala 1:6.500',
+    detailsTitle: 'Peta Batas Administrasi Desa Surorejo (KKN-PPM UGM)',
+    detailsImageUrl: '/images/peta-batas-administrasi.jpg',
+    detailsDescription: [
+      'Peta Batas Administrasi Desa Surorejo menyajikan representasi spasial dan kartografi resmi mengenai batas-batas teritorial Desa Surorejo, Kecamatan Banyuurip, Kabupaten Purworejo. Pemetaan ini menetapkan delineasi garis batas eksterior dengan desa-desa tetangga serta batas interior antar enam dusun di dalam desa: Surobayan, Kleben, Kragilan Lor, Kragilan Kidul, Kenanggulan, dan Kiyudan.',
+      'Informasi geospasial administrasi ini sangat krusial sebagai instrumen referensi resmi pemerintahan desa dalam penegakan kepastian batas wilayah, tertib administrasi pertanahan, mitigasi sengketa perbatasan, serta menjadi dasar data pokok dalam mendukung penyusunan Rencana Tata Ruang dan Rencana Pembangunan Jangka Menengah Desa (RPJMDes) yang akurat dan berbadan hukum.'
+    ],
   },
   {
     id: 'map-4',
-    title: 'Peta Sebaran Potensi UMKM & Ekonomi',
-    category: 'Ekonomi Desa',
-    description: 'Pemetaan titik-titik kegiatan ekonomi kreatif warga, toko ritel desa, warung kuliner rakyat, serta sentra hasil bumi pertanian yang mendukung pertumbuhan mandiri dan daya saing Desa Surorejo.',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=1000&auto=format&fit=crop',
-    highResUrl: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=90&w=1600&auto=format&fit=crop',
-    downloadUrl: '#',
+    title: 'Peta Penggunaan Lahan Desa Surorejo 2026',
+    category: 'Geosains & Tata Ruang',
+    description: 'Klasifikasi dan pemetaan pemanfaatan lahan terkini Tahun 2026, memvisualisasikan delineasi kawasan sawah produktif, permukiman terpadu, perkebunan kelola, pekarangan warga, hingga zona hijau desa.',
+    thumbnailUrl: '/images/peta-penggunaan-lahan-2026.jpg',
+    highResUrl: '/images/peta-penggunaan-lahan-2026.jpg',
+    downloadUrl: encodeURI('/images/Peta Penggunaan Lahan Desa Surorejo 2026 (KKN-PPM).pdf'),
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:5.000',
+    scale: 'Skala 1:7.500',
+    detailsTitle: 'Peta Penggunaan Lahan Desa Surorejo Tahun Anggaran 2026',
+    detailsImageUrl: '/images/peta-penggunaan-lahan-2026.jpg',
+    detailsDescription: [
+      'Peta Penggunaan Lahan Desa Surorejo Tahun 2026 menyajikan dokumentasi geospasial mutakhir mengenai kondisi eksisting tata guna lahan di seluruh wilayah Desa Surorejo. Peta ini memvisualisasikan klasifikasi zonasi lahan yang terbagi atas kawasan budidaya pertanian (sawah irigasi teknis dan sawah tadah hujan), lahan permukiman masyarakat, kawasan pekarangan intensif, jaringan irigasi, serta ruang terbuka hijau.',
+      'Pemetaan tata guna lahan terbaru oleh tim KKN-PPM ini diinisiasi untuk menjawab tantangan tata ruang masa depan, memberikan masukan bagi pengendalian pemanfaatan ruang yang adaptif terhadap pertumbuhan permukiman warga, sekaligus berkomitmen menjaga ketahanan pangan lokal melalui upaya perlindungan Lahan Pertanian Pangan Berkelanjutan (LP2B).'
+    ],
   },
   {
     id: 'map-5',
-    title: 'Peta Hidrologi & Mitigasi Bencana',
-    category: 'Mitigasi Bencana',
-    description: 'Jalur Daerah Aliran Sungai (DAS), sumur resapan, sumber air bersih terpadu, serta pemetaan area rawan genangan air berlanjut lengkap dengan petunjuk rute evakuasi darurat tanggap bencana.',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=1000&auto=format&fit=crop',
-    highResUrl: 'https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=90&w=1600&auto=format&fit=crop',
-    downloadUrl: '#',
+    title: 'Peta Sebaran Fasilitas Pelayanan & Infrastruktur 2026',
+    category: 'Infrastruktur & Layanan',
+    description: 'Inventarisasi dan persebaran geospasial titik lokasi balai desa, fasilitas pendidikan, sarana ibadah, pelayanan kesehatan dasar (Posyandu/Pustustu), gardu publik, hingga jaringan konektivitas jalan desa.',
+    thumbnailUrl: '/images/peta-sebaran-fasilitas-infrastruktur-2026.jpg',
+    highResUrl: '/images/peta-sebaran-fasilitas-infrastruktur-2026.jpg',
+    downloadUrl: encodeURI('/images/Peta Sebaran Fasilitas Pelayanan dan Infrastruktur 2026 Surorejo (KKN-PPM).pdf'),
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:8.000',
+    scale: 'Skala 1:5.000',
+    detailsTitle: 'Peta Sebaran Fasilitas Pelayanan Publik & Infrastruktur 2026',
+    detailsImageUrl: '/images/peta-sebaran-fasilitas-infrastruktur-2026.jpg',
+    detailsDescription: [
+      'Peta Sebaran Fasilitas Pelayanan dan Infrastruktur Desa Surorejo Tahun 2026 memuat informasi geografi komprehensif atas letak seluruh titik pusat pelayanan publik dan jaringan sarana prasarana fisik di enam dusun Desa Surorejo. Titik pemetaan meliputi sentra pemerintahan (Kantor Kepala Desa dan Balai Desa), fasilitas keagamaan (masjid dan mushola di setiap RW/RT), fasilitas kesehatan dasar (Posyandu dan Pustustu), lembaga pendidikan (PAUD, TK, dan SD), serta sarana olahraga dan ruang aktivitas masyarakat.',
+      'Selain penanda titik fasilitas pelayanan publik, peta ini menginventarisasi kondisi infrastruktur konektivitas berupa arteri jalan utama desa, jalan usaha tani, jembatan poros penghubung antar dusun, serta instalasi air bersih. Data geospasial ini berperan strategis bagi pemerintah desa dalam mengevaluasi keterjangkauan pelayanan masyarakat serta memastikan pemerataan alokasi dana pembangunan sarana dan prasarana.'
+    ],
   },
 ];
 
@@ -352,13 +370,15 @@ export default function StaticMapGallery() {
 
                   <a
                     href={selectedMap.downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     download
                     className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 hover:from-primary-700 hover:to-primary-900 text-white text-xs sm:text-sm font-extrabold rounded-2xl transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg touch-target"
                   >
                     <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
-                    <span>Unduh Resolusi Tinggi</span>
+                    <span>Unduh / Lihat PDF Peta</span>
                   </a>
                 </div>
               </div>

@@ -33,6 +33,149 @@ const DOC_TYPE_COLORS: Record<string, string> = {
   lainnya: 'bg-neutral-100 text-neutral-700',
 };
 
+const DEFAULT_TRANSPARENCY_DOCS: TransparencyDoc[] = [
+  // TAHUN 2026
+  {
+    id: 'infografis-2026-public',
+    title: 'Infografis Dashboard Transparansi APBDes Tahun Anggaran 2026',
+    doc_type: 'infografis',
+    fiscal_year: 2026,
+    file_url: encodeURI('/Dashboard Transparansi APBDes Desa Surorejo.png'),
+    description: 'Visualisasi resmi dan ringkasan APBDes Surorejo TA 2026. Menampilkan Pendapatan Desa Rp880.767.500, Belanja Desa Rp887.203.546, Pembiayaan Netto Rp6.436.046, serta komitmen tata kelola yang transparan, akuntabel, dan partisipatif.',
+    created_at: '2026-01-10T00:00:00Z'
+  },
+  {
+    id: 'apbdes-2026-public',
+    title: 'Anggaran Pendapatan dan Belanja Desa (APBDes) Tahun Anggaran 2026',
+    doc_type: 'apbdes',
+    fiscal_year: 2026,
+    file_url: '/dokumen/2026/APBDes Surorejo 2026.pdf',
+    description: 'Dokumen Anggaran Pendapatan dan Belanja Desa (APBDes) Desa Surorejo Tahun Anggaran 2026 yang menjadi dasar pelaksanaan pembangunan dan pelayanan kepada masyarakat.',
+    created_at: '2026-01-08T00:00:00Z'
+  },
+  {
+    id: 'lra-2026-sem1-public',
+    title: 'Laporan Realisasi Anggaran (LRA) APBDes Semester I TA 2026',
+    doc_type: 'realisasi',
+    fiscal_year: 2026,
+    file_url: '/dokumen/2026/LRA APBDes Semester I 2026.pdf',
+    description: 'Laporan Realisasi Anggaran Pendapatan dan Belanja Desa (APBDes) Surorejo untuk periode Semester I (Januari - Juni) Tahun Anggaran 2026 sebagai perwujudan akuntabilitas dan pengawasan publik.',
+    created_at: '2026-07-01T00:00:00Z'
+  },
+  {
+    id: 'penjabaran-2026-public',
+    title: 'Peraturan Kepala Desa Surorejo: Penjabaran APBDes TA 2026',
+    doc_type: 'apbdes',
+    fiscal_year: 2026,
+    file_url: '/dokumen/2026/Penjabaran APBDes 2026.pdf',
+    description: 'Dokumen Penjabaran Anggaran Pendapatan dan Belanja Desa Surorejo Tahun Anggaran 2026. Memuat rincian teknis pos pendapatan, alokasi per bidang kegiatan belanja desa, serta struktur pembiayaan.',
+    created_at: '2026-01-05T00:00:00Z'
+  },
+  {
+    id: 'bumdes-2026-public',
+    title: 'Peraturan Desa: Penyertaan Modal Desa pada BUMDes Surorejo TA 2026',
+    doc_type: 'lainnya',
+    fiscal_year: 2026,
+    file_url: '/dokumen/2026/Penyertaan Modal pada BUMDes 2026.pdf',
+    description: 'Dokumen regulasi dan penetapan alokasi anggaran Penyertaan Modal Pemerintah Desa Surorejo kepada Badan Usaha Milik Desa (BUMDes) Tahun Anggaran 2026 guna memperkuat perekonomian desa.',
+    created_at: '2026-02-01T00:00:00Z'
+  },
+  {
+    id: 'rkpdes-2026-public',
+    title: 'Peraturan Desa Surorejo No. 7 Tahun 2025 (RKPDes Tahun 2026)',
+    doc_type: 'rkpdes',
+    fiscal_year: 2026,
+    file_url: '/dokumen/2026/RKPDes 2026.pdf',
+    description: 'Dokumen resmi Rencana Kerja Pemerintah Desa (RKPDes) Surorejo Tahun 2026 mencakup prioritas pembangunan jalan dusun, internet desa, penanganan stunting, dan anggaran kerja.',
+    created_at: '2025-09-29T00:00:00Z'
+  },
+  {
+    id: 'pades-2026-public',
+    title: 'Rincian Pemetaan dan Optimalisasi Sumber PADes TA 2026',
+    doc_type: 'apbdes',
+    fiscal_year: 2026,
+    file_url: '/dokumen/2026/Sumber PADes 2026.pdf',
+    description: 'Dokumen analisis dan rancangan penerimaan Pendapatan Asli Desa (PADes) Surorejo Tahun Anggaran 2026, mencakup hasil usaha desa, hasil aset desa, swadaya, partisipasi, dan gotong royong masyarakat.',
+    created_at: '2026-01-02T00:00:00Z'
+  },
+
+  // TAHUN 2025
+  {
+    id: 'apbdes-2025-public',
+    title: 'Anggaran Pendapatan dan Belanja Desa (APBDes) Tahun Anggaran 2025',
+    doc_type: 'apbdes',
+    fiscal_year: 2025,
+    file_url: '/dokumen/2025/APBDes 2025.pdf',
+    description: 'Dokumen Anggaran Pendapatan dan Belanja Desa (APBDes) Desa Surorejo Tahun Anggaran 2025 sebagai pedoman pelaksanaan kegiatan dan penggunaan anggaran desa.',
+    created_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    id: 'lpj-2025-public',
+    title: 'Laporan Pertanggungjawaban Realisasi APBDes Tahun Anggaran 2025',
+    doc_type: 'realisasi',
+    fiscal_year: 2025,
+    file_url: '/dokumen/2025/LPJ Realisasi APBDes 2025.pdf',
+    description: 'Dokumen laporan pertanggungjawaban realisasi APBDes Desa Surorejo Tahun Anggaran 2025 sebagai bentuk transparansi pengelolaan keuangan desa.',
+    created_at: '2025-12-31T00:00:00Z'
+  },
+  {
+    id: 'lppd-2025-public',
+    title: 'Laporan Penyelenggaraan Pemerintahan Desa (LPPD) Akhir Tahun Anggaran 2025',
+    doc_type: 'lainnya',
+    fiscal_year: 2025,
+    file_url: '/dokumen/2025/LPPD 2025.pdf',
+    description: 'Dokumen Laporan Penyelenggaraan Pemerintahan Desa (LPPD) Akhir Tahun Anggaran 2025 sebagai bentuk akuntabilitas penyelenggaraan pemerintahan desa.',
+    created_at: '2025-12-30T00:00:00Z'
+  },
+  {
+    id: 'omspan-2025-public',
+    title: 'Laporan Realisasi Anggaran Dana Desa (DD) Tahap 2 OMSPAN TA 2025',
+    doc_type: 'realisasi',
+    fiscal_year: 2025,
+    file_url: '/dokumen/2025/LRA DD Tahap 2 OMSPAN 2025.pdf',
+    description: 'Dokumen resmi Laporan Realisasi Anggaran (LRA) penyaluran Dana Desa Tahap 2 melalui sistem OMSPAN (Online Monitoring Sistem Perbendaharaan dan Anggaran Negara) Kementerian Keuangan RI untuk Desa Surorejo Tahun Anggaran 2025.',
+    created_at: '2025-08-15T00:00:00Z'
+  },
+  {
+    id: 'perubahan-rkpdes-2025-public',
+    title: 'Perubahan Rencana Kerja Pemerintah Desa (RKPDes) Tahun 2025',
+    doc_type: 'lainnya',
+    fiscal_year: 2025,
+    file_url: '/dokumen/2025/Perubahan RKPDes 2025.pdf',
+    description: 'Dokumen perubahan RKPDes Tahun 2025 yang memuat penyesuaian terhadap rencana kerja pemerintah desa selama satu tahun anggaran.',
+    created_at: '2025-07-01T00:00:00Z'
+  },
+  {
+    id: 'rkpdes-2025-public',
+    title: 'Rencana Kerja Pemerintah Desa (RKPDes) Tahun 2025',
+    doc_type: 'lainnya',
+    fiscal_year: 2025,
+    file_url: '/dokumen/2025/RKPDes 2025.pdf',
+    description: 'Dokumen Rencana Kerja Pemerintah Desa (RKPDes) Desa Surorejo Tahun 2025 yang memuat rencana pembangunan desa selama satu tahun anggaran.',
+    created_at: '2024-09-30T00:00:00Z'
+  },
+
+  // TAHUN 2024
+  {
+    id: 'lpj-2024-public',
+    title: 'Laporan Pertanggungjawaban Realisasi APBDes Tahun Anggaran 2024',
+    doc_type: 'lpj',
+    fiscal_year: 2024,
+    file_url: '/dokumen/2024/LPJ Realisasi APBDes 2024.pdf',
+    description: 'Dokumen laporan pertanggungjawaban realisasi APBDes Desa Surorejo Tahun Anggaran 2024 yang memuat realisasi pendapatan, belanja, dan pembiayaan desa.',
+    created_at: '2024-12-31T00:00:00Z'
+  },
+  {
+    id: 'lppd-2024-public',
+    title: 'Laporan Penyelenggaraan Pemerintahan Desa (LPPD) Akhir Tahun Anggaran 2024',
+    doc_type: 'lainnya',
+    fiscal_year: 2024,
+    file_url: '/dokumen/2024/LPPD 2024.pdf',
+    description: 'Dokumen Laporan Penyelenggaraan Pemerintahan Desa (LPPD) Akhir Tahun Anggaran 2024 yang memuat pelaksanaan penyelenggaraan pemerintahan desa selama satu tahun.',
+    created_at: '2024-12-30T00:00:00Z'
+  }
+];
+
 export default function TransparencySection() {
   const [docs, setDocs] = useState<TransparencyDoc[]>([]);
   const [loading, setLoading] = useState(true);
@@ -43,58 +186,31 @@ export default function TransparencySection() {
     fetch('/api/transparency')
       .then(res => res.json())
       .then(data => {
-        const infografis2026: TransparencyDoc = {
-          id: 'infografis-2026-public',
-          title: 'Infografis Dashboard Transparansi APBDes Tahun Anggaran 2026',
-          doc_type: 'infografis',
-          fiscal_year: 2026,
-          file_url: encodeURI('/Dashboard Transparansi APBDes Desa Surorejo.png'),
-          description: 'Visualisasi resmi dan ringkasan APBDes Surorejo TA 2026. Menampilkan Pendapatan Desa Rp880.767.500, Belanja Desa Rp887.203.546, Pembiayaan Netto Rp6.436.046, serta komitmen tata kelola yang transparan, akuntabel, dan partisipatif.',
-          created_at: '2026-01-10T00:00:00Z'
-        };
+        const dbList: TransparencyDoc[] = Array.isArray(data) ? data : [];
+        const merged = [...dbList];
 
-        const rkpdes2026: TransparencyDoc = {
-          id: 'rkpdes-2026-public',
-          title: 'Peraturan Desa Surorejo No. 7 Tahun 2025 (RKPDes Tahun 2026)',
-          doc_type: 'rkpdes',
-          fiscal_year: 2026,
-          file_url: '/RKPDes 2026.pdf',
-          description: 'Dokumen resmi Rencana Kerja Pemerintah Desa (RKPDes) Surorejo Tahun 2026 mencakup prioritas pembangunan jalan dusun, internet desa, penanganan stunting, dan anggaran kerja.',
-          created_at: '2025-09-29T00:00:00Z'
-        };
+        DEFAULT_TRANSPARENCY_DOCS.forEach(defaultDoc => {
+          const isExisting = dbList.some(d => 
+            d.title.trim().toLowerCase() === defaultDoc.title.trim().toLowerCase() ||
+            (d.fiscal_year === defaultDoc.fiscal_year && d.title.toLowerCase().includes('omspan') && defaultDoc.title.toLowerCase().includes('omspan')) ||
+            (d.fiscal_year === defaultDoc.fiscal_year && d.title.toLowerCase().includes('semester i') && defaultDoc.title.toLowerCase().includes('semester i')) ||
+            (d.fiscal_year === defaultDoc.fiscal_year && d.title.toLowerCase().includes('bumdes') && defaultDoc.title.toLowerCase().includes('bumdes')) ||
+            (d.fiscal_year === defaultDoc.fiscal_year && d.title.toLowerCase().includes('pades') && defaultDoc.title.toLowerCase().includes('pades')) ||
+            (d.fiscal_year === defaultDoc.fiscal_year && d.title.toLowerCase().includes('penjabaran') && defaultDoc.title.toLowerCase().includes('penjabaran')) ||
+            (d.fiscal_year === defaultDoc.fiscal_year && d.title.toLowerCase().includes('infografis') && defaultDoc.title.toLowerCase().includes('infografis')) ||
+            (d.fiscal_year === defaultDoc.fiscal_year && d.title.toLowerCase().includes('rkpdes') && defaultDoc.title.toLowerCase().includes('rkpdes') && !defaultDoc.title.toLowerCase().includes('perubahan') && !d.title.toLowerCase().includes('perubahan'))
+          );
+          if (!isExisting) {
+            merged.push(defaultDoc);
+          }
+        });
 
-        const list = Array.isArray(data) ? data : [];
-        const existsRkpdes = list.some((d: TransparencyDoc) => d.file_url === '/RKPDes 2026.pdf' || d.title.includes('RKPDes'));
-        const existsInfografis = list.some((d: TransparencyDoc) => d.title.includes('Infografis Dashboard') || d.file_url.includes('Dashboard%20Transparansi'));
-        
-        let initialList = [...list];
-        if (!existsRkpdes) initialList = [rkpdes2026, ...initialList];
-        if (!existsInfografis) initialList = [infografis2026, ...initialList];
-
-        setDocs(initialList);
+        merged.sort((a, b) => b.fiscal_year - a.fiscal_year || a.title.localeCompare(b.title));
+        setDocs(merged);
         setLoading(false);
       })
       .catch(() => {
-        setDocs([
-          {
-            id: 'infografis-2026-public',
-            title: 'Infografis Dashboard Transparansi APBDes Tahun Anggaran 2026',
-            doc_type: 'infografis',
-            fiscal_year: 2026,
-            file_url: encodeURI('/Dashboard Transparansi APBDes Desa Surorejo.png'),
-            description: 'Visualisasi resmi dan ringkasan APBDes Surorejo TA 2026. Menampilkan Pendapatan Desa Rp880.767.500, Belanja Desa Rp887.203.546, Pembiayaan Netto Rp6.436.046, serta komitmen tata kelola yang transparan, akuntabel, dan partisipatif.',
-            created_at: '2026-01-10T00:00:00Z'
-          },
-          {
-            id: 'rkpdes-2026-public',
-            title: 'Peraturan Desa Surorejo No. 7 Tahun 2025 (RKPDes Tahun 2026)',
-            doc_type: 'rkpdes',
-            fiscal_year: 2026,
-            file_url: '/RKPDes 2026.pdf',
-            description: 'Dokumen resmi Rencana Kerja Pemerintah Desa (RKPDes) Surorejo Tahun 2026 mencakup prioritas pembangunan jalan dusun, internet desa, penanganan stunting, dan anggaran kerja.',
-            created_at: '2025-09-29T00:00:00Z'
-          }
-        ]);
+        setDocs([...DEFAULT_TRANSPARENCY_DOCS].sort((a, b) => b.fiscal_year - a.fiscal_year || a.title.localeCompare(b.title)));
         setLoading(false);
       });
   }, []);
