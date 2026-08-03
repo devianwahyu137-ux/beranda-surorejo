@@ -14,6 +14,7 @@ interface TransparencyDoc {
 }
 
 const DOC_TYPE_LABELS: Record<string, string> = {
+  rkpdes: 'RKPDes',
   apbdes: 'APBDes',
   rab: 'RAB Desa',
   realisasi: 'Realisasi APBDes',
@@ -23,6 +24,7 @@ const DOC_TYPE_LABELS: Record<string, string> = {
 };
 
 const DOC_TYPE_COLORS: Record<string, string> = {
+  rkpdes: 'bg-emerald-100 text-emerald-800 font-extrabold border border-emerald-300',
   apbdes: 'bg-blue-100 text-blue-700',
   rab: 'bg-emerald-100 text-emerald-700',
   realisasi: 'bg-amber-100 text-amber-700',
@@ -40,10 +42,34 @@ export default function TransparencySection() {
     fetch('/api/transparency')
       .then(res => res.json())
       .then(data => {
-        setDocs(data || []);
+        const rkpdes2026: TransparencyDoc = {
+          id: 'rkpdes-2026-public',
+          title: 'Peraturan Desa Surorejo No. 7 Tahun 2025 (RKPDes Tahun 2026)',
+          doc_type: 'rkpdes',
+          fiscal_year: 2026,
+          file_url: '/RKPDes 2026.pdf',
+          description: 'Dokumen resmi Rencana Kerja Pemerintah Desa (RKPDes) Surorejo Tahun 2026 mencakup prioritas pembangunan jalan dusun, internet desa, penanganan stunting, dan anggaran kerja.',
+          created_at: '2025-09-29T00:00:00Z'
+        };
+        const list = Array.isArray(data) ? data : [];
+        const exists = list.some((d: TransparencyDoc) => d.file_url === '/RKPDes 2026.pdf' || d.title.includes('RKPDes'));
+        setDocs(exists ? list : [rkpdes2026, ...list]);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setDocs([
+          {
+            id: 'rkpdes-2026-public',
+            title: 'Peraturan Desa Surorejo No. 7 Tahun 2025 (RKPDes Tahun 2026)',
+            doc_type: 'rkpdes',
+            fiscal_year: 2026,
+            file_url: '/RKPDes 2026.pdf',
+            description: 'Dokumen resmi Rencana Kerja Pemerintah Desa (RKPDes) Surorejo Tahun 2026 mencakup prioritas pembangunan jalan dusun, internet desa, penanganan stunting, dan anggaran kerja.',
+            created_at: '2025-09-29T00:00:00Z'
+          }
+        ]);
+        setLoading(false);
+      });
   }, []);
 
   const years = [...new Set(docs.map(d => d.fiscal_year))].sort((a, b) => b - a);

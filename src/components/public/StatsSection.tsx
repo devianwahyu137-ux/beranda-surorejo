@@ -12,10 +12,10 @@ export default async function StatsSection() {
 
   // Fallback to default if empty or error
   const defaultStats = [
-    { id: '1', label: 'Penduduk', value: '1.218', icon: 'users' },
-    { id: '2', label: 'Kepala Keluarga', value: '361 KK', icon: 'home' },
-    { id: '3', label: 'Luas Wilayah', value: '186,772 Ha', icon: 'map' },
-    { id: '4', label: 'Rukun Tetangga', value: '6 RT', icon: 'building' }
+    { id: '1', label: 'Penduduk', value: '1.288', icon: 'users' },
+    { id: '2', label: 'Kepala Keluarga', value: '469 KK', icon: 'home' },
+    { id: '3', label: 'Luas Wilayah', value: '185,04 Ha', icon: 'map' },
+    { id: '4', label: 'Wilayah Dusun', value: '6 Dusun', icon: 'building' }
   ];
 
   const displayStats = stats && stats.length > 0 ? stats : defaultStats;
