@@ -20,6 +20,10 @@ interface StaticMap {
   downloadUrl: string;  // Used for downloading (PDF / ZIP / JPG)
   dateStr: string;
   scale?: string;
+  detailsTitle?: string;
+  detailsImageUrl?: string;
+  detailsDescription?: string[];
+  detailsData?: typeof PETA_LUASAN_DUSUN_DATA;
 }
 
 // 5 Template Peta Tematik KKN / Desa Surorejo
@@ -34,17 +38,27 @@ const DUMMY_MAPS: StaticMap[] = [
     downloadUrl: '#',
     dateStr: 'Agustus 2026',
     scale: 'Skala 1:5.000',
+    detailsTitle: PETA_LUASAN_DUSUN_JUDUL,
+    detailsImageUrl: '/images/peta-luasan-profil-dusun.jpg',
+    detailsDescription: PETA_LUASAN_DUSUN_PARAGRAF,
+    detailsData: PETA_LUASAN_DUSUN_DATA,
   },
   {
     id: 'map-2',
-    title: 'Peta Tata Guna & Tutupan Lahan',
+    title: 'Peta Luasan Lahan Permukiman dan Pertanian',
     category: 'Geosains & Lahan',
     description: 'Analisis persebaran area persawahan produktif, kawasan pemukiman warga, perkebunan kelola, fasilitas publik, dan area terbuka hijau/hutan desa untuk dasar perencanaan pembangunan berkelanjutan.',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop',
-    highResUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=90&w=1600&auto=format&fit=crop',
+    thumbnailUrl: '/images/peta-luasan-lahan-permukiman-pertanian.jpg',
+    highResUrl: '/images/peta-luasan-lahan-permukiman-pertanian.jpg',
     downloadUrl: '#',
     dateStr: 'Agustus 2026',
     scale: 'Skala 1:10.000',
+    detailsTitle: 'Peta Luasan Lahan Permukiman dan Pertanian',
+    detailsImageUrl: '/images/peta-luasan-lahan-permukiman-pertanian.jpg',
+    detailsDescription: [
+      'Peta Luasan Wilayah Permukiman dan Pertanian ini menyajikan informasi mengenai pola persebaran dan perbandingan lahan pemukiman dan pertanian di Desa Surorejo, Kecamatan Banyuurip. Hasil pemetaan menunjukkan bahwa wilayah Desa Surorejo memiliki luas keseluruhan sekitar 1.993.234,10 m² atau 199,32 hektare, yang meliputi lahan sawah dan permukiman. Lahan sawah memiliki luas sekitar 1.226.155,47 m² atau 122,62 hektare, dengan proporsi sebesar 61,52% dari total wilayah yang dipetakan. Sementara itu, kawasan permukiman memiliki luas sekitar 767.078,63 m² atau 76,71 hektare, dengan proporsi sebesar 38,48%.',
+      'Berdasarkan hasil tersebut, penggunaan lahan di Desa Surorejo yang teridentifikasi melalui pemetaan lebih banyak didominasi oleh kawasan pertanian berupa sawah dibandingkan kawasan permukiman. Data mengenai luas dan persebaran penggunaan lahan ini dapat memberikan gambaran mengenai karakteristik wilayah Desa Surorejo sekaligus menjadi informasi pendukung dalam mengoptimalkan potensi lahan dan menyusun perencanaan pembangunan desa secara lebih tepat dan terarah.',
+    ],
   },
   {
     id: 'map-3',
@@ -84,6 +98,7 @@ const DUMMY_MAPS: StaticMap[] = [
 export default function StaticMapGallery() {
   const [mounted, setMounted] = useState<boolean>(false);
   const [selectedMap, setSelectedMap] = useState<StaticMap | null>(null);
+  const [selectedDescMap, setSelectedDescMap] = useState<StaticMap | null>(null);
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   const [descModalOpen, setDescModalOpen] = useState<boolean>(false);
 
@@ -203,11 +218,12 @@ export default function StaticMapGallery() {
                     Lihat Peta & Deskripsi Lengkap
                   </span>
                   <div className="flex items-center gap-2">
-                    {idx === 0 && (
+                    {(map.detailsTitle || map.detailsDescription || map.detailsData) && (
                       <button
-                        id="btn-baca-deskripsi-peta-1"
+                        id={`btn-baca-deskripsi-${map.id}`}
                         onClick={(e) => {
                           e.stopPropagation();
+                          setSelectedDescMap(map);
                           setDescModalOpen(true);
                         }}
                         className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary-50 hover:bg-primary-100 text-primary-700 hover:text-primary-800 border border-primary-200 transition-colors text-[11px] font-bold cursor-pointer"
@@ -274,8 +290,8 @@ export default function StaticMapGallery() {
               >
                 <div className="relative w-full max-h-[50vh] flex items-center justify-center overflow-hidden bg-neutral-900">
                   <Image
-                    src={selectedMap.highResUrl}
-                    alt={selectedMap.title}
+                    src={selectedMap.detailsImageUrl ?? selectedMap.highResUrl}
+                    alt={selectedMap.detailsTitle ?? selectedMap.title}
                     width={1600}
                     height={1000}
                     unoptimized={true} // Anti-Timeout 500 dan Anti-Gambar Hitam
@@ -400,7 +416,10 @@ export default function StaticMapGallery() {
       {mounted && typeof document !== 'undefined' && descModalOpen && createPortal(
         <div
           className="fixed inset-0 z-[100000] bg-neutral-950/80 flex items-center justify-center p-4 sm:p-6 md:p-10 animate-fade-in"
-          onClick={() => setDescModalOpen(false)}
+          onClick={() => {
+            setDescModalOpen(false);
+            setSelectedDescMap(null);
+          }}
         >
           {/* Kotak Modal */}
           <div
@@ -418,7 +437,10 @@ export default function StaticMapGallery() {
               {/* Tombol X Tutup */}
               <button
                 id="btn-tutup-modal-deskripsi-x"
-                onClick={() => setDescModalOpen(false)}
+                onClick={() => {
+                  setDescModalOpen(false);
+                  setSelectedDescMap(null);
+                }}
                 className="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-neutral-700 hover:bg-red-600 text-neutral-300 hover:text-white transition-colors cursor-pointer"
                 title="Tutup"
                 aria-label="Tutup modal deskripsi"
@@ -432,64 +454,83 @@ export default function StaticMapGallery() {
             {/* Isi Modal – Scrollable */}
             <div className="overflow-y-auto flex-1 px-6 sm:px-8 py-6">
               <h2 className="font-extrabold text-xl sm:text-2xl text-neutral-900 tracking-tight mb-5 leading-snug">
-                {PETA_LUASAN_DUSUN_JUDUL}
+                {selectedDescMap?.detailsTitle ?? selectedDescMap?.title}
               </h2>
 
+              {selectedDescMap?.detailsImageUrl && (
+                <div className="relative w-full max-h-[50vh] mb-6 overflow-hidden rounded-3xl bg-neutral-100">
+                  <Image
+                    src={selectedDescMap.detailsImageUrl}
+                    alt={selectedDescMap.detailsTitle ?? selectedDescMap.title}
+                    width={1600}
+                    height={1000}
+                    unoptimized={true}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              )}
+
               {/* Paragraf deskripsi */}
-              <div className="space-y-4 text-sm sm:text-base text-neutral-700 leading-relaxed font-normal mb-6">
-                {PETA_LUASAN_DUSUN_PARAGRAF.map((par, i) => (
-                  <p key={i}>{par}</p>
-                ))}
-              </div>
+              {selectedDescMap?.detailsDescription?.length ? (
+                <div className="space-y-4 text-sm sm:text-base text-neutral-700 leading-relaxed font-normal mb-6">
+                  {selectedDescMap.detailsDescription.map((par, i) => (
+                    <p key={i}>{par}</p>
+                  ))}
+                </div>
+              ) : null}
 
               {/* Daftar usaha per dusun */}
-              <div className="space-y-6">
-                {PETA_LUASAN_DUSUN_DATA.map((dusun) => (
-                  <div key={dusun.namaDusun} className="border border-neutral-200 rounded-2xl overflow-hidden">
-                    {/* Header Dusun */}
-                    <div className="bg-primary-700 text-white px-4 py-2.5 flex items-center justify-between">
-                      <span className="font-extrabold text-sm sm:text-base tracking-tight">
-                        {dusun.namaDusun}
-                      </span>
-                      <span className="text-xs font-semibold bg-primary-600/70 border border-primary-400/40 px-2.5 py-0.5 rounded-full">
-                        RT {dusun.rt} / RW {dusun.rw}
-                      </span>
-                    </div>
-                    {/* Tabel usaha */}
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="bg-primary-50 border-b border-neutral-200">
-                          <th className="text-left px-4 py-2 font-bold text-neutral-600 w-8 text-xs">#</th>
-                          <th className="text-left px-4 py-2 font-bold text-neutral-600 text-xs">Nama</th>
-                          <th className="text-left px-4 py-2 font-bold text-neutral-600 text-xs">Jenis Usaha</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {dusun.daftarUsaha.map((u, i) => (
-                          <tr
-                            key={i}
-                            className={cn(
-                              'border-b border-neutral-100 last:border-0',
-                              i % 2 === 0 ? 'bg-white' : 'bg-neutral-50'
-                            )}
-                          >
-                            <td className="px-4 py-2 text-neutral-400 text-xs font-semibold">{i + 1}</td>
-                            <td className="px-4 py-2 text-neutral-800 font-semibold text-xs sm:text-sm">{u.nama}</td>
-                            <td className="px-4 py-2 text-neutral-600 text-xs sm:text-sm">{u.usaha}</td>
+              {selectedDescMap?.detailsData ? (
+                <div className="space-y-6">
+                  {selectedDescMap.detailsData.map((dusun) => (
+                    <div key={dusun.namaDusun} className="border border-neutral-200 rounded-2xl overflow-hidden">
+                      {/* Header Dusun */}
+                      <div className="bg-primary-700 text-white px-4 py-2.5 flex items-center justify-between">
+                        <span className="font-extrabold text-sm sm:text-base tracking-tight">
+                          {dusun.namaDusun}
+                        </span>
+                        <span className="text-xs font-semibold bg-primary-600/70 border border-primary-400/40 px-2.5 py-0.5 rounded-full">
+                          RT {dusun.rt} / RW {dusun.rw}
+                        </span>
+                      </div>
+                      {/* Tabel usaha */}
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="bg-primary-50 border-b border-neutral-200">
+                            <th className="text-left px-4 py-2 font-bold text-neutral-600 w-8 text-xs">#</th>
+                            <th className="text-left px-4 py-2 font-bold text-neutral-600 text-xs">Nama</th>
+                            <th className="text-left px-4 py-2 font-bold text-neutral-600 text-xs">Jenis Usaha</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                ))}
-              </div>
+                        </thead>
+                        <tbody>
+                          {dusun.daftarUsaha.map((u, i) => (
+                            <tr
+                              key={i}
+                              className={cn(
+                                'border-b border-neutral-100 last:border-0',
+                                i % 2 === 0 ? 'bg-white' : 'bg-neutral-50'
+                              )}
+                            >
+                              <td className="px-4 py-2 text-neutral-400 text-xs font-semibold">{i + 1}</td>
+                              <td className="px-4 py-2 text-neutral-800 font-semibold text-xs sm:text-sm">{u.nama}</td>
+                              <td className="px-4 py-2 text-neutral-600 text-xs sm:text-sm">{u.usaha}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </div>
-
             {/* Footer Modal – Tombol Tutup */}
             <div className="px-6 sm:px-8 py-4 border-t border-neutral-200 bg-neutral-50 rounded-b-3xl shrink-0 flex justify-end">
               <button
                 id="btn-tutup-modal-deskripsi"
-                onClick={() => setDescModalOpen(false)}
+                onClick={() => {
+                  setDescModalOpen(false);
+                  setSelectedDescMap(null);
+                }}
                 className="px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs sm:text-sm font-extrabold rounded-2xl transition-colors flex items-center gap-2 border border-neutral-300 cursor-pointer"
               >
                 <svg className="w-4 h-4 text-neutral-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
