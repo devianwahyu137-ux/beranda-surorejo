@@ -36,8 +36,8 @@ const PENDIDIKAN = [
 ];
 
 const LEMBAGA_PENDIDIKAN = [
-  { nama: 'TK / PAUD', jumlah: 1, lokasi: 'Dusun Kenanggulan' },
-  { nama: 'SD / MI', jumlah: 1, lokasi: 'Dusun Kleben' },
+  { nama: 'TK / PAUD Tunas Harapan', jumlah: 1, lokasi: 'Dusun Kenanggulan' },
+  { nama: 'SD / MI Surorejo', jumlah: 1, lokasi: 'Dusun Kleben' },
 ];
 
 const KESEHATAN = {
@@ -67,23 +67,25 @@ const KEAGAMAAN = {
 };
 
 const APARAT_DESA = [
-  { jabatan: 'Kepala Desa', jumlah: 1 },
-  { jabatan: 'Sekretaris Desa', jumlah: 1 },
-  { jabatan: 'Perangkat Desa', jumlah: 12 },
-  { jabatan: 'BPD', jumlah: 5 },
+  { jabatan: 'Kepala Desa (Bpk. Margino)', jumlah: 1 },
+  { jabatan: 'Sekretaris Desa (Bpk. Suwardi)', jumlah: 1 },
+  { jabatan: 'Kepala Urusan (Kaur)', jumlah: 3 },
+  { jabatan: 'Kepala Seksi (Kasi)', jumlah: 3 },
+  { jabatan: 'Kepala Dusun (Kadus I - VI)', jumlah: 6 },
+  { jabatan: 'BPD (Ketua: Bpk. Joko Purnomo)', jumlah: 5 },
 ];
 
 const LEMBAGA_KEMASYARAKATAN = [
-  { nama: 'LPM', jumlah: '1' },
-  { nama: 'PKK', jumlah: '1' },
-  { nama: 'Posyandu', jumlah: '1' },
-  { nama: 'Pengajian', jumlah: '4 kelompok' },
-  { nama: 'Arisan', jumlah: '6 kelompok' },
-  { nama: 'Simpan Pinjam', jumlah: '3 kelompok' },
-  { nama: 'Kelompok Tani', jumlah: '6 kelompok' },
-  { nama: 'Gapoktan', jumlah: '1 kelompok' },
-  { nama: 'Karang Taruna', jumlah: '1 kelompok' },
-  { nama: 'Risma', jumlah: '3 kelompok' },
+  { nama: 'LPMD', jumlah: '1 lembaga' },
+  { nama: 'PKK', jumlah: '1 tim penggerak' },
+  { nama: 'Posyandu & Posbindu', jumlah: '1 lembaga (rutin tiap dusun)' },
+  { nama: 'Forum Kesehatan Desa (FKD)', jumlah: '1 forum aktif' },
+  { nama: 'KPMD (Kader Pemberdayaan)', jumlah: '1 kelompok' },
+  { nama: 'Karang Taruna', jumlah: '1 organisasi muda' },
+  { nama: 'Kesenian Kuda Lumping', jumlah: '1 grup seni budaya' },
+  { nama: 'Kesenian Ketoprak', jumlah: '1 grup seni teater' },
+  { nama: 'Kesenian Hadroh', jumlah: '1 grup seni religi' },
+  { nama: 'Kelompok Tani & Gapoktan', jumlah: '7 kelompok' },
 ];
 
 // ============================================================
@@ -201,7 +203,7 @@ export default function VillageDataSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                 </svg>
               }
-              title="Luas Wilayah (Total: 186,772 Ha)"
+              title="Luas Wilayah (Total: 185,04 Ha / 1.850.399 m²)"
             />
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
               {LUAS_WILAYAH.map((l) => (
@@ -340,16 +342,24 @@ export default function VillageDataSection() {
               </div>
             </div>
 
-            {/* Air Bersih */}
+            {/* Air Bersih & Permukiman */}
             <div className="bg-white rounded-xl border border-neutral-200 p-5 md:col-span-2 lg:col-span-2">
-              <p className="text-sm font-semibold text-neutral-700 mb-3">Pemenuhan Air Bersih</p>
-              <div className="grid grid-cols-2 gap-3">
+              <p className="text-sm font-semibold text-neutral-700 mb-3">Pemenuhan Air Bersih & Status Permukiman (Data RKPDes 2026)</p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {KESEHATAN.airBersih.map((a) => (
                   <div key={a.sumber} className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
                     <p className="text-xl font-bold text-neutral-900">{a.pengguna}</p>
                     <p className="text-xs text-neutral-500 mt-1">{a.sumber}</p>
                   </div>
                 ))}
+                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+                  <p className="text-xl font-bold text-emerald-700">0 Unit</p>
+                  <p className="text-xs text-neutral-600 mt-1">Rumah Tidak Layak Huni</p>
+                </div>
+                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+                  <p className="text-xl font-bold text-emerald-700">100% Layak</p>
+                  <p className="text-xs text-neutral-600 mt-1">Status Rumah Sehat</p>
+                </div>
               </div>
             </div>
           </div>

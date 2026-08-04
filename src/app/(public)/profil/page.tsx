@@ -68,19 +68,19 @@ export default async function ProfilPage() {
     .order('sort_order', { ascending: true });
 
   const defaultStats = [
-    { id: '1', label: 'Penduduk Laki-laki', value: '597', icon: 'users', sort_order: 1 },
-    { id: '2', label: 'Penduduk Perempuan', value: '621', icon: 'users', sort_order: 2 },
-    { id: '3', label: 'Kepala Keluarga', value: '361 KK', icon: 'home', sort_order: 3 },
-    { id: '4', label: 'Luas Wilayah', value: '186,772 Ha', icon: 'map', sort_order: 4 }
+    { id: '1', label: 'Total Penduduk', value: '1.288 Jiwa', icon: 'users', sort_order: 1 },
+    { id: '2', label: 'Komposisi Gender', value: '651 L / 637 P', icon: 'users', sort_order: 2 },
+    { id: '3', label: 'Kepala Keluarga', value: '469 KK', icon: 'home', sort_order: 3 },
+    { id: '4', label: 'Luas Wilayah', value: '185,04 Ha', icon: 'map', sort_order: 4 }
   ];
 
   const defaultAreas = [
-    { id: '1', dusun: 'Surobayan', rw_count: 1, rt_count: 1, population: 0, head_name: 'Agung Supangkat', sort_order: 1 },
-    { id: '2', dusun: 'Kleben', rw_count: 1, rt_count: 1, population: 0, head_name: 'Budi Santoso', sort_order: 2 },
-    { id: '3', dusun: 'Kragilan Lor', rw_count: 1, rt_count: 1, population: 0, head_name: 'Ari F.', sort_order: 3 },
-    { id: '4', dusun: 'Kragilan Kidul', rw_count: 1, rt_count: 1, population: 0, head_name: 'Gian Bisono', sort_order: 4 },
-    { id: '5', dusun: 'Kenanggulan', rw_count: 1, rt_count: 1, population: 0, head_name: 'Usman', sort_order: 5 },
-    { id: '6', dusun: 'Kiyudan', rw_count: 1, rt_count: 1, population: 0, head_name: 'Dimas', sort_order: 6 }
+    { id: '1', dusun: 'Dusun Surobayan (Kadus I)', rw_count: 1, rt_count: 1, population: 190, head_name: 'Agung Supangkat', sort_order: 1 },
+    { id: '2', dusun: 'Dusun Kleben (Kadus II)', rw_count: 1, rt_count: 1, population: 316, head_name: 'Budi Santoso', sort_order: 2 },
+    { id: '3', dusun: 'Dusun Kragilan Lor (Kadus III)', rw_count: 1, rt_count: 1, population: 231, head_name: 'Ari Fitriyanto', sort_order: 3 },
+    { id: '4', dusun: 'Dusun Kragilan Kidul (Kadus IV)', rw_count: 1, rt_count: 1, population: 170, head_name: 'Gian Bisono', sort_order: 4 },
+    { id: '5', dusun: 'Dusun Kenanggulan (Kadus V)', rw_count: 1, rt_count: 1, population: 244, head_name: 'Usman', sort_order: 5 },
+    { id: '6', dusun: 'Dusun Kiyudan (Kadus VI)', rw_count: 1, rt_count: 1, population: 137, head_name: 'Dimas Pratikto', sort_order: 6 }
   ];
 
   const demographicStats = demographicStatsData && demographicStatsData.length > 0 ? demographicStatsData : defaultStats;
@@ -169,7 +169,7 @@ export default async function ProfilPage() {
                 </h3>
                 <div className="prose prose-neutral max-w-none text-neutral-600 leading-relaxed">
                   <p>
-                    Desa Surorejo, Kecamatan Banyuurip, Kabupaten Purworejo, Provinsi Jawa Tengah merupakan satu dari 24 desa di Kecamatan Banyuurip yang mempunyai jarak 8 km dari kota Kabupaten. Desa Surorejo terdiri dari 6 dusun, 3 RW, dan 6 RT dengan luas 186,772 Ha.
+                    Desa Surorejo, Kecamatan Banyuurip, Kabupaten Purworejo, Provinsi Jawa Tengah merupakan satu dari 24 desa di Kecamatan Banyuurip yang mempunyai jarak 8 km dari kota Kabupaten. Desa Surorejo terdiri dari 6 dusun, 3 RW, dan 6 RT dengan total penduduk 1.288 jiwa (469 KK) serta luas kawasan 185,04 Ha (1.850.399 m²).
                   </p>
                   <p className="mt-3">
                     Secara geografis, Desa Surorejo terletak di perbatasan dengan Desa Banyuurip dan Tegalrejo (Utara), Desa Wangunrejo (Timur), Desa Sendangsari (Selatan), dan Desa Bencorejo (Barat).
@@ -229,7 +229,7 @@ export default async function ProfilPage() {
                 Peta Luasan & Profil Teritori Wilayah
               </h3>
               <p className="text-sm sm:text-base text-neutral-600 mb-6 leading-relaxed max-w-3xl font-normal">
-                Desa Surorejo, <span className="font-semibold text-neutral-900">Kecamatan Banyuurip, Kabupaten Purworejo</span> memiliki total luasan kawasan teritorial mencapai <span className="font-extrabold text-neutral-900 bg-primary-50 px-2 py-0.5 rounded text-primary-800 border border-primary-200/60">186,77 Hektare</span> yang mengayomi seluruh sarana pemukiman dan pertanian warga.
+                Desa Surorejo, <span className="font-semibold text-neutral-900">Kecamatan Banyuurip, Kabupaten Purworejo</span> memiliki total luasan kawasan teritorial mencapai <span className="font-extrabold text-neutral-900 bg-primary-50 px-2 py-0.5 rounded text-primary-800 border border-primary-200/60">185,04 Hektare</span> (1.850.399 m²) yang mengayomi seluruh sarana pemukiman dan pertanian warga.
               </p>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
@@ -252,7 +252,7 @@ export default async function ProfilPage() {
                         Legenda Teritori
                       </h4>
                       <span className="text-[11px] font-extrabold px-3 py-1 bg-neutral-100 text-neutral-800 rounded-xl border border-neutral-200">
-                        186,77 Ha
+                        185,04 Ha
                       </span>
                     </div>
 
