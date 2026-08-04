@@ -1,4 +1,4 @@
-import Link from 'next/link';
+const PDF_PATH = '/Buku%20Panduan%20Portal%20Desa%20Surorejo.pdf';
 
 export default function AdminPanduanPage() {
   return (
@@ -10,16 +10,16 @@ export default function AdminPanduanPage() {
         </p>
       </div>
 
-      <div className="rounded-3xl border border-dashed border-neutral-300 bg-neutral-50 p-8 text-center">
-        <p className="text-xl font-semibold text-neutral-900">Buku panduan belum tersedia.</p>
-        <p className="mt-2 text-neutral-600">Buku panduan sedang dalam proses penyusunan dan akan segera tersedia pada halaman ini.</p>
-        <button
-          type="button"
-          disabled
-          className="mt-6 inline-flex items-center justify-center rounded-full bg-neutral-200 px-6 py-3 text-sm font-semibold text-neutral-500 transition-colors disabled:cursor-not-allowed"
+      <div className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm text-center">
+        <p className="text-xl font-semibold text-neutral-900">Buku panduan sudah tersedia.</p>
+        <p className="mt-2 text-neutral-600">Silakan unduh panduan lewat tombol di bawah untuk melihat detailnya.</p>
+        <a
+          href={PDF_PATH}
+          download
+          className="mt-6 inline-flex items-center justify-center rounded-full bg-primary-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
         >
           Unduh Buku Panduan
-        </button>
+        </a>
       </div>
     </div>
   );
