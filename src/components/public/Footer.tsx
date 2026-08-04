@@ -83,14 +83,10 @@ export default async function Footer() {
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-neutral-400">Senin - Jumat</span>
-                <span className="text-neutral-300 font-medium">08.00 - 15.00</span>
+                <span className="text-neutral-300 font-medium">09.00 - 15.00</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-neutral-400">Sabtu</span>
-                <span className="text-neutral-300 font-medium">08.00 - 12.00</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-neutral-400">Minggu</span>
+                <span className="text-neutral-400">Sabtu - Minggu</span>
                 <span className="text-red-400 font-medium">Tutup</span>
               </div>
             </div>

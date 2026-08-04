@@ -45,7 +45,7 @@ export default async function LayananListPage() {
           </div>
           <div>
             <p className="text-sm text-primary-800 font-medium">Jam Pelayanan Kantor Desa</p>
-            <p className="text-sm text-primary-700/80">Senin - Jumat: 08.00 - 15.00 WIB · Sabtu: 08.00 - 12.00 WIB</p>
+            <p className="text-sm text-primary-700/80">Senin - Jumat: 09.00 - 15.00 WIB</p>
           </div>
         </div>
       </ScrollReveal>
