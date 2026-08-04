@@ -128,9 +128,9 @@ export default async function AdminDashboard() {
           <h2 className="text-lg font-semibold text-neutral-800">Statistik Desa</h2>
           <p className="text-sm text-neutral-500 mt-1">Data kependudukan & wilayah</p>
         </Link>
-        <Link href="/admin/lembaga" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
-          <h2 className="text-lg font-semibold text-neutral-800">Lembaga Masyarakat</h2>
-          <p className="text-sm text-neutral-500 mt-1">LPMD, Karang Taruna, PKK, dll</p>
+        <Link href="/admin/perangkat" className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-semibold text-neutral-800">Perangkat Desa</h2>
+          <p className="text-sm text-neutral-500 mt-1">Struktur pemerintahan & staf desa</p>
         </Link>
       </div>
 

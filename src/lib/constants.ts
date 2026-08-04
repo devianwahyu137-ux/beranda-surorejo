@@ -98,7 +98,6 @@ export const ADMIN_NAV = [
   { href: '/admin/transparansi', label: 'Transparansi' },
   { href: '/admin/agenda', label: 'Agenda' },
   { href: '/admin/statistik', label: 'Statistik' },
-  { href: '/admin/lembaga', label: 'Lembaga' },
   { href: '/admin/lokasi', label: 'Lokasi' },
   { href: '/admin/halaman', label: 'Halaman' },
   { href: '/admin/pesan', label: 'Pesan' },
