@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 import { VILLAGE_NAME, PUBLIC_NAV } from '@/lib/constants';
 
@@ -19,11 +20,11 @@ export default async function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Village Info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">BS</span>
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden bg-white shadow-sm border border-neutral-700 relative flex items-center justify-center shrink-0">
+                <Image src="/logo tugu tani.png" alt="Logo Desa Surorejo" fill sizes="40px" className="object-cover" />
               </div>
-              <span className="font-bold text-lg text-white">{VILLAGE_NAME}</span>
+              <span className="font-bold text-lg sm:text-xl text-white tracking-tight">{VILLAGE_NAME}</span>
             </div>
             <p className="text-sm text-neutral-400 leading-relaxed mb-4">
               Portal pendamping pelayanan dan direktori UMKM untuk kemudahan akses warga terhadap pemerintah desa.
@@ -106,7 +107,7 @@ export default async function Footer() {
             <h3 className="font-semibold text-white mb-4">Kontak</h3>
             {kontakPage?.content ? (
               <p className="text-sm text-neutral-400 leading-relaxed whitespace-pre-line">
-                {kontakPage.content}
+                {kontakPage.content.replace(/08\.00/g, '09.00').replace(/08:00/g, '09.00')}
               </p>
             ) : (
               <p className="text-sm text-neutral-500 italic">

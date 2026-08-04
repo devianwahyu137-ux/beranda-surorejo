@@ -17,7 +17,7 @@ INSERT INTO public.service (slug, title, requirements, steps, hours, contact, fo
 3. Isi formulir permohonan
 4. Tunggu proses verifikasi
 5. Ambil surat keterangan domisili',
-  'Senin - Jumat, 08.00 - 15.00 WIB',
+  'Senin - Jumat, 09.00 - 15.00 WIB',
   'Sekretariat Desa Surorejo',
   NULL,
   true,
@@ -33,7 +33,7 @@ INSERT INTO public.service (slug, title, requirements, steps, hours, contact, fo
 2. Datang ke kantor desa dengan persyaratan lengkap
 3. Petugas desa memproses surat pengantar
 4. Bawa surat pengantar ke Disdukcapil Kabupaten',
-  'Senin - Jumat, 08.00 - 15.00 WIB',
+  'Senin - Jumat, 09.00 - 15.00 WIB',
   'Sekretariat Desa Surorejo',
   NULL,
   true,
@@ -52,7 +52,7 @@ INSERT INTO public.service (slug, title, requirements, steps, hours, contact, fo
 4. Isi formulir permohonan SKTM
 5. Tunggu verifikasi dan tanda tangan Kepala Desa
 6. Ambil SKTM',
-  'Senin - Jumat, 08.00 - 15.00 WIB',
+  'Senin - Jumat, 09.00 - 15.00 WIB',
   'Sekretariat Desa Surorejo',
   NULL,
   true,
@@ -72,7 +72,7 @@ INSERT INTO public.service (slug, title, requirements, steps, hours, contact, fo
 4. Isi formulir permohonan
 5. Petugas memverifikasi data
 6. Ambil Surat Keterangan Usaha',
-  'Senin - Jumat, 08.00 - 15.00 WIB',
+  'Senin - Jumat, 09.00 - 15.00 WIB',
   'Sekretariat Desa Surorejo',
   NULL,
   true,
@@ -98,6 +98,6 @@ Kecamatan Banyuurip, Kabupaten Purworejo
 Jawa Tengah
 
 Jam Pelayanan:
-Senin - Jumat: 08.00 - 15.00 WIB
+Senin - Jumat: 09.00 - 15.00 WIB
 Sabtu - Minggu: Tutup'
 WHERE slug = 'kontak';

@@ -142,5 +142,5 @@ create policy "admin all page"       on public.page
 -- ============================================================
 insert into public.page (slug, title, content) values
   ('profil', 'Profil Desa Surorejo', 'Desa Surorejo adalah desa yang terletak di Kecamatan Banyuurip, Kabupaten Purworejo, Provinsi Jawa Tengah. Desa ini memiliki potensi pertanian dan usaha mikro yang beragam.'),
-  ('kontak', 'Kontak Desa Surorejo', 'Kantor Desa Surorejo, Kecamatan Banyuurip, Kabupaten Purworejo, Jawa Tengah. Jam Pelayanan: Senin-Jumat, 08.00-15.00 WIB.')
+  ('kontak', 'Kontak Desa Surorejo', 'Kantor Desa Surorejo, Kecamatan Banyuurip, Kabupaten Purworejo, Jawa Tengah. Jam Pelayanan: Senin-Jumat, 09.00-15.00 WIB.')
 on conflict (slug) do nothing;

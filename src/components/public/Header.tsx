@@ -51,11 +51,11 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-2.5 group">
               <div
                 className={cn(
-                  'w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden flex items-center justify-center border shadow-sm relative transition-all duration-300',
-                  isTransparent ? 'border-white/30 bg-white/10 backdrop-blur-sm group-hover:scale-105' : 'border-neutral-100 bg-white group-hover:scale-105'
+                  'w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden bg-white flex items-center justify-center shadow-sm border relative transition-all duration-300 shrink-0',
+                  isTransparent ? 'border-white/40 group-hover:scale-105 shadow-black/20' : 'border-neutral-200/60 group-hover:scale-105'
                 )}
               >
-                <Image src="/logo tugu tani.png" alt="Logo Desa" fill sizes="40px" className="object-cover p-0.5" />
+                <Image src="/logo tugu tani.png" alt="Logo Desa Surorejo" fill sizes="40px" className="object-cover" />
               </div>
               <span
                 className={cn(
