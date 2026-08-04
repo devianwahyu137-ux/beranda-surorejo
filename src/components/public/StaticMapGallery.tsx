@@ -37,7 +37,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: '/images/peta-luasan-profil-dusun.jpg',
     downloadUrl: '#',
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:5.000',
+    //scale: 'Skala 1:5.000',
     detailsTitle: PETA_LUASAN_DUSUN_JUDUL,
     detailsImageUrl: '/images/peta-luasan-profil-dusun.jpg',
     detailsDescription: PETA_LUASAN_DUSUN_PARAGRAF,
@@ -52,7 +52,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: '/images/peta-luasan-lahan-permukiman-pertanian.jpg',
     downloadUrl: '#',
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:10.000',
+    //scale: 'Skala 1:10.000',
     detailsTitle: 'Peta Luasan Lahan Permukiman dan Pertanian',
     detailsImageUrl: '/images/peta-luasan-lahan-permukiman-pertanian.jpg',
     detailsDescription: [
@@ -69,7 +69,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=90&w=1600&auto=format&fit=crop',
     downloadUrl: '#',
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:7.500',
+    scale: 'Skala 1:11.000',
   },
   {
     id: 'map-4',
@@ -80,7 +80,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=90&w=1600&auto=format&fit=crop',
     downloadUrl: '#',
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:5.000',
+    scale: 'Skala 1:11.000',
   },
   {
     id: 'map-5',
@@ -91,7 +91,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: 'https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=90&w=1600&auto=format&fit=crop',
     downloadUrl: '#',
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:8.000',
+    scale: 'Skala 1:11.000',
   },
 ];
 
