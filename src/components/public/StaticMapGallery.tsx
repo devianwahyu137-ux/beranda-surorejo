@@ -37,7 +37,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: '/images/peta-luasan-profil-dusun.jpg',
     downloadUrl: encodeURI('/images/PETA DUSUN.pdf'),
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:5.000',
+    //scale: 'Skala 1:5.000',
     detailsTitle: PETA_LUASAN_DUSUN_JUDUL,
     detailsImageUrl: '/images/peta-luasan-profil-dusun.jpg',
     detailsDescription: PETA_LUASAN_DUSUN_PARAGRAF,
@@ -52,7 +52,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: '/images/peta-luasan-lahan-permukiman-pertanian.jpg',
     downloadUrl: encodeURI('/images/PETA LUASAN.pdf'),
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:10.000',
+    //scale: 'Skala 1:10.000',
     detailsTitle: 'Peta Luasan Lahan Permukiman dan Pertanian',
     detailsImageUrl: '/images/peta-luasan-lahan-permukiman-pertanian.jpg',
     detailsDescription: [
@@ -69,7 +69,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: '/images/peta-batas-administrasi.jpg',
     downloadUrl: encodeURI('/images/Peta Batas Administrasi Desa Surorejo (KKN-PPM).pdf'),
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:6.500',
+    scale: 'Skala 1:11.000',
     detailsTitle: 'Peta Batas Administrasi Desa Surorejo (KKN-PPM UGM)',
     detailsImageUrl: '/images/peta-batas-administrasi.jpg',
     detailsDescription: [
@@ -86,7 +86,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: '/images/peta-penggunaan-lahan-2026.jpg',
     downloadUrl: encodeURI('/images/Peta Penggunaan Lahan Desa Surorejo 2026 (KKN-PPM).pdf'),
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:7.500',
+    scale: 'Skala 1:11.000',
     detailsTitle: 'Peta Penggunaan Lahan Desa Surorejo Tahun Anggaran 2026',
     detailsImageUrl: '/images/peta-penggunaan-lahan-2026.jpg',
     detailsDescription: [
@@ -103,7 +103,7 @@ const DUMMY_MAPS: StaticMap[] = [
     highResUrl: '/images/peta-sebaran-fasilitas-infrastruktur-2026.jpg',
     downloadUrl: encodeURI('/images/Peta Sebaran Fasilitas Pelayanan dan Infrastruktur 2026 Surorejo (KKN-PPM).pdf'),
     dateStr: 'Agustus 2026',
-    scale: 'Skala 1:5.000',
+    scale: 'Skala 1:11.000',
     detailsTitle: 'Peta Sebaran Fasilitas Pelayanan Publik & Infrastruktur 2026',
     detailsImageUrl: '/images/peta-sebaran-fasilitas-infrastruktur-2026.jpg',
     detailsDescription: [
