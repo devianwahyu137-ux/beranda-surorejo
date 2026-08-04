@@ -49,46 +49,44 @@ export default async function UpcomingEvents() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6">
           {events.map((event, index) => (
             <ScrollReveal key={event.id} direction="up" delay={index + 2}>
-              <div className="bg-neutral-50 rounded-2xl border border-neutral-200 p-4 sm:p-6 flex flex-col h-full card-hover shadow-sm hover:border-primary-200 hover:bg-white group">
-                <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-5">
-                  <div className="flex-shrink-0 flex flex-col items-center justify-center w-11 h-11 sm:w-14 sm:h-14 bg-primary-100 rounded-xl text-primary-700 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                    <span className="text-base sm:text-xl font-bold leading-none">
-                      {new Date(event.event_date).getDate()}
-                    </span>
-                    <span className="text-[9px] sm:text-[10px] font-bold uppercase mt-0.5">
-                      {new Date(event.event_date).toLocaleString('id-ID', { month: 'short' })}
-                    </span>
-                  </div>
+              <div className="bg-neutral-50 rounded-2xl border border-neutral-200 p-4 sm:p-5 flex items-start gap-3.5 sm:gap-4 h-full card-hover shadow-sm hover:border-primary-200 hover:bg-white group transition-all">
+                <div className="flex-shrink-0 flex flex-col items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-primary-100 rounded-xl text-primary-700 group-hover:bg-primary-600 group-hover:text-white transition-colors shrink-0">
+                  <span className="text-base sm:text-xl font-bold leading-none">
+                    {new Date(event.event_date).getDate()}
+                  </span>
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase mt-0.5">
+                    {new Date(event.event_date).toLocaleString('id-ID', { month: 'short' })}
+                  </span>
+                </div>
+
+                <div className="flex-1 min-w-0 flex flex-col justify-between h-full">
                   <div>
-                    <h3 className="text-base sm:text-lg font-bold text-neutral-900 mb-0.5 sm:mb-1 leading-snug group-hover:text-primary-600 transition-colors">{event.title}</h3>
+                    <h3 className="text-base sm:text-lg font-bold text-neutral-900 mb-1 leading-snug group-hover:text-primary-600 transition-colors">{event.title}</h3>
                     {event.time && (
-                      <div className="flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs font-medium text-neutral-500">
-                        <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <div className="flex items-center gap-1 text-[11px] sm:text-xs font-medium text-neutral-500 mb-1">
+                        <svg className="w-3 h-3 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         {event.time}
                       </div>
                     )}
+                    {event.description && (
+                      <p className="text-neutral-600 text-xs sm:text-sm line-clamp-2 mb-2.5 leading-relaxed">
+                        {event.description}
+                      </p>
+                    )}
                   </div>
-                </div>
-                
-                <div className="flex-1">
-                  {event.description && (
-                    <p className="text-neutral-600 text-xs sm:text-sm line-clamp-2 sm:line-clamp-3 mb-3 sm:mb-4">
-                      {event.description}
-                    </p>
+                  
+                  {event.location && (
+                    <div className="pt-2 border-t border-neutral-200/80 flex items-center gap-1.5 text-xs sm:text-sm text-neutral-600 mt-auto font-medium">
+                      <svg className="w-3.5 h-3.5 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span className="truncate">{event.location}</span>
+                    </div>
                   )}
                 </div>
-                
-                {event.location && (
-                  <div className="pt-2.5 sm:pt-4 border-t border-neutral-200 flex items-start gap-2 text-xs sm:text-sm text-neutral-600 mt-auto">
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span className="line-clamp-2">{event.location}</span>
-                  </div>
-                )}
               </div>
             </ScrollReveal>
           ))}

@@ -65,38 +65,38 @@ export default async function AgendaPage() {
               {upcomingEvents && upcomingEvents.length > 0 ? (
                 <div className="space-y-4">
                   {upcomingEvents.map((event, idx) => (
-                    <div key={event.id} className="bg-white border border-neutral-200 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row gap-5 card-hover shadow-sm">
-                      <div className="flex-shrink-0 flex flex-col items-center justify-center w-16 h-16 bg-primary-50 rounded-xl text-primary-700">
-                        <span className="text-2xl font-bold leading-none">
+                    <div key={event.id} className="bg-white border border-neutral-200 rounded-2xl p-4 sm:p-6 flex items-start gap-3.5 sm:gap-5 card-hover shadow-sm">
+                      <div className="flex-shrink-0 flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-primary-50 rounded-xl text-primary-700 shrink-0">
+                        <span className="text-xl sm:text-2xl font-bold leading-none">
                           {new Date(event.event_date).getDate()}
                         </span>
-                        <span className="text-xs font-semibold uppercase mt-1">
+                        <span className="text-[10px] sm:text-xs font-semibold uppercase mt-0.5 sm:mt-1">
                           {new Date(event.event_date).toLocaleString('id-ID', { month: 'short' })}
                         </span>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-neutral-900 mb-2">{event.title}</h3>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-xl font-bold text-neutral-900 mb-1 sm:mb-2 leading-snug">{event.title}</h3>
                         {event.description && (
-                          <p className="text-neutral-600 text-sm mb-4 line-clamp-2">
+                          <p className="text-neutral-600 text-xs sm:text-sm mb-2.5 sm:mb-3 line-clamp-2 sm:line-clamp-3 leading-relaxed">
                             {event.description}
                           </p>
                         )}
-                        <div className="flex flex-wrap gap-4 text-sm font-medium text-neutral-500">
+                        <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-medium text-neutral-500 pt-1 border-t border-neutral-100 sm:border-0 sm:pt-0">
                           {event.time && (
-                            <span className="flex items-center gap-1.5">
-                              <svg className="w-4 h-4 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <span className="flex items-center gap-1">
+                              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
                               {event.time}
                             </span>
                           )}
                           {event.location && (
-                            <span className="flex items-center gap-1.5">
-                              <svg className="w-4 h-4 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <span className="flex items-center gap-1 text-primary-700 font-medium">
+                              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                               </svg>
-                              {event.location}
+                              <span className="truncate">{event.location}</span>
                             </span>
                           )}
                         </div>
