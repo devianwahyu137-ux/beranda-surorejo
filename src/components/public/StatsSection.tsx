@@ -21,7 +21,7 @@ export default async function StatsSection() {
   const displayStats = stats && stats.length > 0 ? stats : defaultStats;
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-primary-800 via-primary-900 to-primary-950 relative overflow-hidden z-10">
+    <section className="py-12 sm:py-20 md:py-28 bg-gradient-to-br from-primary-800 via-primary-900 to-primary-950 relative overflow-hidden z-10">
       {/* Top SVG Wave Transition from White WelcomeSection */}
       <div className="absolute top-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-8 sm:h-12 text-white fill-current">
@@ -46,16 +46,16 @@ export default async function StatsSection() {
       </div>
 
       <div className="container-page relative z-20 my-2">
-        <ScrollReveal className="text-center mb-12">
-          <span className="inline-block text-xs uppercase tracking-wider font-bold text-primary-200 bg-primary-800/80 px-3.5 py-1.5 rounded-full mb-3 border border-primary-600/50 shadow-sm">
+        <ScrollReveal className="text-center mb-8 sm:mb-12">
+          <span className="inline-block text-xs uppercase tracking-wider font-bold text-primary-200 bg-primary-800/80 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full mb-2 sm:mb-3 border border-primary-600/50 shadow-sm">
             Data Desa Surorejo
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
             Desa Surorejo dalam Angka
           </h2>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {displayStats.map((stat, idx) => {
             const numMatch = stat.value.replace(/\./g, '').match(/(\d+)/);
             const numValue = numMatch ? parseInt(numMatch[1], 10) : 0;
@@ -64,19 +64,19 @@ export default async function StatsSection() {
 
             return (
               <ScrollReveal key={stat.id} delay={idx + 1} direction="scale">
-                <div className="group relative bg-white/15 rounded-2xl p-6 text-center border border-white/20 hover:border-primary-400/60 hover:bg-white/20 hover:shadow-[0_8px_35px_rgba(34,197,94,0.25)] transition-[transform,border-color,background-color,box-shadow] duration-300 transform-gpu hover:-translate-y-1 overflow-hidden">
+                <div className="group relative bg-white/15 rounded-2xl p-3.5 sm:p-6 text-center border border-white/20 hover:border-primary-400/60 hover:bg-white/20 hover:shadow-[0_8px_35px_rgba(34,197,94,0.25)] transition-[transform,border-color,background-color,box-shadow] duration-300 transform-gpu hover:-translate-y-1 overflow-hidden">
                   {/* Subtle inner glowing aura on card hover */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/0 via-primary-400/0 to-primary-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                  <div className="relative z-10 inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-primary-500/20 to-primary-400/10 rounded-2xl text-primary-300 mb-4 group-hover:scale-110 group-hover:bg-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
-                    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+                  <div className="relative z-10 inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-br from-primary-500/20 to-primary-400/10 rounded-2xl text-primary-300 mb-2.5 sm:mb-4 group-hover:scale-110 group-hover:bg-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                    <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
                       <path strokeLinecap="round" strokeLinejoin="round" d={STAT_ICONS[stat.icon] || STAT_ICONS['users']} />
                     </svg>
                   </div>
-                  <div className="relative z-10 text-2xl sm:text-4xl font-black text-white mb-1 tracking-tight">
+                  <div className="relative z-10 text-lg sm:text-2xl md:text-4xl font-black text-white mb-0.5 sm:mb-1 tracking-tight">
                     <CounterAnimation target={numValue} suffix={finalSuffix} />
                   </div>
-                  <p className="relative z-10 text-sm sm:text-base font-medium text-primary-200/90">{stat.label}</p>
+                  <p className="relative z-10 text-[11px] sm:text-sm md:text-base font-medium text-primary-200/90">{stat.label}</p>
                 </div>
               </ScrollReveal>
             );

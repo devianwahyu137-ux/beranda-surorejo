@@ -65,20 +65,20 @@ export default async function HomePage() {
       <StatsSection />
 
       {/* Quick-Access Services */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-10 sm:py-16 md:py-20 bg-white">
         <div className="container-page">
-          <ScrollReveal className="text-center mb-10">
-            <span className="inline-block text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full mb-3">
+          <ScrollReveal className="text-center mb-6 sm:mb-10">
+            <span className="inline-block text-xs sm:text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full mb-2 sm:mb-3">
               Pelayanan
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-3">
+            <h2 className="text-xl sm:text-3xl font-bold text-neutral-900 mb-2 sm:mb-3">
               Layanan Administrasi Desa
             </h2>
-            <p className="text-neutral-500 max-w-2xl mx-auto mb-1">
+            <p className="text-neutral-500 text-xs sm:text-base max-w-2xl mx-auto mb-1">
               Temukan informasi lengkap persyaratan dan prosedur pengurusan surat dan layanan administrasi desa.
             </p>
-            <div className="md:hidden inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 text-primary-700 font-bold text-xs animate-pulse mt-2 border border-primary-200/80 shadow-sm">
-              <svg className="w-4 h-4 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <div className="md:hidden inline-flex items-center justify-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-primary-50 text-primary-700 font-bold text-[11px] sm:text-xs animate-pulse mt-2 border border-primary-200/80 shadow-sm">
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
               </svg>
               <span>Geser kartu ke samping untuk menelusuri</span>
@@ -87,7 +87,7 @@ export default async function HomePage() {
 
           {services && services.length > 0 ? (
             <ScrollReveal>
-              <div className="flex md:grid md:grid-cols-2 gap-4 sm:gap-5 overflow-x-auto md:overflow-visible pb-4 md:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+              <div className="flex md:grid md:grid-cols-2 gap-3.5 sm:gap-5 overflow-x-auto md:overflow-visible pb-4 md:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
                 {(services as Service[]).map((service) => (
                   <div key={service.id} className="min-w-[280px] w-[84vw] max-w-[350px] md:min-w-0 md:w-auto md:max-w-none shrink-0 md:shrink snap-center md:snap-align-none">
                     <ServiceCard service={service} />
@@ -103,13 +103,13 @@ export default async function HomePage() {
             </ScrollReveal>
           )}
 
-          <ScrollReveal className="text-center mt-8">
+          <ScrollReveal className="text-center mt-6 sm:mt-8">
             <Link
               href="/layanan"
-              className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium transition-colors group"
+              className="inline-flex items-center text-xs sm:text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors group"
             >
               Lihat semua layanan
-              <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </Link>
@@ -118,20 +118,20 @@ export default async function HomePage() {
       </section>
 
       {/* Latest Verified UMKM */}
-      <section className="bg-neutral-50 py-16 md:py-20">
+      <section className="bg-neutral-50 py-10 sm:py-16 md:py-20">
         <div className="container-page">
-          <ScrollReveal className="text-center mb-10">
-            <span className="inline-block text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full mb-3">
+          <ScrollReveal className="text-center mb-6 sm:mb-10">
+            <span className="inline-block text-xs sm:text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full mb-2 sm:mb-3">
               Usaha Lokal
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-3">
+            <h2 className="text-xl sm:text-3xl font-bold text-neutral-900 mb-2 sm:mb-3">
               UMKM Terbaru Diverifikasi
             </h2>
-            <p className="text-neutral-500 max-w-2xl mx-auto mb-1">
+            <p className="text-neutral-500 text-xs sm:text-base max-w-2xl mx-auto mb-1">
               Usaha lokal Desa Surorejo yang baru saja diverifikasi. Hubungi langsung via WhatsApp.
             </p>
-            <div className="md:hidden inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 text-primary-700 font-bold text-xs animate-pulse mt-2 border border-primary-200/80 shadow-sm">
-              <svg className="w-4 h-4 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <div className="md:hidden inline-flex items-center justify-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-primary-50 text-primary-700 font-bold text-[11px] sm:text-xs animate-pulse mt-2 border border-primary-200/80 shadow-sm">
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
               </svg>
               <span>Geser ke samping untuk melihat UMKM lain</span>
@@ -139,7 +139,7 @@ export default async function HomePage() {
           </ScrollReveal>
 
           {sortedUmkm.length > 0 ? (
-            <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 overflow-x-auto sm:overflow-visible pb-5 sm:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible pb-5 sm:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
               {sortedUmkm.map((umkm, idx) => (
                 <div key={umkm.id} className="min-w-[280px] w-[82vw] max-w-[340px] sm:min-w-0 sm:w-auto sm:max-w-none shrink-0 sm:shrink snap-center sm:snap-align-none h-auto flex flex-col">
                   <ScrollReveal delay={Math.min(idx + 1, 3)} className="h-full">
@@ -156,13 +156,13 @@ export default async function HomePage() {
             </ScrollReveal>
           )}
 
-          <ScrollReveal className="text-center mt-8">
+          <ScrollReveal className="text-center mt-6 sm:mt-8">
             <Link
               href="/umkm"
-              className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 touch-target"
+              className="inline-flex items-center px-5 py-2.5 sm:px-6 sm:py-3 bg-primary-600 text-white text-xs sm:text-base font-semibold rounded-xl hover:bg-primary-700 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 touch-target"
             >
               Lihat semua UMKM
-              <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </Link>

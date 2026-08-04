@@ -44,10 +44,9 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           </span>
         </div>
       </Link>
-      
-      <div className="p-6 flex-1 flex flex-col">
-        <div className="flex items-center gap-2 text-xs text-neutral-400 font-medium mb-3">
-          <svg className="w-4 h-4 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <div className="p-4 sm:p-6 flex-1 flex flex-col">
+        <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-neutral-400 font-medium mb-2 sm:mb-3">
+          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           <time dateTime={article.published_at || ''}>{date}</time>
@@ -56,21 +55,21 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         </div>
         
         <Link href={`/berita/${article.slug}`} className="group-hover:text-primary-600 transition-colors">
-          <h3 className="font-extrabold text-neutral-900 text-lg mb-3 line-clamp-2 leading-snug tracking-tight">
+          <h3 className="font-extrabold text-neutral-900 text-base sm:text-lg mb-1.5 sm:mb-3 line-clamp-2 leading-snug tracking-tight">
             {article.title}
           </h3>
         </Link>
         
-        <p className="text-neutral-600 text-sm line-clamp-3 mb-5 flex-1 leading-relaxed">
+        <p className="text-neutral-600 text-xs sm:text-sm line-clamp-2 sm:line-clamp-3 mb-3 sm:mb-5 flex-1 leading-relaxed">
           {article.excerpt || article.content.substring(0, 120) + '...'}
         </p>
         
         <Link 
           href={`/berita/${article.slug}`}
-          className="inline-flex items-center gap-1.5 text-sm font-bold text-primary-600 group-hover:text-primary-700 mt-auto pt-4 border-t border-neutral-100"
+          className="inline-flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-bold text-primary-600 group-hover:text-primary-700 mt-auto pt-2.5 sm:pt-4 border-t border-neutral-100"
         >
           Baca selengkapnya
-          <svg className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </Link>

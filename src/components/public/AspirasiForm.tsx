@@ -81,16 +81,16 @@ export default function AspirasiForm() {
   }
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-neutral-50 via-white to-primary-50/20 relative" id="aspirasi">
+    <section className="py-12 sm:py-20 md:py-28 bg-gradient-to-b from-neutral-50 via-white to-primary-50/20 relative" id="aspirasi">
       <div className="container-page">
-        <ScrollReveal className="text-center mb-12">
-          <span className="inline-block text-sm font-semibold text-primary-700 bg-primary-50 px-3.5 py-1 rounded-full mb-3 border border-primary-100 shadow-sm">
+        <ScrollReveal className="text-center mb-6 sm:mb-12">
+          <span className="inline-block text-xs sm:text-sm font-semibold text-primary-700 bg-primary-50 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full mb-2 sm:mb-3 border border-primary-100 shadow-sm">
             Suara Warga
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 mb-3 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-900 mb-2 sm:mb-3 tracking-tight">
             Sampaikan Aspirasi Anda
           </h2>
-          <p className="text-neutral-500 max-w-2xl mx-auto text-base">
+          <p className="text-neutral-500 max-w-2xl mx-auto text-xs sm:text-base">
             Punya keluhan, saran, atau pertanyaan? Sampaikan langsung ke perangkat desa melalui formulir di bawah ini.
           </p>
         </ScrollReveal>
@@ -99,26 +99,26 @@ export default function AspirasiForm() {
           <div className="max-w-2xl mx-auto">
             {formState === 'success' ? (
               /* Rich Celebration Confetti Success Box */
-              <div className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white rounded-3xl border border-primary-400/50 p-8 sm:p-14 text-center shadow-[0_20px_50px_rgba(22,163,74,0.25)] relative overflow-hidden animate-checkmark">
+              <div className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white rounded-3xl border border-primary-400/50 p-6 sm:p-14 text-center shadow-[0_20px_50px_rgba(22,163,74,0.25)] relative overflow-hidden animate-checkmark">
                 {/* Radiating Light Ring & Confetti Glows */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-white/10 rounded-full animate-ping pointer-events-none duration-1000" />
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/15 rounded-full blur-2xl pointer-events-none" />
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-accent-400/20 rounded-full blur-2xl pointer-events-none" />
 
                 <div className="relative z-10">
-                  <div className="w-20 h-20 bg-white text-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl animate-bounce">
-                    <svg className="w-10 h-10 stroke-primary-600" fill="none" viewBox="0 0 24 24" strokeWidth={3}>
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-xl animate-bounce">
+                    <svg className="w-8 h-8 sm:w-10 sm:h-10 stroke-primary-600" fill="none" viewBox="0 0 24 24" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-3 tracking-tight drop-shadow">Aspirasi Berhasil Terkirim!</h3>
-                  <p className="text-primary-100 max-w-md mx-auto text-base sm:text-lg font-normal leading-relaxed">
+                  <h3 className="text-xl sm:text-3xl font-black text-white mb-2 sm:mb-3 tracking-tight drop-shadow">Aspirasi Berhasil Terkirim!</h3>
+                  <p className="text-primary-100 max-w-md mx-auto text-xs sm:text-lg font-normal leading-relaxed">
                     Terima kasih atas kepedulian Anda! Perangkat Desa Surorejo akan segera mempelajari dan menindaklanjuti pesan Anda.
                   </p>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-neutral-200/80 p-6 sm:p-10 shadow-[0_10px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_15px_50px_rgba(22,163,74,0.07)] transition-all duration-500 space-y-6 relative overflow-hidden">
+              <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-neutral-200/80 p-5 sm:p-10 shadow-[0_10px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_15px_50px_rgba(22,163,74,0.07)] transition-all duration-500 space-y-4 sm:space-y-6 relative overflow-hidden">
                 {/* Decorative gradient top accent bar */}
                 <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary-500 via-primary-600 to-accent-500" />
 

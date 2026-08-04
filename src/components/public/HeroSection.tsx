@@ -65,10 +65,10 @@ export default function HeroSection() {
       <div className="absolute bottom-1/4 left-1/3 -translate-x-1/2 w-[280px] sm:w-[380px] h-[280px] bg-accent-400/15 blur-[100px] rounded-full pointer-events-none" />
 
       {/* Main Content */}
-      <div className="relative z-10 text-center px-6 py-24 sm:py-28 max-w-4xl mx-auto mt-6">
+      <div className="relative z-10 text-center px-4 sm:px-6 py-16 sm:py-28 max-w-4xl mx-auto mt-2 sm:mt-6">
         {/* Glowing Badge */}
         <div className="animate-hero-title inline-block">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 text-white text-xs sm:text-sm font-semibold rounded-full border border-white/30 mb-6 shadow-[0_0_25px_rgba(255,255,255,0.1)] hover:bg-white/25 transition-colors duration-200">
+          <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 bg-white/20 text-white text-[11px] sm:text-sm font-semibold rounded-full border border-white/30 mb-4 sm:mb-6 shadow-[0_0_25px_rgba(255,255,255,0.1)] hover:bg-white/25 transition-colors duration-200">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-400" />
@@ -77,22 +77,22 @@ export default function HeroSection() {
           </span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white mb-6 leading-[1.15] animate-hero-title tracking-tight drop-shadow-sm">
+        <h1 className="text-3xl sm:text-6xl md:text-7xl font-extrabold text-white mb-3 sm:mb-6 leading-[1.15] animate-hero-title tracking-tight drop-shadow-sm">
           {VILLAGE_NAME}
         </h1>
 
-        <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-12 font-light max-w-2xl mx-auto animate-hero-subtitle leading-relaxed text-balance">
+        <p className="text-sm sm:text-xl md:text-2xl text-white/90 mb-8 sm:mb-12 font-normal sm:font-light max-w-2xl mx-auto animate-hero-subtitle leading-relaxed text-balance">
           Membangun desa yang <span className="font-semibold text-primary-300">transparan</span>, <span className="font-semibold text-accent-300">mandiri</span>, dan meningkatkan kesejahteraan masyarakat.
         </p>
 
         {/* Action Buttons with Glow micro-interactions */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 animate-hero-cta max-w-md mx-auto sm:max-w-none">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 animate-hero-cta max-w-xs sm:max-w-none mx-auto">
           <Link
             href="/layanan"
-            className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-extrabold rounded-xl shadow-[0_8px_30px_rgba(34,197,94,0.35)] transition-[transform,box-shadow,background-color] duration-200 transform-gpu hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 text-base sm:text-lg border border-primary-400/30 touch-target"
+            className="group w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-extrabold rounded-xl shadow-[0_8px_30px_rgba(34,197,94,0.35)] transition-[transform,box-shadow,background-color] duration-200 transform-gpu hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 text-sm sm:text-lg border border-primary-400/30 touch-target"
           >
             <svg
-              className="w-5 h-5 mr-2.5 text-primary-200 group-hover:rotate-12 transition-transform duration-300"
+              className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-primary-200 group-hover:rotate-12 transition-transform duration-300"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -109,10 +109,10 @@ export default function HeroSection() {
 
           <Link
             href="/umkm"
-            className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white/20 hover:bg-white/30 text-white font-bold rounded-xl border border-white/30 shadow-lg hover:shadow-[0_4px_25px_rgba(255,255,255,0.2)] transition-[transform,box-shadow,background-color] duration-200 transform-gpu hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 text-base sm:text-lg touch-target"
+            className="group w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 bg-white/20 hover:bg-white/30 text-white font-bold rounded-xl border border-white/30 shadow-lg hover:shadow-[0_4px_25px_rgba(255,255,255,0.2)] transition-[transform,box-shadow,background-color] duration-200 transform-gpu hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 text-sm sm:text-lg touch-target"
           >
             <svg
-              className="w-5 h-5 mr-2.5 text-accent-400 group-hover:scale-110 transition-transform duration-200"
+              className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-accent-400 group-hover:scale-110 transition-transform duration-200"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

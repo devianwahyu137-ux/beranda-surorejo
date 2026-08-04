@@ -7,16 +7,16 @@ interface GalleryPreviewProps {
 
 export default function GalleryPreview({ items }: GalleryPreviewProps) {
   return (
-    <section className="py-20 md:py-24 bg-white relative overflow-hidden">
+    <section className="py-10 sm:py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="container-page">
-        <ScrollReveal className="text-center mb-12">
-          <span className="inline-block text-sm font-semibold text-primary-700 bg-primary-50 px-3.5 py-1 rounded-full mb-3 border border-primary-100 shadow-sm">
+        <ScrollReveal className="text-center mb-6 sm:mb-12">
+          <span className="inline-block text-xs sm:text-sm font-semibold text-primary-700 bg-primary-50 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full mb-2 sm:mb-3 border border-primary-100 shadow-sm">
             Dokumentasi Desa
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 mb-3 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-900 mb-2 sm:mb-3 tracking-tight">
             Galeri Kegiatan Desa
           </h2>
-          <p className="text-neutral-500 max-w-2xl mx-auto text-base">
+          <p className="text-neutral-500 max-w-2xl mx-auto text-xs sm:text-base">
             Dokumentasi momen penting dan berbagai kegiatan kemasyarakatan di Desa Surorejo.
           </p>
         </ScrollReveal>

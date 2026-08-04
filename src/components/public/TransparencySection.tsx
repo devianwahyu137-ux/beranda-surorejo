@@ -236,35 +236,35 @@ export default function TransparencySection() {
 
       {/* Featured Infografis APBDes 2026 Banner */}
       <ScrollReveal>
-        <div className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 rounded-3xl p-6 sm:p-8 text-white shadow-2xl border border-emerald-700/50 relative overflow-hidden my-6">
+        <div className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 rounded-3xl p-5 sm:p-8 text-white shadow-2xl border border-emerald-700/50 relative overflow-hidden my-4 sm:my-6">
           {/* Background decorative elements */}
           <div className="absolute -right-20 -top-20 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute left-10 -bottom-20 w-60 h-60 bg-amber-400/10 rounded-full blur-2xl pointer-events-none" />
           
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
             {/* Text & Highlights (Left 7 Cols) */}
-            <div className="lg:col-span-7 space-y-5">
+            <div className="lg:col-span-7 space-y-4 sm:space-y-5">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="bg-amber-400 text-neutral-950 font-extrabold text-xs px-3 py-1 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1.5">
+                <span className="bg-amber-400 text-neutral-950 font-extrabold text-[11px] sm:text-xs px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-neutral-950 animate-pulse" />
                   TA 2026 Terbaru
                 </span>
-                <span className="bg-emerald-700/90 text-emerald-100 font-semibold text-xs px-3 py-1 rounded-full border border-emerald-500/50 shadow-sm">
+                <span className="bg-emerald-700/90 text-emerald-100 font-semibold text-[11px] sm:text-xs px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-emerald-500/50 shadow-sm">
                   Infografis Resmi APBDes
                 </span>
               </div>
 
               <div>
-                <h4 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight text-white">
+                <h4 className="text-xl sm:text-3xl font-black tracking-tight leading-tight text-white">
                   Dashboard Transparansi APBDes Surorejo 2026
                 </h4>
-                <p className="mt-3 text-emerald-100/95 text-sm sm:text-base font-normal leading-relaxed italic border-l-3 border-amber-400 pl-3.5 bg-white/5 py-2 rounded-r-lg">
+                <p className="mt-2 sm:mt-3 text-emerald-100/95 text-xs sm:text-base font-normal leading-relaxed italic border-l-3 border-amber-400 pl-3 sm:pl-3.5 bg-white/5 py-1.5 sm:py-2 rounded-r-lg">
                   &ldquo;Mewujudkan Tata Kelola Keuangan Desa yang Transparan, Akuntabel, Efektif, dan Partisipatif.&rdquo;
                 </p>
               </div>
 
               {/* Mini Dashboard Highlights */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-1">
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/15 shadow-inner">
                   <div className="text-[10px] font-semibold uppercase tracking-wider text-emerald-200">Pendapatan Desa</div>
                   <div className="text-sm sm:text-base font-bold text-amber-300 mt-1 truncate">Rp 880,7 Jt</div>

@@ -157,7 +157,7 @@ export default function StaticMapGallery() {
       {/* 6-Column Grid Layout:
           Baris Atas (Peta 1 & 2): Masing-masing berukuran 3 dari 6 kolom (= persis 50% - 50% Sama Besar!).
           Baris Bawah (Peta 3, 4, & 5): Masing-masing berukuran 2 dari 6 kolom (= persis 33% - 33% - 33% Sama Rata!). */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 sm:gap-8 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-8 items-stretch">
         {DUMMY_MAPS.map((map, idx) => {
           const isTopRow = idx === 0 || idx === 1; // 2 Peta Utama di atas (Sama Besar)
 
@@ -212,17 +212,17 @@ export default function StaticMapGallery() {
               </div>
 
               {/* Card Content & Description */}
-              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+              <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <h3 className="font-extrabold text-lg sm:text-xl text-neutral-900 group-hover:text-primary-700 transition-colors leading-snug">
+                  <div className="flex items-start justify-between gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                    <h3 className="font-extrabold text-base sm:text-xl text-neutral-900 group-hover:text-primary-700 transition-colors leading-snug">
                       {map.title}
                     </h3>
-                    <span className="shrink-0 text-xs font-semibold text-primary-700 bg-primary-50 border border-primary-200/60 px-2.5 py-1 rounded-lg">
+                    <span className="shrink-0 text-[11px] sm:text-xs font-semibold text-primary-700 bg-primary-50 border border-primary-200/60 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg">
                       {map.dateStr}
                     </span>
                   </div>
-                  <p className="text-sm text-neutral-600 line-clamp-3 leading-relaxed mb-4 font-normal">
+                  <p className="text-xs sm:text-sm text-neutral-600 line-clamp-3 leading-relaxed mb-3 sm:mb-4 font-normal">
                     {map.description}
                   </p>
                 </div>

@@ -48,20 +48,20 @@ export default function UmkmCard({ umkm, isFirst }: UmkmCardProps) {
       </Link>
 
       {/* Content */}
-      <div className="p-5 flex flex-col flex-1">
+      <div className="p-4 sm:p-5 flex flex-col flex-1">
         <Link href={`/umkm/${umkm.slug}`}>
-          <h3 className="font-bold text-lg text-neutral-900 group-hover:text-primary-700 transition-colors mb-2 leading-snug tracking-tight">
+          <h3 className="font-bold text-base sm:text-lg text-neutral-900 group-hover:text-primary-700 transition-colors mb-1 sm:mb-2 leading-snug tracking-tight">
             {umkm.name}
           </h3>
         </Link>
 
         {umkm.description && (
-          <p className="text-sm text-neutral-500 mb-5 line-clamp-2 leading-relaxed flex-1">
+          <p className="text-xs sm:text-sm text-neutral-500 mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-1">
             {truncate(umkm.description, 120)}
           </p>
         )}
 
-        <div className="flex items-center justify-between gap-2 pt-3 border-t border-neutral-100 mt-auto">
+        <div className="flex items-center justify-between gap-2 pt-2 sm:pt-3 border-t border-neutral-100 mt-auto">
           <FreshnessBadge lastVerifiedAt={umkm.last_verified_at} />
           <WhatsAppButton
             whatsappNumber={umkm.whatsapp_number}
