@@ -105,6 +105,7 @@ export const ADMIN_NAV = [
   { href: '/admin/perangkat', label: 'Perangkat' },
   { href: '/admin/pkk', label: 'PKK' },
   { href: '/admin/galeri', label: 'Galeri' },
+  { href: '/admin/panduan', label: 'Panduan' },
 ];
 
 // ============================================================

@@ -55,7 +55,7 @@ export default function Header() {
                   isTransparent ? 'border-white/30 bg-white/10 backdrop-blur-sm group-hover:scale-105' : 'border-neutral-100 bg-white group-hover:scale-105'
                 )}
               >
-                <Image src="/icon-192x192.png" alt="Logo Desa" fill sizes="40px" className="object-cover p-0.5" />
+                <Image src="/logo tugu tani.png" alt="Logo Desa" fill sizes="40px" className="object-cover p-0.5" />
               </div>
               <span
                 className={cn(
